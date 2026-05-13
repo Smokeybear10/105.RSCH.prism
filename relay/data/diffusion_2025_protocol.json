@@ -1,0 +1,143 @@
+{
+  "frozen_at_utc": "2026-11-04T01:21:37.476062+00:00",
+  "purpose": "Reproducible exploratory customer-to-supplier event-study/portfolio feasibility; no alpha certification",
+  "source_customers": [
+    "WMT",
+    "HD",
+    "LOW",
+    "DE"
+  ],
+  "supplier_candidates": [
+    "PG",
+    "CLX",
+    "SJM",
+    "MAS",
+    "SMG",
+    "SWK",
+    "TWI"
+  ],
+  "period": "scheduled quarterly results released during calendar2025",
+  "selection": "Purposive source-feasibility cohort;16scheduledreleases, knowninterims preservedseparately; notrepresentative orcomprehensiveunschedulednewsuniverse",
+  "relationships": "Onlydirectednamedrelationships with original evidence published beforedecision; exposurepercenthistoricalsalesconcentration, notfairvaluecoefficient; no correlation-derivededges",
+  "event_logic": "Allquarterlyreleases formdenominator. Sameforecastperiod/unit/businessscope management-guidance changes arean auditable diagnostic, notanalyst-expectationssurprises. Reaffirmation, initialization, withdrawal, qualitativedirection andmissingdata staydistinct. Acquisition/perimeter changes donotbecomecleandemandsignals.",
+  "timing": "Conservativeprimary uses release_date as known by23:59America/New_York, entrynexttradingopen. Allpricefeaturesendatlastregularclose on/before releasedate, so sourcepricefeature is release-day return notcertifiedannouncementreaction. Predetermineddelayed sensitivity insertsoneextracompletesession beforeentry.",
+  "primary_entry_delay_sessions": 0,
+  "sensitivity_entry_delay_sessions": [
+    1
+  ],
+  "holding_sessions": 5,
+  "benchmark": "Separate cash-constrained SPY-lot account on same realized entry/exit schedule, requesting same fractions of its own opening equity as stock allocations. If cash insufficient, proportional cap and report scaling days. Additional exact-same-dollar per-trade SPY attribution is not a self-financing account.",
+  "rules": [
+    "alwaysbuyeligiblelinkedtargets",
+    "buylinkedtargetswhensourcepublication-windowSPY-relativepricechange>0",
+    "buylinkedtargetswhenpredefinedguidanceproxyispositiveandcomparable;unknownorambiguousabstain"
+  ],
+  "guidance_sign_aggregation": {
+    "WMT": "same-period constant-currency consolidated net_sales_growth midpoint revision, VIZIO perimeter retained; annual mix/realized-quarter proxy, not physical product demand",
+    "HD": "same-period company comparable_sales_growth midpoint revision; qualitative guidance abstains; total-sales/acquisition changes never substitute",
+    "LOW": "same-period company comparable_sales_growth midpoint revision; total-sales/acquisition changes never substitute",
+    "DE": "all three disclosed segment net_sales_growth changes: positive if at least one up and none down; negative if at least one down and none up; all equal zero; any unknown or mixed signs abstain; do not invent Titan segment procurement weights"
+  },
+  "account": "Cashlongonly; cap25percentcurrentequity budgetperposition, noleverage, noadditionalpositioninsamealready-heldticker; simultaneous candidates equalallocatedavailablecash withcap; sameentrydate/targetduplicates merged andallsourceIDsretained. Exitownfixedholdingdate;cashmayfundfuturebatches, neverborrow.",
+  "cost_grid_round_trip_bp": [
+    0,
+    10,
+    20,
+    50
+  ],
+  "pricing": "Publicdailyadjustedopen/closeproxies; notexecutablequotes; currentarchivecorporateadjustments. Realquotevalidationneeded beforecapitalclaim.",
+  "minimum_comparators": "Report all three rules, both entry lags, all costs, and each cash-constrained matched-schedule SPY benchmark; same whole-calendar2025 account reporting period. No selecting winning variant.",
+  "uncertainty": "Only16customerreleases; reportdescriptiveevent/issuer-clustercounts, no pvalueorprofitconfidence; noMLtrainingorwinnerselection.",
+  "leakage_controls": [
+    "No linkdisclosed afterevent",
+    "No futurefinalguidanceoroutcomeused forqualification",
+    "No futuretargetearnings exclusion",
+    "No missingpriceassumedzero orsilentdrop",
+    "Changesafteroutcomesarebugfixesonly, withrerunfullresults"
+  ],
+  "known_prior_exposure": "Existingsemiconductorpilotandmonthlycustomer-momentumaudit werealreadyinspected.2025publicexampleswereseen; thisnewpurposivepilot isnotanuntouchedpreregisteredconfirmatorytest.",
+  "return_data_accessed_after_freeze": false,
+  "guidance_mapping_finalized_at_utc": "2026-11-04T01:26:21.594728+00:00",
+  "known_guidance_counts_before_prices": {
+    "positive": 3,
+    "negative": 3,
+    "unchanged": 5,
+    "unknown": 5,
+    "positive_source_ids": [
+      "DE_2025-08-14",
+      "WMT_2025-08-21",
+      "WMT_2025-11-20"
+    ],
+    "positive_linked_rows_before_allocation": 7
+  },
+  "allocation_tie_break": "Alphabetical target ticker among simultaneous new candidates; no forecast-magnitude or outcome tie-break. Positions sold at close cannot fund same-day open orders.",
+  "primary_price_comparison_limitation": "Date-only next-open primary price feature can predate an after-close release. Only the one-extra-complete-session comparison lets both guidance and initial price response use a full public-news session. Primary cannot establish incremental information beyond initial price reaction.",
+  "complete_protocol_frozen_before_price_access": true,
+  "max_open_positions": 4,
+  "max_new_position_budget_fraction": 0.25,
+  "source_ledger_frozen_sha256": "49701a0da9ba8ef7fbdff9cc17d905824c907f9e398c0e198bea1ed0311aa7d0",
+  "final_protocol_freeze_utc": "2026-11-04T01:26:57.075816+00:00",
+  "execution_settings": {
+    "rules": [
+      "all_linked_events",
+      "positive_source_price",
+      "positive_guidance_revision"
+    ],
+    "entry_delays": [
+      0,
+      1
+    ],
+    "holding_sessions": 5,
+    "cost_grid_bps": [
+      0,
+      10,
+      20,
+      50
+    ],
+    "initial_cash": 10000,
+    "max_open_positions": 4,
+    "max_new_position_budget_fraction": 0.25,
+    "guidance_fields": {
+      "WMT": [
+        [
+          "net_sales_growth",
+          "constant_currency",
+          "consolidated_including_VIZIO"
+        ]
+      ],
+      "HD": [
+        [
+          "comparable_sales_growth",
+          "comparable_52_week_period",
+          "company_comparable_sales"
+        ]
+      ],
+      "LOW": [
+        [
+          "comparable_sales_growth",
+          "comparable_sales",
+          "company_comparable_sales"
+        ]
+      ],
+      "DE": [
+        [
+          "net_sales_growth",
+          "reported_segment_sales",
+          "production_precision_agriculture"
+        ],
+        [
+          "net_sales_growth",
+          "reported_segment_sales",
+          "small_agriculture_turf"
+        ],
+        [
+          "net_sales_growth",
+          "reported_segment_sales",
+          "construction_forestry"
+        ]
+      ]
+    }
+  },
+  "machine_settings_recorded_at_utc": "2026-11-04T01:29:29.888880+00:00",
+  "machine_settings_note": "Formalizes already-frozen rules and capital limits; no outcomes computed or inspected. Adds XNYS calendar integrity check including special closures; no strategy change."
+}

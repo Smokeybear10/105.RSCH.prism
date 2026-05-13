@@ -1,0 +1,1886 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "created_date_utc": "2026-11-04",
+    "cohort_frozen_before_return_retrieval": true,
+    "price_or_return_data_accessed_for_this_cohort": false,
+    "study_period": [
+      "2025-01-01",
+      "2025-12-31"
+    ],
+    "purpose": "Public source and field-availability gate; no statistical performance or alpha inference.",
+    "selection": "Purposive feasibility cohort chosen for publicly disclosed links and readable source documents; not a representative market universe.",
+    "event_policy": "All four scheduled result releases during calendar2025 for each of WMT, HD, LOW and DE, irrespective of guidance change. Known interim statements retained separately.",
+    "entry_clock_policy": "All events have date-only verified availability; next regular US trading-session entry must be selected by an exchange calendar, not a calendar-day increment.",
+    "relationships_policy": "Fixed pre-2025 named-customer graph. Percentages are historical annual concentration. No present-day relationship backfill.",
+    "no_clean_forward_surprise_claim": true,
+    "no_market_consensus_surprise_claim": true,
+    "acquisition_scope_flag_definition": "True means acquisition effects are included in the disclosed forecast perimeter; it does not imply the perimeter changed at this event. Use each guide change_status for changes."
+  },
+  "cohort": {
+    "source_tickers": [
+      "WMT",
+      "HD",
+      "LOW",
+      "DE"
+    ],
+    "target_tickers": [
+      "PG",
+      "CLX",
+      "SJM",
+      "MAS",
+      "SMG",
+      "SWK",
+      "TWI"
+    ],
+    "scheduled_event_count": 16,
+    "directed_link_count": 10,
+    "unique_supplier_count": 7
+  },
+  "relationships": [
+    {
+      "source_ticker": "WMT",
+      "target_ticker": "PG",
+      "published_date": "2024-08-05",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/80424/000008042424000083/pg-20240630.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/80424/0000080424-24-000083-index.htm",
+      "exposure_pct": 16,
+      "exposure_bound_pct": null,
+      "exposure_period": "supplier_FY2024",
+      "relationship_type": "named_customer",
+      "notes": [
+        "16% FY2024 sales; Walmart and affiliates"
+      ]
+    },
+    {
+      "source_ticker": "WMT",
+      "target_ticker": "CLX",
+      "published_date": "2024-08-08",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/21076/000002107624000030/clx-20240630.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/21076/0000021076-24-000030-index.htm",
+      "exposure_pct": 25,
+      "exposure_bound_pct": null,
+      "exposure_period": "supplier_FY2024",
+      "relationship_type": "named_customer",
+      "notes": [
+        "25% FY2024 sales; Walmart and affiliates"
+      ]
+    },
+    {
+      "source_ticker": "WMT",
+      "target_ticker": "SJM",
+      "published_date": "2024-06-18",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/91419/000009141924000054/sjm-20240430.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/91419/000009141924000054/0000091419-24-000054-index.html",
+      "exposure_pct": 33,
+      "exposure_bound_pct": null,
+      "exposure_period": "supplier_FY2024",
+      "relationship_type": "named_customer",
+      "notes": [
+        "33% FY2024 sales; Walmart and subsidiaries; no long-term supply contracts with major customers"
+      ]
+    },
+    {
+      "source_ticker": "HD",
+      "target_ticker": "MAS",
+      "published_date": "2024-02-08",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/62996/000006299624000006/mas-20231231.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/62996/000006299624000006/0000062996-24-000006-index.html",
+      "exposure_pct": 39,
+      "exposure_bound_pct": null,
+      "exposure_bound_operator": null,
+      "exposure_period": "supplier_FY2023",
+      "relationship_type": "named_customer",
+      "notes": [
+        "Historical annual sales concentration, not a contemporaneous order elasticity or segment procurement weight."
+      ]
+    },
+    {
+      "source_ticker": "LOW",
+      "target_ticker": "MAS",
+      "published_date": "2024-02-08",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/62996/000006299624000006/mas-20231231.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/62996/000006299624000006/0000062996-24-000006-index.html",
+      "exposure_pct": null,
+      "exposure_bound_pct": 10,
+      "exposure_bound_operator": "<",
+      "exposure_period": "supplier_FY2023",
+      "relationship_type": "named_customer",
+      "notes": [
+        "Historical annual sales concentration, not a contemporaneous order elasticity or segment procurement weight."
+      ]
+    },
+    {
+      "source_ticker": "HD",
+      "target_ticker": "SMG",
+      "published_date": "2024-11-26",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/825542/000154638024000043/R51.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/825542/000154638024000043/0001546380-24-000043-index-headers.html",
+      "exposure_pct": 30,
+      "exposure_bound_pct": null,
+      "exposure_bound_operator": null,
+      "exposure_period": "supplier_FY2024",
+      "relationship_type": "named_customer",
+      "notes": [
+        "Historical annual sales concentration, not a contemporaneous order elasticity or segment procurement weight."
+      ]
+    },
+    {
+      "source_ticker": "LOW",
+      "target_ticker": "SMG",
+      "published_date": "2024-11-26",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/825542/000154638024000043/R51.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/825542/000154638024000043/0001546380-24-000043-index-headers.html",
+      "exposure_pct": 18,
+      "exposure_bound_pct": null,
+      "exposure_bound_operator": null,
+      "exposure_period": "supplier_FY2024",
+      "relationship_type": "named_customer",
+      "notes": [
+        "Historical annual sales concentration, not a contemporaneous order elasticity or segment procurement weight."
+      ]
+    },
+    {
+      "source_ticker": "HD",
+      "target_ticker": "SWK",
+      "published_date": "2024-02-27",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/93556/000009355624000032/swk-20231230.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/93556/000009355624000032/0000093556-24-000032-index.html",
+      "exposure_pct": 13,
+      "exposure_bound_pct": null,
+      "exposure_bound_operator": null,
+      "exposure_period": "supplier_FY2023",
+      "relationship_type": "named_customer",
+      "notes": [
+        "Historical annual sales concentration, not a contemporaneous order elasticity or segment procurement weight."
+      ]
+    },
+    {
+      "source_ticker": "LOW",
+      "target_ticker": "SWK",
+      "published_date": "2024-02-27",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/93556/000009355624000032/swk-20231230.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/93556/000009355624000032/0000093556-24-000032-index.html",
+      "exposure_pct": 14,
+      "exposure_bound_pct": null,
+      "exposure_bound_operator": null,
+      "exposure_period": "supplier_FY2023",
+      "relationship_type": "named_customer",
+      "notes": [
+        "Historical annual sales concentration, not a contemporaneous order elasticity or segment procurement weight."
+      ]
+    },
+    {
+      "source_ticker": "DE",
+      "target_ticker": "TWI",
+      "published_date": "2024-02-29",
+      "evidence_url": "https://www.sec.gov/Archives/edgar/data/899751/000089975124000018/twi-20231231.htm",
+      "publication_evidence_url": "https://www.sec.gov/Archives/edgar/data/899751/000089975124000018/0000899751-24-000018-index.htm",
+      "exposure_pct": 13,
+      "exposure_bound_pct": null,
+      "exposure_bound_operator": null,
+      "exposure_period": "supplier_FY2023",
+      "relationship_type": "named_customer",
+      "notes": [
+        "Historical annual sales concentration, not a contemporaneous order elasticity or segment procurement weight."
+      ]
+    }
+  ],
+  "events": [
+    {
+      "event_id": "DE_2025-02-13",
+      "source_ticker": "DE",
+      "available_date": "2025-02-13",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837025000892/de-20250213xex99d1.htm",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "production_precision_agriculture",
+          "low": -20,
+          "high": -15,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2024-11-21",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837024015876/de-20241121xex99d1.htm",
+          "change_status": "numeric_revision",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": -2.5,
+          "price_realization_percent": 1,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|production_precision_agriculture",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "small_agriculture_turf",
+          "low": -10,
+          "high": -10,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2024-11-21",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837024015876/de-20241121xex99d1.htm",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": -1.5,
+          "price_realization_percent": 0.5,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|small_agriculture_turf",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "construction_forestry",
+          "low": -15,
+          "high": -10,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2024-11-21",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837024015876/de-20241121xex99d1.htm",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": -1.5,
+          "price_realization_percent": 0,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|construction_forestry",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": false,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "Titan exposure is to Deere across multiple segments; no segment-specific procurement allocation was verified.",
+        "February outlook excludes potential tariff effects; May incorporates tariffs in force May13. Assumption changes must be retained."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "negative",
+        "sign": -1,
+        "components": [
+          {
+            "scope": "production_precision_agriculture",
+            "delta_pp": -2.5,
+            "approximate_input": true
+          },
+          {
+            "scope": "small_agriculture_turf",
+            "delta_pp": 0.0,
+            "approximate_input": true
+          },
+          {
+            "scope": "construction_forestry",
+            "delta_pp": 0.0,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "WMT_2025-02-20",
+      "source_ticker": "WMT",
+      "available_date": "2025-02-20",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://stock.walmart.com/sec-filings/all-sec-filings/content/0000104169-25-000010/earningsreleasefy25q4.htm",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2026",
+          "unit": "percent_yoy",
+          "basis": "constant_currency",
+          "business_scope": "consolidated_including_VIZIO",
+          "low": 3,
+          "high": 4,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "This is the annual net-sales guide, not revenue including membership and other income.",
+            "FY2025 net-sales base stated as USD674.5bn. Do not directly subtract reported-dollar quarterly actuals from constant-currency growth ranges.",
+            "FY guide contains completed-quarter information; it is not a clean remaining-year demand surprise."
+          ],
+          "comparison_key": "WMT|net_sales_growth|FY2026|percent_yoy|constant_currency|consolidated_including_VIZIO",
+          "previous_is_latest_located_not_certified_latest_public": false
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "VIZIO is in the forecast perimeter; guidance and release also contain advertising/marketplace effects.",
+        "A new next-quarter forecast is a different period, not a revision of the previous quarter's guide."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "abstain_initialization",
+        "sign": null,
+        "components": [
+          {
+            "scope": "consolidated_including_VIZIO",
+            "delta_pp": null,
+            "reason": "initialization"
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "HD_2025-02-25",
+      "source_ticker": "HD",
+      "available_date": "2025-02-25",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://ir.homedepot.com/news-releases/2025/02-25-2025-110147741",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_52_week_period",
+          "business_scope": "company_comparable_sales",
+          "low": 1,
+          "high": 1,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "Do not assign an invented numeric midpoint to slightly positive.",
+            "Comparable sales are not unit volume and can reflect prices, mix and FX; rates cannot be additively subtracted across quarters."
+          ],
+          "comparison_key": "HD|comparable_sales_growth|FY2025|percent_yoy|comparable_52_week_period|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": false
+        },
+        {
+          "metric": "total_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_52_weeks_vs_53_week_prior_year",
+          "business_scope": "consolidated",
+          "low": 2.8,
+          "high": 2.8,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "SRS contributes to consolidated growth; November/December include GMS with approximately USD2bn incremental sales."
+          ],
+          "comparison_key": "HD|total_sales_growth|FY2025|percent_yoy|reported_52_weeks_vs_53_week_prior_year|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": false
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [],
+      "guidance_sign_diagnostic": {
+        "status": "abstain_initialization",
+        "sign": null,
+        "components": [
+          {
+            "scope": "company_comparable_sales",
+            "delta_pp": null,
+            "reason": "initialization"
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "LOW_2025-02-26",
+      "source_ticker": "LOW",
+      "available_date": "2025-02-26",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-fourth-quarter-2024-sales-and-earnings-results-02-26-25",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_sales",
+          "business_scope": "company_comparable_sales",
+          "low": 0,
+          "high": 1,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "A flat guide is encoded as0%; flat to up1% as[0,1]. These are growth rates, not additive revenue amounts."
+          ],
+          "comparison_key": "LOW|comparable_sales_growth|FY2025|percent_yoy|comparable_sales|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": false
+        },
+        {
+          "metric": "total_sales",
+          "forecast_period": "FY2025",
+          "unit": "USD_billions",
+          "basis": "reported",
+          "business_scope": "consolidated",
+          "low": 83.5,
+          "high": 84.5,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "August adds ADG while explicitly keeping core expectations unchanged; November adds FBM and lowers comparable-sales outlook."
+          ],
+          "comparison_key": "LOW|total_sales|FY2025|USD_billions|reported|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": false
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": false,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "December11,2024 investor-day scenario planning is recorded separately; February release explicitly introduces FY2025 outlook."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "abstain_initialization",
+        "sign": null,
+        "components": [
+          {
+            "scope": "company_comparable_sales",
+            "delta_pp": null,
+            "reason": "initialization"
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "DE_2025-05-15",
+      "source_ticker": "DE",
+      "available_date": "2025-05-15",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837025007795/de-20250515xex99d1.htm",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "production_precision_agriculture",
+          "low": -20,
+          "high": -15,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2025-02-13",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837025000892/de-20250213xex99d1.htm",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": -1.5,
+          "price_realization_percent": 1,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|production_precision_agriculture",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "small_agriculture_turf",
+          "low": -15,
+          "high": -10,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2025-02-13",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837025000892/de-20250213xex99d1.htm",
+          "change_status": "numeric_revision",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 0,
+          "price_realization_percent": 0.5,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|small_agriculture_turf",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "construction_forestry",
+          "low": -15,
+          "high": -10,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2025-02-13",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837025000892/de-20250213xex99d1.htm",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 0,
+          "price_realization_percent": -1,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|construction_forestry",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": false,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "Titan exposure is to Deere across multiple segments; no segment-specific procurement allocation was verified.",
+        "February outlook excludes potential tariff effects; May incorporates tariffs in force May13. Assumption changes must be retained."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "negative",
+        "sign": -1,
+        "components": [
+          {
+            "scope": "production_precision_agriculture",
+            "delta_pp": 0.0,
+            "approximate_input": false
+          },
+          {
+            "scope": "small_agriculture_turf",
+            "delta_pp": -2.5,
+            "approximate_input": true
+          },
+          {
+            "scope": "construction_forestry",
+            "delta_pp": 0.0,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "WMT_2025-05-15",
+      "source_ticker": "WMT",
+      "available_date": "2025-05-15",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://corporate.walmart.com/content/dam/corporate/documents/newsroom/2025/05/15/walmart-releases-q1-fy26-earnings/q1-fy26-earnings-release.pdf",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2026",
+          "unit": "percent_yoy",
+          "basis": "constant_currency",
+          "business_scope": "consolidated_including_VIZIO",
+          "low": 3,
+          "high": 4,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "WMT_2025-04-09",
+          "previous_source_url": "https://corporate.walmart.com/news/2025/04/09/walmart-showcases-business-strategy-focused-on-driving-growth-and-shareholder-value",
+          "change_status": "reaffirmed",
+          "notes": [
+            "This is the annual net-sales guide, not revenue including membership and other income.",
+            "FY2025 net-sales base stated as USD674.5bn. Do not directly subtract reported-dollar quarterly actuals from constant-currency growth ranges.",
+            "FY guide contains completed-quarter information; it is not a clean remaining-year demand surprise."
+          ],
+          "comparison_key": "WMT|net_sales_growth|FY2026|percent_yoy|constant_currency|consolidated_including_VIZIO",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "VIZIO is in the forecast perimeter; guidance and release also contain advertising/marketplace effects.",
+        "A new next-quarter forecast is a different period, not a revision of the previous quarter's guide."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "unchanged",
+        "sign": 0,
+        "components": [
+          {
+            "scope": "consolidated_including_VIZIO",
+            "delta_pp": 0.0,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "HD_2025-05-20",
+      "source_ticker": "HD",
+      "available_date": "2025-05-20",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://ir.homedepot.com/news-releases/2025/05-20-2025-110127912",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_52_week_period",
+          "business_scope": "company_comparable_sales",
+          "low": 1,
+          "high": 1,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": "HD_2025-02-25",
+          "previous_source_url": "https://ir.homedepot.com/news-releases/2025/02-25-2025-110147741",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Do not assign an invented numeric midpoint to slightly positive.",
+            "Comparable sales are not unit volume and can reflect prices, mix and FX; rates cannot be additively subtracted across quarters."
+          ],
+          "comparison_key": "HD|comparable_sales_growth|FY2025|percent_yoy|comparable_52_week_period|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "total_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_52_weeks_vs_53_week_prior_year",
+          "business_scope": "consolidated",
+          "low": 2.8,
+          "high": 2.8,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": "HD_2025-02-25",
+          "previous_source_url": "https://ir.homedepot.com/news-releases/2025/02-25-2025-110147741",
+          "change_status": "reaffirmed",
+          "notes": [
+            "SRS contributes to consolidated growth; November/December include GMS with approximately USD2bn incremental sales."
+          ],
+          "comparison_key": "HD|total_sales_growth|FY2025|percent_yoy|reported_52_weeks_vs_53_week_prior_year|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [],
+      "guidance_sign_diagnostic": {
+        "status": "unchanged",
+        "sign": 0,
+        "components": [
+          {
+            "scope": "company_comparable_sales",
+            "delta_pp": 0.0,
+            "approximate_input": true
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "LOW_2025-05-21",
+      "source_ticker": "LOW",
+      "available_date": "2025-05-21",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2025-sales-and-earnings-results-05-21-25",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_sales",
+          "business_scope": "company_comparable_sales",
+          "low": 0,
+          "high": 1,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "LOW_2025-02-26",
+          "previous_source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-fourth-quarter-2024-sales-and-earnings-results-02-26-25",
+          "change_status": "reaffirmed",
+          "notes": [
+            "A flat guide is encoded as0%; flat to up1% as[0,1]. These are growth rates, not additive revenue amounts."
+          ],
+          "comparison_key": "LOW|comparable_sales_growth|FY2025|percent_yoy|comparable_sales|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "total_sales",
+          "forecast_period": "FY2025",
+          "unit": "USD_billions",
+          "basis": "reported",
+          "business_scope": "consolidated",
+          "low": 83.5,
+          "high": 84.5,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "LOW_2025-02-26",
+          "previous_source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-fourth-quarter-2024-sales-and-earnings-results-02-26-25",
+          "change_status": "reaffirmed",
+          "notes": [
+            "August adds ADG while explicitly keeping core expectations unchanged; November adds FBM and lowers comparable-sales outlook."
+          ],
+          "comparison_key": "LOW|total_sales|FY2025|USD_billions|reported|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": false,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "December11,2024 investor-day scenario planning is recorded separately; February release explicitly introduces FY2025 outlook."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "unchanged",
+        "sign": 0,
+        "components": [
+          {
+            "scope": "company_comparable_sales",
+            "delta_pp": 0.0,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "DE_2025-08-14",
+      "source_ticker": "DE",
+      "available_date": "2025-08-14",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://www.deere.com/assets/pdfs/common/news/deere-3q25-earnings-release.pdf",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "production_precision_agriculture",
+          "low": -20,
+          "high": -15,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2025-05-15",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837025007795/de-20250515xex99d1.htm",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": -1,
+          "price_realization_percent": 1,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|production_precision_agriculture",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "small_agriculture_turf",
+          "low": -10,
+          "high": -10,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2025-05-15",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837025007795/de-20250515xex99d1.htm",
+          "change_status": "numeric_revision",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 0.5,
+          "price_realization_percent": 0.5,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|small_agriculture_turf",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "construction_forestry",
+          "low": -15,
+          "high": -10,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "DE_2025-05-15",
+          "previous_source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837025007795/de-20250515xex99d1.htm",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 0,
+          "price_realization_percent": -2,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|construction_forestry",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": false,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "Titan exposure is to Deere across multiple segments; no segment-specific procurement allocation was verified.",
+        "February outlook excludes potential tariff effects; May incorporates tariffs in force May13. Assumption changes must be retained."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "positive",
+        "sign": 1,
+        "components": [
+          {
+            "scope": "production_precision_agriculture",
+            "delta_pp": 0.0,
+            "approximate_input": false
+          },
+          {
+            "scope": "small_agriculture_turf",
+            "delta_pp": 2.5,
+            "approximate_input": true
+          },
+          {
+            "scope": "construction_forestry",
+            "delta_pp": 0.0,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "HD_2025-08-19",
+      "source_ticker": "HD",
+      "available_date": "2025-08-19",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://ir.homedepot.com/news-releases/2025/08-19-2025-110102783",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_52_week_period",
+          "business_scope": "company_comparable_sales",
+          "low": 1,
+          "high": 1,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": "HD_2025-05-20",
+          "previous_source_url": "https://ir.homedepot.com/news-releases/2025/05-20-2025-110127912",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Do not assign an invented numeric midpoint to slightly positive.",
+            "Comparable sales are not unit volume and can reflect prices, mix and FX; rates cannot be additively subtracted across quarters."
+          ],
+          "comparison_key": "HD|comparable_sales_growth|FY2025|percent_yoy|comparable_52_week_period|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "total_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_52_weeks_vs_53_week_prior_year",
+          "business_scope": "consolidated",
+          "low": 2.8,
+          "high": 2.8,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": "HD_2025-05-20",
+          "previous_source_url": "https://ir.homedepot.com/news-releases/2025/05-20-2025-110127912",
+          "change_status": "reaffirmed",
+          "notes": [
+            "SRS contributes to consolidated growth; November/December include GMS with approximately USD2bn incremental sales."
+          ],
+          "comparison_key": "HD|total_sales_growth|FY2025|percent_yoy|reported_52_weeks_vs_53_week_prior_year|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [],
+      "guidance_sign_diagnostic": {
+        "status": "unchanged",
+        "sign": 0,
+        "components": [
+          {
+            "scope": "company_comparable_sales",
+            "delta_pp": 0.0,
+            "approximate_input": true
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "LOW_2025-08-20",
+      "source_ticker": "LOW",
+      "available_date": "2025-08-20",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-second-quarter-2025-sales-and-earnings-results-08-20-25",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_sales",
+          "business_scope": "company_comparable_sales",
+          "low": 0,
+          "high": 1,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "LOW_2025-05-21",
+          "previous_source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2025-sales-and-earnings-results-05-21-25",
+          "change_status": "reaffirmed",
+          "notes": [
+            "A flat guide is encoded as0%; flat to up1% as[0,1]. These are growth rates, not additive revenue amounts."
+          ],
+          "comparison_key": "LOW|comparable_sales_growth|FY2025|percent_yoy|comparable_sales|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "total_sales",
+          "forecast_period": "FY2025",
+          "unit": "USD_billions",
+          "basis": "reported",
+          "business_scope": "consolidated",
+          "low": 84.5,
+          "high": 85.5,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "LOW_2025-05-21",
+          "previous_source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-first-quarter-2025-sales-and-earnings-results-05-21-25",
+          "change_status": "scope_changed_revision",
+          "notes": [
+            "August adds ADG while explicitly keeping core expectations unchanged; November adds FBM and lowers comparable-sales outlook."
+          ],
+          "comparison_key": "LOW|total_sales|FY2025|USD_billions|reported|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "December11,2024 investor-day scenario planning is recorded separately; February release explicitly introduces FY2025 outlook."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "unchanged",
+        "sign": 0,
+        "components": [
+          {
+            "scope": "company_comparable_sales",
+            "delta_pp": 0.0,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "WMT_2025-08-21",
+      "source_ticker": "WMT",
+      "available_date": "2025-08-21",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://corporate.walmart.com/content/dam/corporate/documents/newsroom/2025/08/21/walmart-releases-q2-fy26-earnings/q2-fy26-earnings-release.pdf",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2026",
+          "unit": "percent_yoy",
+          "basis": "constant_currency",
+          "business_scope": "consolidated_including_VIZIO",
+          "low": 3.75,
+          "high": 4.75,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "WMT_2025-05-15",
+          "previous_source_url": "https://corporate.walmart.com/content/dam/corporate/documents/newsroom/2025/05/15/walmart-releases-q1-fy26-earnings/q1-fy26-earnings-release.pdf",
+          "change_status": "numeric_revision",
+          "notes": [
+            "This is the annual net-sales guide, not revenue including membership and other income.",
+            "FY2025 net-sales base stated as USD674.5bn. Do not directly subtract reported-dollar quarterly actuals from constant-currency growth ranges.",
+            "FY guide contains completed-quarter information; it is not a clean remaining-year demand surprise."
+          ],
+          "comparison_key": "WMT|net_sales_growth|FY2026|percent_yoy|constant_currency|consolidated_including_VIZIO",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "VIZIO is in the forecast perimeter; guidance and release also contain advertising/marketplace effects.",
+        "A new next-quarter forecast is a different period, not a revision of the previous quarter's guide."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "positive",
+        "sign": 1,
+        "components": [
+          {
+            "scope": "consolidated_including_VIZIO",
+            "delta_pp": 0.75,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "HD_2025-11-18",
+      "source_ticker": "HD",
+      "available_date": "2025-11-18",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://ir.homedepot.com/news-releases/2025/11-18-2025-110057142",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_52_week_period",
+          "business_scope": "company_comparable_sales",
+          "low": null,
+          "high": null,
+          "approximate": false,
+          "qualitative_value": "slightly_positive",
+          "previous_event_id": "HD_2025-08-19",
+          "previous_source_url": "https://ir.homedepot.com/news-releases/2025/08-19-2025-110102783",
+          "change_status": "qualitative_revision",
+          "notes": [
+            "Do not assign an invented numeric midpoint to slightly positive.",
+            "Comparable sales are not unit volume and can reflect prices, mix and FX; rates cannot be additively subtracted across quarters."
+          ],
+          "comparison_key": "HD|comparable_sales_growth|FY2025|percent_yoy|comparable_52_week_period|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "total_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_52_weeks_vs_53_week_prior_year",
+          "business_scope": "consolidated",
+          "low": 3,
+          "high": 3,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": "HD_2025-08-19",
+          "previous_source_url": "https://ir.homedepot.com/news-releases/2025/08-19-2025-110102783",
+          "change_status": "scope_changed_revision",
+          "notes": [
+            "SRS contributes to consolidated growth; November/December include GMS with approximately USD2bn incremental sales."
+          ],
+          "comparison_key": "HD|total_sales_growth|FY2025|percent_yoy|reported_52_weeks_vs_53_week_prior_year|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": true,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [],
+      "guidance_sign_diagnostic": {
+        "status": "abstain_qualitative_or_unknown",
+        "sign": null,
+        "components": [
+          {
+            "scope": "company_comparable_sales",
+            "delta_pp": null,
+            "reason": "qualitative_or_unknown"
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "LOW_2025-11-19",
+      "source_ticker": "LOW",
+      "available_date": "2025-11-19",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-third-quarter-2025-sales-and-earnings-results-11-19-25",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_sales",
+          "business_scope": "company_comparable_sales",
+          "low": 0,
+          "high": 0,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "LOW_2025-08-20",
+          "previous_source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-second-quarter-2025-sales-and-earnings-results-08-20-25",
+          "change_status": "numeric_revision",
+          "notes": [
+            "A flat guide is encoded as0%; flat to up1% as[0,1]. These are growth rates, not additive revenue amounts."
+          ],
+          "comparison_key": "LOW|comparable_sales_growth|FY2025|percent_yoy|comparable_sales|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "total_sales",
+          "forecast_period": "FY2025",
+          "unit": "USD_billions",
+          "basis": "reported",
+          "business_scope": "consolidated",
+          "low": 86,
+          "high": 86,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "LOW_2025-08-20",
+          "previous_source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-reports-second-quarter-2025-sales-and-earnings-results-08-20-25",
+          "change_status": "scope_changed_revision",
+          "notes": [
+            "August adds ADG while explicitly keeping core expectations unchanged; November adds FBM and lowers comparable-sales outlook."
+          ],
+          "comparison_key": "LOW|total_sales|FY2025|USD_billions|reported|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "December11,2024 investor-day scenario planning is recorded separately; February release explicitly introduces FY2025 outlook."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "negative",
+        "sign": -1,
+        "components": [
+          {
+            "scope": "company_comparable_sales",
+            "delta_pp": -0.5,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "WMT_2025-11-20",
+      "source_ticker": "WMT",
+      "available_date": "2025-11-20",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://corporate.walmart.com/content/dam/corporate/documents/newsroom/2025/11/20/walmart-releases-q3-fy26-earnings/q3-fy26-earnings-release.pdf",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2026",
+          "unit": "percent_yoy",
+          "basis": "constant_currency",
+          "business_scope": "consolidated_including_VIZIO",
+          "low": 4.8,
+          "high": 5.1,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "WMT_2025-08-21",
+          "previous_source_url": "https://corporate.walmart.com/content/dam/corporate/documents/newsroom/2025/08/21/walmart-releases-q2-fy26-earnings/q2-fy26-earnings-release.pdf",
+          "change_status": "numeric_revision",
+          "notes": [
+            "This is the annual net-sales guide, not revenue including membership and other income.",
+            "FY2025 net-sales base stated as USD674.5bn. Do not directly subtract reported-dollar quarterly actuals from constant-currency growth ranges.",
+            "FY guide contains completed-quarter information; it is not a clean remaining-year demand surprise."
+          ],
+          "comparison_key": "WMT|net_sales_growth|FY2026|percent_yoy|constant_currency|consolidated_including_VIZIO",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "VIZIO is in the forecast perimeter; guidance and release also contain advertising/marketplace effects.",
+        "A new next-quarter forecast is a different period, not a revision of the previous quarter's guide."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "positive",
+        "sign": 1,
+        "components": [
+          {
+            "scope": "consolidated_including_VIZIO",
+            "delta_pp": 0.7,
+            "approximate_input": false
+          }
+        ]
+      }
+    },
+    {
+      "event_id": "DE_2025-11-26",
+      "source_ticker": "DE",
+      "available_date": "2025-11-26",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://www.deere.com/assets/pdfs/common/news/deere-4q25-earnings-release.pdf",
+      "event_kind": "scheduled_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2026",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "production_precision_agriculture",
+          "low": -10,
+          "high": -5,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 1.5,
+          "price_realization_percent": 1.5,
+          "comparison_key": "DE|net_sales_growth|FY2026|percent_yoy|reported_segment_sales|production_precision_agriculture",
+          "previous_is_latest_located_not_certified_latest_public": false
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2026",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "small_agriculture_turf",
+          "low": 10,
+          "high": 10,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 1,
+          "price_realization_percent": 2,
+          "comparison_key": "DE|net_sales_growth|FY2026|percent_yoy|reported_segment_sales|small_agriculture_turf",
+          "previous_is_latest_located_not_certified_latest_public": false
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2026",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "construction_forestry",
+          "low": 10,
+          "high": 10,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 1,
+          "price_realization_percent": 3,
+          "comparison_key": "DE|net_sales_growth|FY2026|percent_yoy|reported_segment_sales|construction_forestry",
+          "previous_is_latest_located_not_certified_latest_public": false
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": false,
+        "current_actuals_mixed": true
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "Titan exposure is to Deere across multiple segments; no segment-specific procurement allocation was verified.",
+        "February outlook excludes potential tariff effects; May incorporates tariffs in force May13. Assumption changes must be retained."
+      ],
+      "guidance_sign_diagnostic": {
+        "status": "abstain_initialization",
+        "sign": null,
+        "components": [
+          {
+            "scope": "production_precision_agriculture",
+            "delta_pp": null,
+            "reason": "initialization"
+          },
+          {
+            "scope": "small_agriculture_turf",
+            "delta_pp": null,
+            "reason": "initialization"
+          },
+          {
+            "scope": "construction_forestry",
+            "delta_pp": null,
+            "reason": "initialization"
+          }
+        ]
+      }
+    }
+  ],
+  "interim_events": [
+    {
+      "event_id": "WMT_2025-04-09",
+      "source_ticker": "WMT",
+      "available_date": "2025-04-09",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://corporate.walmart.com/news/2025/04/09/walmart-showcases-business-strategy-focused-on-driving-growth-and-shareholder-value",
+      "event_kind": "interim_investor_meeting",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2026",
+          "unit": "percent_yoy",
+          "basis": "constant_currency",
+          "business_scope": "consolidated_including_VIZIO",
+          "low": 3,
+          "high": 4,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": "WMT_2025-02-20",
+          "previous_source_url": "https://stock.walmart.com/sec-filings/all-sec-filings/content/0000104169-25-000010/earningsreleasefy25q4.htm",
+          "change_status": "reaffirmed",
+          "notes": [
+            "This is the annual net-sales guide, not revenue including membership and other income.",
+            "FY2025 net-sales base stated as USD674.5bn. Do not directly subtract reported-dollar quarterly actuals from constant-currency growth ranges.",
+            "FY guide contains completed-quarter information; it is not a clean remaining-year demand surprise."
+          ],
+          "comparison_key": "WMT|net_sales_growth|FY2026|percent_yoy|constant_currency|consolidated_including_VIZIO",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": true,
+        "current_actuals_mixed": false
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "VIZIO is in the forecast perimeter; guidance and release also contain advertising/marketplace effects.",
+        "A new next-quarter forecast is a different period, not a revision of the previous quarter's guide."
+      ]
+    },
+    {
+      "event_id": "HD_2025-12-09",
+      "source_ticker": "HD",
+      "available_date": "2025-12-09",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://ir.homedepot.com/news-releases/2025/12-09-2025-110026216",
+      "event_kind": "interim_investor_meeting",
+      "guidance": [
+        {
+          "metric": "comparable_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "comparable_52_week_period",
+          "business_scope": "company_comparable_sales",
+          "low": null,
+          "high": null,
+          "approximate": false,
+          "qualitative_value": "slightly_positive",
+          "previous_event_id": "HD_2025-11-18",
+          "previous_source_url": "https://ir.homedepot.com/news-releases/2025/11-18-2025-110057142",
+          "change_status": "reaffirmed",
+          "notes": [
+            "Do not assign an invented numeric midpoint to slightly positive.",
+            "Comparable sales are not unit volume and can reflect prices, mix and FX; rates cannot be additively subtracted across quarters."
+          ],
+          "comparison_key": "HD|comparable_sales_growth|FY2025|percent_yoy|comparable_52_week_period|company_comparable_sales",
+          "previous_is_latest_located_not_certified_latest_public": true
+        },
+        {
+          "metric": "total_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_52_weeks_vs_53_week_prior_year",
+          "business_scope": "consolidated",
+          "low": 3,
+          "high": 3,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": "HD_2025-11-18",
+          "previous_source_url": "https://ir.homedepot.com/news-releases/2025/11-18-2025-110057142",
+          "change_status": "reaffirmed",
+          "notes": [
+            "SRS contributes to consolidated growth; November/December include GMS with approximately USD2bn incremental sales."
+          ],
+          "comparison_key": "HD|total_sales_growth|FY2025|percent_yoy|reported_52_weeks_vs_53_week_prior_year|consolidated",
+          "previous_is_latest_located_not_certified_latest_public": true
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": true,
+        "acquisition_scope": true,
+        "current_actuals_mixed": false
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "Also introduces preliminary FY2026 outlook; that new-period outlook is not coded as an FY2025 revision."
+      ]
+    }
+  ],
+  "baseline_events": [
+    {
+      "event_id": "DE_2024-11-21",
+      "source_ticker": "DE",
+      "available_date": "2024-11-21",
+      "available_at": null,
+      "availability_evidence": "Issuer release dateline or dated issuer archive; exact original public dissemination time not certified.",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/315189/000155837024015876/de-20241121xex99d1.htm",
+      "event_kind": "baseline_prior_year_results",
+      "guidance": [
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "production_precision_agriculture",
+          "low": -15,
+          "high": -15,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": -0.5,
+          "price_realization_percent": 1,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|production_precision_agriculture",
+          "previous_is_latest_located_not_certified_latest_public": false
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "small_agriculture_turf",
+          "low": -10,
+          "high": -10,
+          "approximate": true,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 0.5,
+          "price_realization_percent": 0.5,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|small_agriculture_turf",
+          "previous_is_latest_located_not_certified_latest_public": false
+        },
+        {
+          "metric": "net_sales_growth",
+          "forecast_period": "FY2025",
+          "unit": "percent_yoy",
+          "basis": "reported_segment_sales",
+          "business_scope": "construction_forestry",
+          "low": -15,
+          "high": -10,
+          "approximate": false,
+          "qualitative_value": null,
+          "previous_event_id": null,
+          "previous_source_url": null,
+          "change_status": "initialization",
+          "notes": [
+            "Currency and price assumptions are separately disclosed; nominal range revision is not pure volume demand.",
+            "No quarterly segment-sales guide has been established here, so no clean remaining-year revision is calculated.",
+            "Approximate point estimates are preserved as approximate, not exact statistical intervals."
+          ],
+          "currency_translation_percent": 0,
+          "price_realization_percent": 1,
+          "comparison_key": "DE|net_sales_growth|FY2025|percent_yoy|reported_segment_sales|construction_forestry",
+          "previous_is_latest_located_not_certified_latest_public": false
+        }
+      ],
+      "flags": {
+        "qualitative_guidance": false,
+        "acquisition_scope": false,
+        "current_actuals_mixed": false
+      },
+      "first_public_audit_status": "not_certified_no_full_interim_preliminary_or_call_audit",
+      "notes": [
+        "Titan exposure is to Deere across multiple segments; no segment-specific procurement allocation was verified.",
+        "February outlook excludes potential tariff effects; May incorporates tariffs in force May13. Assumption changes must be retained."
+      ]
+    }
+  ],
+  "other_prior_context": [
+    {
+      "source_ticker": "LOW",
+      "available_date": "2024-12-11",
+      "source_url": "https://corporate.lowes.com/newsroom/press-releases/lowes-unveils-2025-total-home-strategy-drive-long-term-growth-and-market-share-12-11-24",
+      "kind": "scenario_planning_not_standard_guidance",
+      "notes": "Original release describes2025 scenario planning; numerical investor presentation not audited. Do not silently call this a forecast initialization or revised FY2024 guide."
+    }
+  ],
+  "completeness": {
+    "scheduled_quarterly_release_dates": "16_of16_located_and_inspected",
+    "guidance_fields": "Selected annual revenue/sales/segment-sales/comparable-sales fields extracted; not all metrics in each document.",
+    "source_first_public_versions": "not_certified",
+    "all_interim_guidance_updates": "not_certified",
+    "all_preliminary_results_or_corrections": "not_certified",
+    "all_conference_audio_or_transcripts": "not_audited",
+    "supplier_contemporaneous_disclosures": "not_audited_in_this_ledger",
+    "relationship_termination_or_intra_2025_weight_updates": "not_audited_fixed_preyear_graph",
+    "earnings_report_list_not_all_information_event_list": true,
+    "news_archive_enumeration": {
+      "HD": {
+        "all_four_calendar2025_index_pages_inspected": true,
+        "url": "https://ir.homedepot.com/news-releases/2025",
+        "limitations": "Conferences and acquisition announcements can contain information outside quarterly releases; their full presentations/audio were not audited."
+      },
+      "LOW": {
+        "pages_1_2_3_inspected": true,
+        "url": "https://corporate.lowes.com/investors/news-events/financial-press-releases?page=2",
+        "limitations": "Financial-release archive located all four scheduled releases; unscheduled conference content not fully inspected."
+      },
+      "WMT": {
+        "all_financial_news_archive_items_enumerated": false,
+        "known_interim_reaffirmation_included": "2025-04-09"
+      },
+      "DE": {
+        "all_financial_news_archive_items_enumerated": false,
+        "prior_annual_guide_included": "2024-11-21"
+      }
+    }
+  },
+  "screened_other_families": [
+    {
+      "source": "AAPL",
+      "family": "numerical_same_period_revenue_guidance_revision",
+      "status": "not_selected",
+      "reason": "Existing release-only source route supplies quarterly actuals but has not established a comparable same-period forward numeric guide history; call commentary requires a separate timestamp/version audit.",
+      "source_url": "https://www.apple.com/newsroom/2025/07/apple-reports-third-quarter-results/"
+    },
+    {
+      "source": "AIR",
+      "family": "commercial_aircraft_delivery_guidance",
+      "status": "separate_units_and_supply_cause_not_demand",
+      "reason": "December3,2025 revised delivery target around820 toaround790 following supplier fuselage-panel quality issue. This is an aircraft-count/supply constraint, not interchangeable with revenue-demand guidance. Existing SPR edge also has known pending takeover.",
+      "source_url": "https://www.airbus.com/en/newsroom/press-releases/2025-12-airbus-updates-2025-commercial-aircraft-delivery-target-maintains"
+    },
+    {
+      "source": "BA",
+      "family": "production_or_delivery_operational_updates",
+      "status": "not_selected_in_fixed_cohort",
+      "reason": "Different units and first-public monthly operating disclosures require a distinct ledger; existing SPR target has known takeover confounding. No full-year no-event claim made."
+    }
+  ],
+  "research_limits": [
+    "Annual guidance change includes realized-quarter information. Without matched old quarterly expectation on the same additive basis it is not a clean remaining-year revision.",
+    "Unchanged annual guidance can still convey new information; zero guide delta does not mean zero news.",
+    "Do not subtract percentages across annual and quarterly periods or conflate net sales, total revenue, constant-currency and reported dollars.",
+    "Approximate and qualitative guides must remain flagged. Do not fabricate exact values for slightly positive.",
+    "Multiple suppliers exposed to one customer release are clustered outcomes, not independent source shocks. HD and LOW commonly report on adjacent days.",
+    "Seven suppliers and16source reports are a data audit, not adequate proof of return predictability or a high-frequency opportunity count.",
+    "A named historical customer link does not establish a leading signal: suppliers may already have disclosed the same demand or have direct order visibility.",
+    "This fixed graph intentionally tests a disclosed cohort; it does not estimate all suppliers or adjust graph weights using future reports.",
+    "Known supplier POS disclosures and guidance withdrawals must enter the pre-source information ledger; a source event need not lead supplier-investor information."
+  ],
+  "supplier_information_examples": [
+    {
+      "target_ticker": "SMG",
+      "available_date": "2025-04-28",
+      "reported_earlier_public_appearance_date": "2025-04-25",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/825542/000144398425000153/smg2025-04x288xkxexhibit991.htm",
+      "kind": "metric_clarification",
+      "summary": "Issuer clarifies that double-digit first-half growth discussed on CNBC referred to retailer POS units, not company sales. This predates HD May20 and LOW May21.",
+      "limitation": "Primary filing proves the clarification and reports the earlier appearance; original TV clip/time not independently audited."
+    },
+    {
+      "target_ticker": "SMG",
+      "available_date": "2025-04-30",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/825542/000154638025000010/exhibit991q2f25newsrelease.htm",
+      "kind": "supplier_demand_disclosure",
+      "summary": "Supplier reported consumer POS units up12% through first half, measured using its largest retailers, while reaffirming full-year USConsumer sales guidance.",
+      "limitation": "This is a supplier-investor information baseline, not evidence that later customer guidance is uninformative."
+    },
+    {
+      "target_ticker": "MAS",
+      "available_date": "2025-04-23",
+      "source_url": "https://investor.masco.com/news-stream/news-details/2025/Masco-Corporation-Reports-First-Quarter-2025-Results/default.aspx",
+      "kind": "supplier_guidance_withdrawal",
+      "summary": "Supplier declined to provide full-year2025 financial guidance due to tariff and macro uncertainty, before HD/LOW May releases.",
+      "limitation": "Cannot use a stale withdrawn supplier guide as an active baseline."
+    }
+  ],
+  "sources_only_diagnostic": {
+    "mapping_frozen_before_returns": true,
+    "mapping": "WMT same-FY constant-currency net-sales midpoint delta; HD/LOW same-FY comparable-sales midpoint delta; DE3segment midpoint deltas positive if at least1up and none down, negative conversely, mixed/unknown abstain. Initializations abstain.",
+    "not_a_clean_forward_demand_or_market_surprise": true,
+    "range_midpoints_are_coding_convention_not_management_expected_values": true,
+    "sameyear_approximate_point_estimates_used_with_flags": true,
+    "source_announcement_count": 16,
+    "distinct_available_dates": 15,
+    "edge_release_rows_if_fully_expanded": 40,
+    "status_counts": {
+      "negative": 3,
+      "abstain_initialization": 4,
+      "unchanged": 5,
+      "positive": 3,
+      "abstain_qualitative_or_unknown": 1
+    },
+    "by_month": {
+      "2025-02": {
+        "negative": 1,
+        "abstain_initialization": 3
+      },
+      "2025-05": {
+        "negative": 1,
+        "unchanged": 3
+      },
+      "2025-08": {
+        "positive": 2,
+        "unchanged": 2
+      },
+      "2025-11": {
+        "abstain_qualitative_or_unknown": 1,
+        "negative": 1,
+        "positive": 1,
+        "abstain_initialization": 1
+      }
+    },
+    "positive_source_event_ids": [
+      "DE_2025-08-14",
+      "WMT_2025-08-21",
+      "WMT_2025-11-20"
+    ],
+    "positive_edge_release_rows_before_any_eligibility_checks": 7,
+    "calendar_overlap_cluster_definition": "Connected components of next-US-session-open to fifth-session-close inclusive windows, allowing a shared entry/exit date to overlap. These are operational overlap groups, not certified statistically independent observations.",
+    "calendar_overlap_cluster_count": 4,
+    "calendar_overlap_clusters": [
+      {
+        "start": "2025-02-14",
+        "end": "2025-03-05",
+        "event_ids": [
+          "DE_2025-02-13",
+          "WMT_2025-02-20",
+          "HD_2025-02-25",
+          "LOW_2025-02-26"
+        ]
+      },
+      {
+        "start": "2025-05-16",
+        "end": "2025-05-29",
+        "event_ids": [
+          "DE_2025-05-15",
+          "WMT_2025-05-15",
+          "HD_2025-05-20",
+          "LOW_2025-05-21"
+        ]
+      },
+      {
+        "start": "2025-08-15",
+        "end": "2025-08-28",
+        "event_ids": [
+          "DE_2025-08-14",
+          "HD_2025-08-19",
+          "LOW_2025-08-20",
+          "WMT_2025-08-21"
+        ]
+      },
+      {
+        "start": "2025-11-19",
+        "end": "2025-12-04",
+        "event_ids": [
+          "HD_2025-11-18",
+          "LOW_2025-11-19",
+          "WMT_2025-11-20",
+          "DE_2025-11-26"
+        ]
+      }
+    ],
+    "hypothetical_windows_no_prices": [
+      {
+        "event_id": "DE_2025-02-13",
+        "entry_date": "2025-02-14",
+        "exit_date": "2025-02-21",
+        "sign_status": "negative"
+      },
+      {
+        "event_id": "WMT_2025-02-20",
+        "entry_date": "2025-02-21",
+        "exit_date": "2025-02-27",
+        "sign_status": "abstain_initialization"
+      },
+      {
+        "event_id": "HD_2025-02-25",
+        "entry_date": "2025-02-26",
+        "exit_date": "2025-03-04",
+        "sign_status": "abstain_initialization"
+      },
+      {
+        "event_id": "LOW_2025-02-26",
+        "entry_date": "2025-02-27",
+        "exit_date": "2025-03-05",
+        "sign_status": "abstain_initialization"
+      },
+      {
+        "event_id": "DE_2025-05-15",
+        "entry_date": "2025-05-16",
+        "exit_date": "2025-05-22",
+        "sign_status": "negative"
+      },
+      {
+        "event_id": "WMT_2025-05-15",
+        "entry_date": "2025-05-16",
+        "exit_date": "2025-05-22",
+        "sign_status": "unchanged"
+      },
+      {
+        "event_id": "HD_2025-05-20",
+        "entry_date": "2025-05-21",
+        "exit_date": "2025-05-28",
+        "sign_status": "unchanged"
+      },
+      {
+        "event_id": "LOW_2025-05-21",
+        "entry_date": "2025-05-22",
+        "exit_date": "2025-05-29",
+        "sign_status": "unchanged"
+      },
+      {
+        "event_id": "DE_2025-08-14",
+        "entry_date": "2025-08-15",
+        "exit_date": "2025-08-21",
+        "sign_status": "positive"
+      },
+      {
+        "event_id": "HD_2025-08-19",
+        "entry_date": "2025-08-20",
+        "exit_date": "2025-08-26",
+        "sign_status": "unchanged"
+      },
+      {
+        "event_id": "LOW_2025-08-20",
+        "entry_date": "2025-08-21",
+        "exit_date": "2025-08-27",
+        "sign_status": "unchanged"
+      },
+      {
+        "event_id": "WMT_2025-08-21",
+        "entry_date": "2025-08-22",
+        "exit_date": "2025-08-28",
+        "sign_status": "positive"
+      },
+      {
+        "event_id": "HD_2025-11-18",
+        "entry_date": "2025-11-19",
+        "exit_date": "2025-11-25",
+        "sign_status": "abstain_qualitative_or_unknown"
+      },
+      {
+        "event_id": "LOW_2025-11-19",
+        "entry_date": "2025-11-20",
+        "exit_date": "2025-11-26",
+        "sign_status": "negative"
+      },
+      {
+        "event_id": "WMT_2025-11-20",
+        "entry_date": "2025-11-21",
+        "exit_date": "2025-11-28",
+        "sign_status": "positive"
+      },
+      {
+        "event_id": "DE_2025-11-26",
+        "entry_date": "2025-11-28",
+        "exit_date": "2025-12-04",
+        "sign_status": "abstain_initialization"
+      }
+    ],
+    "calendar_evidence_url": "https://www.nyse.com/publicdocs/ICE_NYSE_2025_Yearly_Trading_Calendar.pdf",
+    "calendar_scope": "Only dates needed for these2025 windows. Closures affecting them:Feb17,May26,Nov27. Nov28 early close counts as a session. No general calendar implementation is claimed.",
+    "eligibility_not_yet_checked": [
+      "original public statement novelty",
+      "supplier own disclosures",
+      "contemporaneous borrow or liquidity",
+      "executable quotes",
+      "transaction costs",
+      "portfolio overlap and capital",
+      "supplier future report calendar"
+    ]
+  }
+}

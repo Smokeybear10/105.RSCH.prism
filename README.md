@@ -1,176 +1,112 @@
-# PRISM | Equity Price Action Tagger
+# Relay | Corporate Disclosures and Peer Returns
 
-**Live demo: [prism-004.vercel.app](https://prism-004.vercel.app/)**
+**Original PRISM demo: [prism-004.vercel.app](https://prism-004.vercel.app/)**
 
-A financial historian. Given a 3-sigma stock move, ingest the news, SEC filings, earnings transcripts, and 13F snapshots dated near it, then ask Claude to attribute the move across five dimensions — demand, pricing, competitive, management credibility, macro — each score citing the exact evidence chunks that drove it. Decide whether the market has it right (lean) or is overreacting to transient signals (fade).
+I tested whether corporate announcements contain useful information about later returns in related stocks. One study forecasts semiconductor peer returns; another replays customer disclosures against previously documented supplier relationships.
 
-Bridgewater AI Hackathon, Track 1.
+Neither study establishes a trading edge. The semiconductor event model has higher forecast error than the simpler benchmarks. The customer–supplier guidance rule underperforms its matched SPY comparison in a small feasibility sample.
 
-## Quick Start
+## Start Here
 
-```bash
-git clone <repo> PRISM && cd PRISM
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-huggingface-cli login                          # private BW dataset access
-echo 'ANTHROPIC_API_KEY=sk-ant-...' > .env     # optional — synthetic fallback otherwise
-echo 'BW_USE_LIVE_ATTRIBUTION=1'  >> .env
-uvicorn demo.server:app --port 2004
-```
+Read [the saved semiconductor study](relay/data/pilot.json) for benchmark scores, individual forecasts, source excerpts, fold audits and input/code hashes. The [local interface](#run-it) displays this file without API keys or data downloads; the hosted PRISM link above is the earlier hackathon demo, not this study.
 
-Open http://127.0.0.1:2004. First boot pulls ~2.3 GB of parquets to `ingestion/earnings_news/.cache/` and takes a couple of minutes. Subsequent boots are 30-60s.
+For the customer–supplier study, start with the [source ledger](relay/data/diffusion_2025_sources.json) and [evaluation protocol](relay/data/diffusion_2025_protocol.json). They retain original-document links, disclosure dates, guidance comparisons and the rules used to select trades.
 
-## System Architecture
+## Semiconductor Result
 
-Six layers, top-down. Full diagrams + per-section detail at http://127.0.0.1:2004/architecture.html once the server is running.
+The saved run contains 1,050 held-out peer forecasts from 210 disclosures across 35 quarterly test blocks, from 2018 Q2 through the available portion of 2026 Q4. Collection covers 242 source disclosures and prices through October 30, 2026; early quarters without enough fitting and calibration data are skipped.
 
-```
-EXTERNAL     HuggingFace BW · SEC EDGAR · Finnhub · Anthropic API
-   │
-INGESTION    ingestion/{prices,sec,earnings_news,idiosyncratic,events}/
-   │         → data/cache/*.parquet
-   │
-COMPUTE      detect_significant_moves()  → PriceMove
-   │         chunks_for_real()           → TextChunk[]   (8 source streams)
-   │
-MODEL        model.attribute()           → Claude tool_use → 5-dim Attribution
-   │         + coherence pass (Haiku)    → drops uncited / contradictory dims
-   │
-CACHE        data/cache/api_attribute/{ticker}_{date}_{sources}.json
-   │         first call ~700 ms · cached read ~2 ms
-   │
-SERVE        FastAPI (:2004) · GET / · POST /api/attribute · /architecture.html
-   │
-BROWSER      Plotly chart · 5-dim cards · cited-evidence drawer
-```
+| Model | Mean absolute error | Root mean squared error | 80% interval coverage |
+| --- | ---: | ---: | ---: |
+| Zero excess return | 3.81 pp | 5.37 pp | 74.9% |
+| Price controls | 3.90 pp | 5.49 pp | 74.2% |
+| Network spillover | 3.95 pp | 5.56 pp | 73.9% |
+| Event-conditioned spillover | 4.19 pp | 5.88 pp | 75.1% |
 
-### The eight evidence streams
+Errors are in percentage points of five-session SPY-relative return; lower is better. All four rows use the same observations. Adding source-price and disclosure-language features did not improve forecast error in this saved run, and every model's interval coverage was below the nominal 80% target.
 
-| Source | SourceType | Origin |
-|---|---|---|
-| News | `news` | Yahoo Finance + Finnhub |
-| SEC 10-K | `sec_10k` | EDGAR Risk Factors + MD&A |
-| SEC 8-K | `sec_8k` | EDGAR item codes (2.02, 5.02, 7.01, 8.01) |
-| Earnings transcript | `earnings_transcript` | Yahoo Finance call transcripts |
-| Peer news | `peer_news` | Yahoo news for family companies |
-| Sector news | `sector_news` | Yahoo news for sector-wide stories |
-| Macro | `macro` | FOMC + VIX + commodities |
-| 13F positioning | `thirteen_f` | SEC 13F filings |
+### What It Compares
 
-### The seven ablation bundles
+The cohort is AMD, NVDA, INTC, QCOM, TXN and MU. Every other company in the cohort is treated as a peer; SPY and SOXX supply market and industry controls. These peer links are study assumptions, not verified supplier relationships.
 
-Additive — each bundle adds one new source. The demo's "watch the attribution sharpen" story.
+- **Zero excess return:** predict that the peer matches SPY.
+- **Price controls:** the peer's recent returns and volatility, plus market and industry returns.
+- **Network spillover:** add the source company's price reaction, momentum and historical peer correlation.
+- **Event-conditioned spillover:** add fixed phrase rules for demand, pricing, competitive and guidance language in original SEC documents.
 
-| Bundle | New addition |
-|---|---|
-| `base_news` | news only |
-| `+sec` | + 10-K, 8-K |
-| `+earnings` | + earnings transcripts |
-| `+peer_news` | + peer companies |
-| `+sector_news` | + sector-wide |
-| `+macro` | + Fed / VIX / commodities |
-| `+positioning` | + 13F holdings |
+The fitted models use ridge regression. Features are observed at the close of the first trading session strictly after the SEC filing date. Entry is the following session's adjusted open; exit is the fifth holding session's close. Quarterly evaluation separates fitting, calibration and testing, purges overlapping labels at the boundaries, and fits normalization on training data only. The [model](relay/model.py) and [feature builder](relay/features.py) implement these rules.
 
-### Pipeline (6 mentor steps)
+## Customer–Supplier Check
 
-| Step | Module | Input → Output |
-|---|---|---|
-| 1. Flag significant moves | `ingestion/prices/` | ticker → `list[PriceMove]` |
-| 2. Ingest text | `ingestion/sec/`, `ingestion/earnings_news/` | ticker + date → `list[TextChunk]` |
-| 3. Attribute | `model/attribution/` | PriceMove + chunks → `Attribution` |
-| 4. Add peer / macro / sector | `ingestion/idiosyncratic/`, `ingestion/events/` | ablation inputs |
-| 5. Coherence check | `model/attribution/coherence` | `Attribution` → `CoherenceCheck` |
-| 6. Fade-or-follow | `backtest/` | Attribution + realized → lean/fade + PnL |
+This selected cohort contains 16 scheduled 2025 releases from Walmart, Home Depot, Lowe's and Deere, with ten previously disclosed customer links to seven suppliers. It compares buying all eligible linked suppliers, buying after a positive source-price change, and buying after a comparable positive guidance revision. No model is fitted to these 16 releases.
 
-### Cache & zero-spend demo mode
+The local run tests all 24 combinations of three rules, two entry delays and four cost assumptions. At 20 basis points assumed roundtrip cost, the saved results are:
 
-Every `/api/attribute` response is memoized to `data/cache/api_attribute/` keyed by `(ticker, move_date, enabled_sources)`. First miss bills Claude (~$0.75 on Opus); every subsequent identical request reads the file (~2 ms).
+| Rule | Entry | Positions | Account return | Matched SPY return |
+| --- | --- | ---: | ---: | ---: |
+| All linked events | Next session | 19 | +4.59% | −3.10% |
+| Positive source price | Next session | 14 | +4.72% | −0.06% |
+| Positive guidance revision | Next session | 7 | −1.33% | +3.81% |
+| All linked events | One session later | 19 | +9.07% | −1.62% |
+| Positive source price | One session later | 14 | +6.98% | +1.05% |
+| Positive guidance revision | One session later | 7 | +0.20% | +1.85% |
 
-For a live demo with a hard zero-spend guarantee:
+These are descriptive whole-2025 account returns from a $10,000 simulation, with at most four positions and a 25% allocation cap per new position. The SPY account follows the same entry/exit schedule under its own cash constraints. Only three releases triggered the guidance rule, yielding seven positions; the sample is too small to establish predictive power.
+
+The table comes from the November 4, 2026 local `data/relay_diffusion/results/summary.csv`. That report and its price snapshot are ignored local outputs, not included reference results. The ledger and protocol are included; the commands below generate the full report. This feasibility study is exploratory, not an untouched preregistered test.
+
+## Run It
+
+Use Python 3.12. Dependencies are declared in [pyproject.toml](pyproject.toml).
 
 ```bash
-python demo/prewarm_cache.py                              # fill cache once
-BW_CACHE_ONLY=1 uvicorn demo.server:app --port 2004       # 503 on miss, never bills
+git clone https://github.com/Smokeybear10/105.RSCH.relay.git
+cd 105.RSCH.relay
+uv venv --python 3.12
+source .venv/bin/activate
+uv pip install -e '.[test]'
+python -m pytest relay/tests -q
+relay serve
 ```
 
-Set `BW_ATTRIBUTION_MODEL=claude-haiku-4-5` during prewarm to cut the fill cost from ~$470 to ~$15.
+Open http://localhost:2004. Use `relay serve --port 2005` if that port is occupied.
 
-## Tech Stack
+The tests use fixtures and synthetic data to check information timing, future-data isolation, forecast metrics, source-ledger validation, portfolio cash limits and API behavior. Passing them does not validate predictive power. The interface reads a locally rebuilt study when present, otherwise the included pilot.
 
-| Layer | Tools |
-|---|---|
-| Backend | Python 3.11, FastAPI, uvicorn, Pydantic |
-| Data | HuggingFace datasets, pyarrow / parquet, edgartools |
-| Model | Anthropic Claude — Opus 4.7 (attribution) + Haiku 4.5 (coherence) |
-| Frontend | Vanilla JS, Plotly, no build step |
-| Eval | pytest, custom backtest with 4 baselines (naive-lean, always-fade, random, sentiment) |
+## Reproduce the Studies
 
-## Project Structure
-
-```
-PRISM/
-├── schema.py                  Pydantic contracts (do not modify alone)
-├── ingestion/
-│   ├── prices/                OHLCV, splits, dividends, earnings calendar
-│   ├── sec/                   10-K MD&A + Risk Factors, 8-K item codes
-│   ├── earnings_news/         news + earnings transcripts
-│   ├── idiosyncratic/         13F, short interest, FDA, analyst actions
-│   └── events/                8 source adapters + trading-day-window joiner
-├── model/attribution/         Claude tool_use + coherence + validator
-├── backtest/                  fade/lean signal + 4 baselines + PnL
-├── eval/                      attribution accuracy + calibration + perturbation
-├── demo/
-│   ├── server.py              FastAPI app
-│   ├── build_static.py        bakes per-ticker JSON for first paint
-│   ├── prewarm_cache.py       fills /api/attribute cache for live demo
-│   ├── real_chunks.py         chunks_for_real()
-│   └── static/                HTML/CSS/JS + architecture.html
-├── presentation/              intro slide deck (served at /presentation/)
-├── design/
-│   ├── brand/                 brand exploration mockups (index/mark/icons/explore)
-│   └── handoff_v2/            v2 console design handoff (HTML/CSS/JS snapshot)
-├── docs/                      hf_schemas.md, design docs
-├── scripts/                   smoke + load utilities
-└── tests/                     pytest suite (~380+ tests)
-```
-
-## What ships in the repo vs. what's downloaded at runtime
-
-**Committed** (small, needed at boot):
-- `demo/static/data/{ABT,ACU,AIR,AMD,APD}.json` + `index.json` — pre-baked per-ticker bundles the frontend fetches on first paint
-- `data/thirteen_f/focal_chunks.jsonl` — 13F text (5 KB)
-- `tests/fixtures/` — synthetic test data
-
-**Downloaded on first run** (large, gitignored):
-- `ingestion/earnings_news/.cache/` — news + transcripts parquets from the private HF repo
-
-**Regenerated locally** for fresh attributions in the static bundles:
+Run from the repository root after setup. For the semiconductor study:
 
 ```bash
-python demo/build_static.py        # re-bake per-ticker JSON (slow — runs the model per move)
-python demo/build_13f_chunks.py    # re-fetch 13F chunks (slow — EDGAR rate-limited)
+relay collect --start 2017-01-01 --end 2026-10-30
+relay study
 ```
 
-## Module ownership
+This collects SEC submissions and filing exhibits plus Yahoo adjusted daily prices, then writes `study.json`, `predictions.csv`, `observations.parquet` and `study_config.json` under `data/relay/`. Compare the report's `benchmarks` and `audit` with [pilot.json](relay/data/pilot.json). `relay study --cost-bps 50` changes the cost assumption; `--publish-pilot` explicitly replaces the included pilot and is not needed to run the study.
 
-| Owner | Module | Responsibility |
-|---|---|---|
-| Srilekha | `ingestion/prices/` | Backbone everyone joins onto. Events table + transcripts with BMO/AMC alignment. |
-| Sophia | `ingestion/sec/` | 10-K Risk Factors + MD&A, 8-K item codes. Stretch: change-detection between filings. |
-| Henry | `ingestion/idiosyncratic/`, `ingestion/events/` | 13F positioning + 7 other idiosyncratic streams. |
-| Thomas | `ingestion/earnings_news/`, `model/attribution/`, `demo/` | News, Claude attribution, FastAPI demo + cache stack. |
+For the customer–supplier study:
 
-## Frozen test case
+```bash
+relay diffusion-prices --ledger relay/data/diffusion_2025_sources.json --output data/relay_diffusion
+relay diffusion --ledger relay/data/diffusion_2025_sources.json --prices data/relay_diffusion/prices.parquet --protocol relay/data/diffusion_2025_protocol.json --output data/relay_diffusion/results
+```
 
-Pick one (ticker, date) where the team knows what caused the move. Store expected outputs in `tests/fixtures/<ticker>_<event>_expected.json`. Don't change the test case mid-iteration — freeze inputs so a regression is obvious.
+Outputs are `report.json`, `summary.csv`, `event_windows.csv` and `trades.csv`; the report includes daily account paths, every rule/cost combination, source audits and hashes. Reusing the same output path replaces its prior results.
 
-## Troubleshooting
+Both collectors cache source responses and accept `--refresh`. Exact replay requires retaining the raw response cache, price files and manifests: a hash identifies an input but cannot restore it. Fresh downloads use current adjusted Yahoo history and may differ from the saved runs. The included semiconductor pilot records a different collector hash from the current `ingest.py`. Dependencies have version ranges rather than a locked reproduction environment. These are saved-run results, not a fresh full-data reproduction.
 
-- **"Error loading data" on the demo page** — `demo/static/data/index.json` is missing. Rebuild with `python demo/build_static.py` (slow) or pull from a branch that has them.
-- **`huggingface_hub.errors.GatedRepoError`** — your HF account doesn't have access to `BridgewaterAIHackathon/BW-AI-Hackathon`. Ask the team for an invite, then re-run `huggingface-cli login`.
-- **`synthetic fixture: ANTHROPIC_API_KEY missing`** in the model_notes badge — set `ANTHROPIC_API_KEY` in `.env` and `BW_USE_LIVE_ATTRIBUTION=1`. The synthetic path still produces a coherent response, just not a real one.
-- **Port 2004 in use** — pick another (`--port 2005`) and open that URL. The frontend hard-codes nothing port-specific.
+## Experimental Limits
 
----
+The semiconductor universe was selected retrospectively. Concurrent peer announcements remain in the sample, and the fixed text rules describe matched language rather than verified causes. Residual-based intervals have no coverage guarantee under market shifts; date-cluster bootstrap comparisons retain some serial dependence. Its hypothetical trade returns overlap and do not form a capital-constrained portfolio.
+
+The customer–supplier study uses management-guidance revisions, not analyst-consensus surprises. Missing or incomparable guidance causes the rule to abstain. A date-only next-open source-price signal can precede an after-close release; the delayed rule changes both its information and entry time, so it is not a pure execution-delay test.
+
+Both studies use adjusted daily price proxies. Opening-price sizing and fills, spreads, market impact and dividend payment timing need separate execution validation. Neither result establishes causal information diffusion or a deployable strategy.
+
+## Code and Data
+
+The current studies live in [`relay/`](relay/). The source ledger links to the original disclosures; the saved pilot retains SEC evidence links. Raw caches and complete local outputs live under ignored `data/relay/` and `data/relay_diffusion/` directories.
+
+The original PRISM hackathon code remains in `demo/`, `ingestion/`, `model/`, `backtest/` and `eval/`. Its synthetic fixtures and attribution backtest are separate from these studies. Earlier ingestion and attribution work includes contributions from Srilekha, Sophia and Henry.
 
 Built by Thomas Ou
