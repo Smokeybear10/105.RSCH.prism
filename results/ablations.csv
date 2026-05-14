@@ -1,0 +1,6 @@
+model_id,baseline_model_id,mae_improvement,ci_lower,ci_upper,confidence_level,n_clusters,bootstrap_draws,bootstrap_unit,status
+price_only,zero_excess,-0.0009302143826969265,-0.0020187780084044735,6.0440186218583235e-05,0.95,115,2000,connected_holding_windows,estimated
+network,price_only,-0.0004811616001496608,-0.000926655332844378,-4.467523218335877e-05,0.95,115,2000,connected_holding_windows,estimated
+event_conditioned,network,-0.00012238215343226316,-0.0008028275339032523,0.0005650097470573306,0.95,115,2000,connected_holding_windows,estimated
+event_conditioned,zero_excess,-0.00153375813627885,-0.002745722402333037,-0.000309482413655461,0.95,115,2000,connected_holding_windows,estimated
+adaptive,zero_excess,-0.00033936490987449946,-0.0009420247994540295,0.00023341041123293348,0.95,115,2000,connected_holding_windows,estimated

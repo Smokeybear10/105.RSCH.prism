@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "scope": "model_stage_replay",
+  "description": "Numerical features and outcomes for the saved semiconductor study. No raw price levels, news articles, filing text or document excerpts are included.",
+  "source": {
+    "observations_sha256": "622d6647d37c30439ea812fcf95fc645f5f4b9904140307fcb1c3bb1b260ce52",
+    "pilot_sha256": "61f8508ae83bd50902081647d34a259098c959323935e7648e3625c99104e2d7",
+    "pilot_built_at": "2026-11-02T17:35:27.896418+00:00",
+    "data_as_of": "2026-10-30",
+    "source_fingerprints": {
+      "prices": "885e3064358d11a62b4e8b3a2d33532fe2f42dfbe8041c124bf890ae9919c6ca",
+      "events": "a1d075a0ea23ffc2a9054fbf61cfd3c8c980d125ac03396631093a20ec45e8e8",
+      "model": "d767e61b2d776e65204ebed2dd9fe9e22d62016a26de6c8064b627e6de7b6c28",
+      "features": "1eca27ebb22b4858a16c1984483ab8f0a9cb2fbb22fe2d8ccbfd84a49077bb91",
+      "ingest": "3c037999d9c9eadf05756ed6a4ae705f9d4e98784c59f25b6eea6578e345d948"
+    },
+    "provenance": "Derived from the existing SEC/Yahoo study observations; this replay begins after collection and feature construction. It does not validate or redistribute the raw source archives."
+  },
+  "observations": {
+    "file": "reference_observations.csv.gz",
+    "sha256": "04e935a777af23635837b4f2645d1b4d9347c676fb821a27b32709ada9d00266",
+    "rows": 1205,
+    "events": 241,
+    "columns": [
+      "event_id",
+      "source_ticker",
+      "target_ticker",
+      "event_type",
+      "filing_date",
+      "decision_date",
+      "entry_date",
+      "exit_date",
+      "realized_return",
+      "benchmark_return",
+      "realized_excess_return",
+      "target_return_1d",
+      "target_momentum_20d",
+      "target_vol_20d",
+      "market_return_1d",
+      "market_momentum_20d",
+      "industry_return_1d",
+      "source_return_1d",
+      "source_event_return",
+      "source_momentum_20d",
+      "correlation_60d",
+      "demand_signal",
+      "pricing_signal",
+      "competitive_signal",
+      "guidance_signal",
+      "text_available"
+    ]
+  },
+  "config": {
+    "min_train_rows": 100,
+    "cost_bps": 20.0,
+    "horizon_days": 5
+  },
+  "expected": {
+    "predictions": 1050,
+    "evaluated_folds": 35,
+    "metric_absolute_tolerance": 1e-10
+  },
+  "limits": [
+    "This verifies deterministic model-stage replay from frozen numerical observations, not full SEC collection, text extraction or Yahoo history reconstruction.",
+    "The included pilot and its original collection/code timestamps remain unchanged. Its recorded collector hash differs from current ingest.py.",
+    "This is an already-inspected exploratory sample, not a new untouched holdout or evidence of a trading edge.",
+    "Numerical tolerances allow platform-level floating-point differences; exact environment versions are recorded in each replay report."
+  ]
+}
