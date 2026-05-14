@@ -7,13 +7,13 @@ Tests whether earnings disclosures and the reporting company's price reaction he
 Use Python 3.12 and [uv](https://docs.astral.sh/uv/). The [notebook](relay/notebooks/reference_replay.ipynb) has saved outputs you can read without installing anything.
 
 ```bash
-git clone https://github.com/Smokeybear10/105.RSCH.relay.git
-cd 105.RSCH.relay
+git clone https://github.com/Smokeybear10/105.RSCH.prism.git
+cd 105.RSCH.prism
 uv sync --locked --extra research --extra test
 uv run --locked --offline prism analyze --output out/prism-analysis --figure
 ```
 
-This reruns the corrected analysis from included numerical inputs, without downloads. Use the installed environment as the notebook's Python kernel. The `relay` command remains an alias for `prism`.
+This reruns the corrected analysis from included numerical inputs, without downloads. Use the installed environment as the notebook's Python kernel.
 
 ## What It Does
 
