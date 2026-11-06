@@ -1,0 +1,4060 @@
+[
+  {
+    "fold_id": "2017Q1",
+    "status": "skipped",
+    "fold_start": "2017-01-01",
+    "fold_end_exclusive": "2017-04-01",
+    "prior": {
+      "n_rows": 0,
+      "n_events": 0,
+      "n_decision_dates": 0,
+      "decision_start": null,
+      "decision_end": null,
+      "latest_exit": null
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-03-24",
+      "latest_exit": "2017-03-31"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": null,
+    "fit": {
+      "n_rows": 0,
+      "n_events": 0,
+      "n_decision_dates": 0,
+      "decision_start": null,
+      "decision_end": null,
+      "latest_exit": null
+    },
+    "calibration": {
+      "n_rows": 0,
+      "n_events": 0,
+      "n_decision_dates": 0,
+      "decision_start": null,
+      "decision_end": null,
+      "latest_exit": null
+    },
+    "purged_fit_rows": 0,
+    "reason": "Too few prior decision dates for a separate calibration period."
+  },
+  {
+    "fold_id": "2017Q2",
+    "status": "skipped",
+    "fold_start": "2017-04-01",
+    "fold_end_exclusive": "2017-07-01",
+    "prior": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-03-24",
+      "latest_exit": "2017-03-31"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2017-04-20",
+      "decision_end": "2017-06-30",
+      "latest_exit": "2017-07-10"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2017-02-10",
+    "fit": {
+      "n_rows": 20,
+      "n_events": 4,
+      "n_decision_dates": 4,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-02-01",
+      "latest_exit": "2017-02-08"
+    },
+    "calibration": {
+      "n_rows": 10,
+      "n_events": 2,
+      "n_decision_dates": 2,
+      "decision_start": "2017-02-10",
+      "decision_end": "2017-03-24",
+      "latest_exit": "2017-03-31"
+    },
+    "purged_fit_rows": 0,
+    "reason": "Need at least 100 purged fit rows and 20 distinct fit events."
+  },
+  {
+    "fold_id": "2017Q3",
+    "status": "skipped",
+    "fold_start": "2017-07-01",
+    "fold_end_exclusive": "2017-10-01",
+    "prior": {
+      "n_rows": 55,
+      "n_events": 11,
+      "n_decision_dates": 11,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-05-10",
+      "latest_exit": "2017-05-17"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 5,
+      "decision_start": "2017-07-20",
+      "decision_end": "2017-09-27",
+      "latest_exit": "2017-10-04"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2017-04-28",
+    "fit": {
+      "n_rows": 35,
+      "n_events": 7,
+      "n_decision_dates": 7,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-04-20",
+      "latest_exit": "2017-04-27"
+    },
+    "calibration": {
+      "n_rows": 15,
+      "n_events": 3,
+      "n_decision_dates": 3,
+      "decision_start": "2017-04-28",
+      "decision_end": "2017-05-10",
+      "latest_exit": "2017-05-17"
+    },
+    "purged_fit_rows": 5,
+    "reason": "Need at least 100 purged fit rows and 20 distinct fit events."
+  },
+  {
+    "fold_id": "2017Q4",
+    "status": "skipped",
+    "fold_start": "2017-10-01",
+    "fold_end_exclusive": "2018-01-01",
+    "prior": {
+      "n_rows": 85,
+      "n_events": 17,
+      "n_decision_dates": 16,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-08-11",
+      "latest_exit": "2017-08-18"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 5,
+      "decision_start": "2017-10-25",
+      "decision_end": "2017-12-20",
+      "latest_exit": "2017-12-28"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2017-07-20",
+    "fit": {
+      "n_rows": 60,
+      "n_events": 12,
+      "n_decision_dates": 12,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-06-30",
+      "latest_exit": "2017-07-10"
+    },
+    "calibration": {
+      "n_rows": 25,
+      "n_events": 5,
+      "n_decision_dates": 4,
+      "decision_start": "2017-07-20",
+      "decision_end": "2017-08-11",
+      "latest_exit": "2017-08-18"
+    },
+    "purged_fit_rows": 0,
+    "reason": "Need at least 100 purged fit rows and 20 distinct fit events."
+  },
+  {
+    "fold_id": "2018Q1",
+    "status": "skipped",
+    "fold_start": "2018-01-01",
+    "fold_end_exclusive": "2018-04-01",
+    "prior": {
+      "n_rows": 120,
+      "n_events": 24,
+      "n_decision_dates": 22,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-12-20",
+      "latest_exit": "2017-12-28"
+    },
+    "test": {
+      "n_rows": 35,
+      "n_events": 7,
+      "n_decision_dates": 7,
+      "decision_start": "2018-01-24",
+      "decision_end": "2018-03-23",
+      "latest_exit": "2018-04-02"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2017-10-25",
+    "fit": {
+      "n_rows": 90,
+      "n_events": 18,
+      "n_decision_dates": 17,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-09-27",
+      "latest_exit": "2017-10-04"
+    },
+    "calibration": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 5,
+      "decision_start": "2017-10-25",
+      "decision_end": "2017-12-20",
+      "latest_exit": "2017-12-28"
+    },
+    "purged_fit_rows": 0,
+    "reason": "Need at least 100 purged fit rows and 20 distinct fit events."
+  },
+  {
+    "fold_id": "2018Q2",
+    "status": "evaluated",
+    "fold_start": "2018-04-01",
+    "fold_end_exclusive": "2018-07-01",
+    "prior": {
+      "n_rows": 150,
+      "n_events": 30,
+      "n_decision_dates": 28,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-02-28",
+      "latest_exit": "2018-03-07"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 5,
+      "decision_start": "2018-04-25",
+      "decision_end": "2018-06-21",
+      "latest_exit": "2018-06-28"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2018-01-24",
+    "fit": {
+      "n_rows": 120,
+      "n_events": 24,
+      "n_decision_dates": 22,
+      "decision_start": "2017-01-25",
+      "decision_end": "2017-12-20",
+      "latest_exit": "2017-12-28"
+    },
+    "calibration": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2018-01-24",
+      "decision_end": "2018-02-28",
+      "latest_exit": "2018-03-07"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2017-10-25",
+      "inner_fit": {
+        "n_rows": 90,
+        "n_events": 18,
+        "n_decision_dates": 17,
+        "decision_start": "2017-01-25",
+        "decision_end": "2017-09-27",
+        "latest_exit": "2017-10-04"
+      },
+      "inner_validation": {
+        "n_rows": 30,
+        "n_events": 6,
+        "n_decision_dates": 5,
+        "decision_start": "2017-10-25",
+        "decision_end": "2017-12-20",
+        "latest_exit": "2017-12-28"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [],
+      "fallback_reason": "Need 100 inner-fit rows, 20 inner-fit events and 5 validation events; use zero excess return.",
+      "refit": {
+        "n_rows": 120,
+        "n_events": 24,
+        "n_decision_dates": 22,
+        "decision_start": "2017-01-25",
+        "decision_end": "2017-12-20",
+        "latest_exit": "2017-12-28"
+      }
+    }
+  },
+  {
+    "fold_id": "2018Q3",
+    "status": "evaluated",
+    "fold_start": "2018-07-01",
+    "fold_end_exclusive": "2018-10-01",
+    "prior": {
+      "n_rows": 185,
+      "n_events": 37,
+      "n_decision_dates": 34,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-06-21",
+      "latest_exit": "2018-06-28"
+    },
+    "test": {
+      "n_rows": 35,
+      "n_events": 7,
+      "n_decision_dates": 6,
+      "decision_start": "2018-07-19",
+      "decision_end": "2018-09-21",
+      "latest_exit": "2018-09-28"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2018-02-28",
+    "fit": {
+      "n_rows": 145,
+      "n_events": 29,
+      "n_decision_dates": 27,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-02-09",
+      "latest_exit": "2018-02-16"
+    },
+    "calibration": {
+      "n_rows": 40,
+      "n_events": 8,
+      "n_decision_dates": 7,
+      "decision_start": "2018-02-28",
+      "decision_end": "2018-06-21",
+      "latest_exit": "2018-06-28"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2017-12-20",
+      "inner_fit": {
+        "n_rows": 115,
+        "n_events": 23,
+        "n_decision_dates": 21,
+        "decision_start": "2017-01-25",
+        "decision_end": "2017-11-10",
+        "latest_exit": "2017-11-17"
+      },
+      "inner_validation": {
+        "n_rows": 30,
+        "n_events": 6,
+        "n_decision_dates": 6,
+        "decision_start": "2017-12-20",
+        "decision_end": "2018-02-09",
+        "latest_exit": "2018-02-16"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.02013129984607915
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.021803840873314228
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.025442665252800683
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.024816678573572844
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.023633100465236572
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.02848605333652253
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.02576376646968716
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.02363011722254214
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.022962449792490063
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 145,
+        "n_events": 29,
+        "n_decision_dates": 27,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-02-09",
+        "latest_exit": "2018-02-16"
+      }
+    }
+  },
+  {
+    "fold_id": "2018Q4",
+    "status": "evaluated",
+    "fold_start": "2018-10-01",
+    "fold_end_exclusive": "2019-01-01",
+    "prior": {
+      "n_rows": 220,
+      "n_events": 44,
+      "n_decision_dates": 40,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-09-21",
+      "latest_exit": "2018-09-28"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2018-10-24",
+      "decision_end": "2018-12-19",
+      "latest_exit": "2018-12-27"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2018-05-11",
+    "fit": {
+      "n_rows": 175,
+      "n_events": 35,
+      "n_decision_dates": 32,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-04-27",
+      "latest_exit": "2018-05-04"
+    },
+    "calibration": {
+      "n_rows": 45,
+      "n_events": 9,
+      "n_decision_dates": 8,
+      "decision_start": "2018-05-11",
+      "decision_end": "2018-09-21",
+      "latest_exit": "2018-09-28"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2018-02-01",
+      "inner_fit": {
+        "n_rows": 125,
+        "n_events": 25,
+        "n_decision_dates": 23,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-01-24",
+        "latest_exit": "2018-01-31"
+      },
+      "inner_validation": {
+        "n_rows": 40,
+        "n_events": 8,
+        "n_decision_dates": 7,
+        "decision_start": "2018-02-01",
+        "decision_end": "2018-04-27",
+        "latest_exit": "2018-05-04"
+      },
+      "purged_inner_fit_rows": 10,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.030516232061382452
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03074081318889794
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03447385416379715
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03175321213976932
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.031192257147046536
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03557287837341082
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03275206869575363
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03141321860310346
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03864132115490258
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 175,
+        "n_events": 35,
+        "n_decision_dates": 32,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-04-27",
+        "latest_exit": "2018-05-04"
+      }
+    }
+  },
+  {
+    "fold_id": "2019Q1",
+    "status": "evaluated",
+    "fold_start": "2019-01-01",
+    "fold_end_exclusive": "2019-04-01",
+    "prior": {
+      "n_rows": 250,
+      "n_events": 50,
+      "n_decision_dates": 46,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-12-19",
+      "latest_exit": "2018-12-27"
+    },
+    "test": {
+      "n_rows": 35,
+      "n_events": 7,
+      "n_decision_dates": 7,
+      "decision_start": "2019-01-24",
+      "decision_end": "2019-03-21",
+      "latest_exit": "2019-03-28"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2018-07-26",
+    "fit": {
+      "n_rows": 185,
+      "n_events": 37,
+      "n_decision_dates": 34,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-06-21",
+      "latest_exit": "2018-06-28"
+    },
+    "calibration": {
+      "n_rows": 55,
+      "n_events": 11,
+      "n_decision_dates": 10,
+      "decision_start": "2018-07-26",
+      "decision_end": "2018-12-19",
+      "latest_exit": "2018-12-27"
+    },
+    "purged_fit_rows": 10,
+    "selection": {
+      "selected": "price_ridge_10n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2018-02-28",
+      "inner_fit": {
+        "n_rows": 145,
+        "n_events": 29,
+        "n_decision_dates": 27,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-02-09",
+        "latest_exit": "2018-02-16"
+      },
+      "inner_validation": {
+        "n_rows": 40,
+        "n_events": 8,
+        "n_decision_dates": 7,
+        "decision_start": "2018-02-28",
+        "decision_end": "2018-06-21",
+        "latest_exit": "2018-06-28"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.032194703049540155
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03210222207359158
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.0355796840048327
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03304837623569018
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03204266173598709
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03888759675497914
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03370638746200498
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.032224314254587855
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03985895990664641
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 185,
+        "n_events": 37,
+        "n_decision_dates": 34,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-06-21",
+        "latest_exit": "2018-06-28"
+      }
+    }
+  },
+  {
+    "fold_id": "2019Q2",
+    "status": "evaluated",
+    "fold_start": "2019-04-01",
+    "fold_end_exclusive": "2019-07-01",
+    "prior": {
+      "n_rows": 285,
+      "n_events": 57,
+      "n_decision_dates": 53,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-03-21",
+      "latest_exit": "2019-03-28"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2019-04-24",
+      "decision_end": "2019-06-26",
+      "latest_exit": "2019-07-03"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2018-10-26",
+    "fit": {
+      "n_rows": 220,
+      "n_events": 44,
+      "n_decision_dates": 40,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-09-21",
+      "latest_exit": "2018-09-28"
+    },
+    "calibration": {
+      "n_rows": 55,
+      "n_events": 11,
+      "n_decision_dates": 11,
+      "decision_start": "2018-10-26",
+      "decision_end": "2019-03-21",
+      "latest_exit": "2019-03-28"
+    },
+    "purged_fit_rows": 10,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2018-05-11",
+      "inner_fit": {
+        "n_rows": 175,
+        "n_events": 35,
+        "n_decision_dates": 32,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-04-27",
+        "latest_exit": "2018-05-04"
+      },
+      "inner_validation": {
+        "n_rows": 45,
+        "n_events": 9,
+        "n_decision_dates": 8,
+        "decision_start": "2018-05-11",
+        "decision_end": "2018-09-21",
+        "latest_exit": "2018-09-28"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.031556305127362023
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03207399789738685
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.032066590292048495
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03225461831763627
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03233562303567464
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.034795590348044955
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.032466382444855314
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.032225096843111596
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.0335377200883076
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 220,
+        "n_events": 44,
+        "n_decision_dates": 40,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-09-21",
+        "latest_exit": "2018-09-28"
+      }
+    }
+  },
+  {
+    "fold_id": "2019Q3",
+    "status": "evaluated",
+    "fold_start": "2019-07-01",
+    "fold_end_exclusive": "2019-10-01",
+    "prior": {
+      "n_rows": 310,
+      "n_events": 62,
+      "n_decision_dates": 58,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-05-17",
+      "latest_exit": "2019-05-24"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2019-07-24",
+      "decision_end": "2019-09-27",
+      "latest_exit": "2019-10-04"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2019-01-24",
+    "fit": {
+      "n_rows": 250,
+      "n_events": 50,
+      "n_decision_dates": 46,
+      "decision_start": "2017-01-25",
+      "decision_end": "2018-12-19",
+      "latest_exit": "2018-12-27"
+    },
+    "calibration": {
+      "n_rows": 60,
+      "n_events": 12,
+      "n_decision_dates": 12,
+      "decision_start": "2019-01-24",
+      "decision_end": "2019-05-17",
+      "latest_exit": "2019-05-24"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "event_ridge_10n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2018-07-26",
+      "inner_fit": {
+        "n_rows": 185,
+        "n_events": 37,
+        "n_decision_dates": 34,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-06-21",
+        "latest_exit": "2018-06-28"
+      },
+      "inner_validation": {
+        "n_rows": 55,
+        "n_events": 11,
+        "n_decision_dates": 10,
+        "decision_start": "2018-07-26",
+        "decision_end": "2018-12-19",
+        "latest_exit": "2018-12-27"
+      },
+      "purged_inner_fit_rows": 10,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03371102005272843
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.032874570833913444
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.036142502703829904
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03513473733252677
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03314971266905814
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03787726847153728
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.033830758065960274
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03238840899067294
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.035859146251003754
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 250,
+        "n_events": 50,
+        "n_decision_dates": 46,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-12-19",
+        "latest_exit": "2018-12-27"
+      }
+    }
+  },
+  {
+    "fold_id": "2019Q4",
+    "status": "evaluated",
+    "fold_start": "2019-10-01",
+    "fold_end_exclusive": "2020-01-01",
+    "prior": {
+      "n_rows": 340,
+      "n_events": 68,
+      "n_decision_dates": 64,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-08-16",
+      "latest_exit": "2019-08-23"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2019-10-23",
+      "decision_end": "2019-12-19",
+      "latest_exit": "2019-12-27"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2019-02-15",
+    "fit": {
+      "n_rows": 275,
+      "n_events": 55,
+      "n_decision_dates": 51,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-01-31",
+      "latest_exit": "2019-02-07"
+    },
+    "calibration": {
+      "n_rows": 65,
+      "n_events": 13,
+      "n_decision_dates": 13,
+      "decision_start": "2019-02-15",
+      "decision_end": "2019-08-16",
+      "latest_exit": "2019-08-23"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "event_ridge_10n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2018-10-24",
+      "inner_fit": {
+        "n_rows": 220,
+        "n_events": 44,
+        "n_decision_dates": 40,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-09-21",
+        "latest_exit": "2018-09-28"
+      },
+      "inner_validation": {
+        "n_rows": 55,
+        "n_events": 11,
+        "n_decision_dates": 11,
+        "decision_start": "2018-10-24",
+        "decision_end": "2019-01-31",
+        "latest_exit": "2019-02-07"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.04359610625655988
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.04320984721832184
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.043107553873777356
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.04285222637443281
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.041851404576129576
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.04671313054121758
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.04304603377914001
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.041714358232629985
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.04471792571013502
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 275,
+        "n_events": 55,
+        "n_decision_dates": 51,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-01-31",
+        "latest_exit": "2019-02-07"
+      }
+    }
+  },
+  {
+    "fold_id": "2020Q1",
+    "status": "evaluated",
+    "fold_start": "2020-01-01",
+    "fold_end_exclusive": "2020-04-01",
+    "prior": {
+      "n_rows": 375,
+      "n_events": 75,
+      "n_decision_dates": 71,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-12-19",
+      "latest_exit": "2019-12-27"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2020-01-23",
+      "decision_end": "2020-03-26",
+      "latest_exit": "2020-04-02"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2019-05-02",
+    "fit": {
+      "n_rows": 290,
+      "n_events": 58,
+      "n_decision_dates": 54,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-04-24",
+      "latest_exit": "2019-05-01"
+    },
+    "calibration": {
+      "n_rows": 75,
+      "n_events": 15,
+      "n_decision_dates": 15,
+      "decision_start": "2019-05-02",
+      "decision_end": "2019-12-19",
+      "latest_exit": "2019-12-27"
+    },
+    "purged_fit_rows": 10,
+    "selection": {
+      "selected": "price_ridge_1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2018-11-08",
+      "inner_fit": {
+        "n_rows": 235,
+        "n_events": 47,
+        "n_decision_dates": 43,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-10-26",
+        "latest_exit": "2018-11-02"
+      },
+      "inner_validation": {
+        "n_rows": 55,
+        "n_events": 11,
+        "n_decision_dates": 11,
+        "decision_start": "2018-11-08",
+        "decision_end": "2019-04-24",
+        "latest_exit": "2019-05-01"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.039395698804502985
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03920376312710116
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.039053103248791146
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.038863558741101735
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03918376243186535
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.041218065646905826
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03998252299609367
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03945914531693221
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.039435185176613076
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 290,
+        "n_events": 58,
+        "n_decision_dates": 54,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-04-24",
+        "latest_exit": "2019-05-01"
+      }
+    }
+  },
+  {
+    "fold_id": "2020Q2",
+    "status": "evaluated",
+    "fold_start": "2020-04-01",
+    "fold_end_exclusive": "2020-07-01",
+    "prior": {
+      "n_rows": 400,
+      "n_events": 80,
+      "n_decision_dates": 76,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-02-14",
+      "latest_exit": "2020-02-24"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2020-04-22",
+      "decision_end": "2020-06-30",
+      "latest_exit": "2020-07-08"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2019-07-26",
+    "fit": {
+      "n_rows": 315,
+      "n_events": 63,
+      "n_decision_dates": 59,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-06-26",
+      "latest_exit": "2019-07-03"
+    },
+    "calibration": {
+      "n_rows": 80,
+      "n_events": 16,
+      "n_decision_dates": 16,
+      "decision_start": "2019-07-26",
+      "decision_end": "2020-02-14",
+      "latest_exit": "2020-02-24"
+    },
+    "purged_fit_rows": 5,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2019-01-25",
+      "inner_fit": {
+        "n_rows": 250,
+        "n_events": 50,
+        "n_decision_dates": 46,
+        "decision_start": "2017-01-25",
+        "decision_end": "2018-12-19",
+        "latest_exit": "2018-12-27"
+      },
+      "inner_validation": {
+        "n_rows": 60,
+        "n_events": 12,
+        "n_decision_dates": 12,
+        "decision_start": "2019-01-25",
+        "decision_end": "2019-06-26",
+        "latest_exit": "2019-07-03"
+      },
+      "purged_inner_fit_rows": 5,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.036729156032469054
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03748846656498895
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.037337753751848175
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.038101569324269405
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03823353111636697
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03837523518155746
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.0376966221219551
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03793402365140499
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03723420967203635
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 315,
+        "n_events": 63,
+        "n_decision_dates": 59,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-06-26",
+        "latest_exit": "2019-07-03"
+      }
+    }
+  },
+  {
+    "fold_id": "2020Q3",
+    "status": "evaluated",
+    "fold_start": "2020-07-01",
+    "fold_end_exclusive": "2020-10-01",
+    "prior": {
+      "n_rows": 430,
+      "n_events": 86,
+      "n_decision_dates": 82,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-05-22",
+      "latest_exit": "2020-06-01"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2020-07-22",
+      "decision_end": "2020-09-30",
+      "latest_exit": "2020-10-07"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2019-10-23",
+    "fit": {
+      "n_rows": 345,
+      "n_events": 69,
+      "n_decision_dates": 65,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-09-27",
+      "latest_exit": "2019-10-04"
+    },
+    "calibration": {
+      "n_rows": 85,
+      "n_events": 17,
+      "n_decision_dates": 17,
+      "decision_start": "2019-10-23",
+      "decision_end": "2020-05-22",
+      "latest_exit": "2020-06-01"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2019-03-21",
+      "inner_fit": {
+        "n_rows": 280,
+        "n_events": 56,
+        "n_decision_dates": 52,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-02-15",
+        "latest_exit": "2019-02-25"
+      },
+      "inner_validation": {
+        "n_rows": 65,
+        "n_events": 13,
+        "n_decision_dates": 13,
+        "decision_start": "2019-03-21",
+        "decision_end": "2019-09-27",
+        "latest_exit": "2019-10-04"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.0345696705705115
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03759656452149129
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03857247284855872
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03941835066162384
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.039655219308349865
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03749293916584345
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03818842323717267
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03930397074972291
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03507433300480177
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 345,
+        "n_events": 69,
+        "n_decision_dates": 65,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-09-27",
+        "latest_exit": "2019-10-04"
+      }
+    }
+  },
+  {
+    "fold_id": "2020Q4",
+    "status": "evaluated",
+    "fold_start": "2020-10-01",
+    "fold_end_exclusive": "2021-01-01",
+    "prior": {
+      "n_rows": 460,
+      "n_events": 92,
+      "n_decision_dates": 88,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-08-20",
+      "latest_exit": "2020-08-27"
+    },
+    "test": {
+      "n_rows": 25,
+      "n_events": 5,
+      "n_decision_dates": 5,
+      "decision_start": "2020-10-21",
+      "decision_end": "2020-11-19",
+      "latest_exit": "2020-11-27"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2019-12-19",
+    "fit": {
+      "n_rows": 370,
+      "n_events": 74,
+      "n_decision_dates": 70,
+      "decision_start": "2017-01-25",
+      "decision_end": "2019-11-15",
+      "latest_exit": "2019-11-22"
+    },
+    "calibration": {
+      "n_rows": 90,
+      "n_events": 18,
+      "n_decision_dates": 18,
+      "decision_start": "2019-12-19",
+      "decision_end": "2020-08-20",
+      "latest_exit": "2020-08-27"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "event_huber_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2019-05-02",
+      "inner_fit": {
+        "n_rows": 290,
+        "n_events": 58,
+        "n_decision_dates": 54,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-04-24",
+        "latest_exit": "2019-05-01"
+      },
+      "inner_validation": {
+        "n_rows": 70,
+        "n_events": 14,
+        "n_decision_dates": 14,
+        "decision_start": "2019-05-02",
+        "decision_end": "2019-11-15",
+        "latest_exit": "2019-11-22"
+      },
+      "purged_inner_fit_rows": 10,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03192112915915696
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.033121030903318194
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.032991253430156395
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03391645220261664
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03435221505966667
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.029972104882471224
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03183772522278878
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.033793125409540214
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.0297176448458629
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 370,
+        "n_events": 74,
+        "n_decision_dates": 70,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-11-15",
+        "latest_exit": "2019-11-22"
+      }
+    }
+  },
+  {
+    "fold_id": "2021Q1",
+    "status": "evaluated",
+    "fold_start": "2021-01-01",
+    "fold_end_exclusive": "2021-04-01",
+    "prior": {
+      "n_rows": 490,
+      "n_events": 98,
+      "n_decision_dates": 94,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-11-19",
+      "latest_exit": "2020-11-27"
+    },
+    "test": {
+      "n_rows": 35,
+      "n_events": 7,
+      "n_decision_dates": 6,
+      "decision_start": "2021-01-08",
+      "decision_end": "2021-02-25",
+      "latest_exit": "2021-03-04"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2020-02-14",
+    "fit": {
+      "n_rows": 395,
+      "n_events": 79,
+      "n_decision_dates": 75,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-02-06",
+      "latest_exit": "2020-02-13"
+    },
+    "calibration": {
+      "n_rows": 95,
+      "n_events": 19,
+      "n_decision_dates": 19,
+      "decision_start": "2020-02-14",
+      "decision_end": "2020-11-19",
+      "latest_exit": "2020-11-27"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "event_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2019-07-26",
+      "inner_fit": {
+        "n_rows": 315,
+        "n_events": 63,
+        "n_decision_dates": 59,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-06-26",
+        "latest_exit": "2019-07-03"
+      },
+      "inner_validation": {
+        "n_rows": 75,
+        "n_events": 15,
+        "n_decision_dates": 15,
+        "decision_start": "2019-07-26",
+        "decision_end": "2020-02-06",
+        "latest_exit": "2020-02-13"
+      },
+      "purged_inner_fit_rows": 5,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.029431246390026172
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.02962605946403047
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.02956255697857966
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.02992902199292088
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03017609100899954
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.0293085583371874
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.029517439234797015
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.029955756431359296
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.0295248193004341
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 395,
+        "n_events": 79,
+        "n_decision_dates": 75,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-02-06",
+        "latest_exit": "2020-02-13"
+      }
+    }
+  },
+  {
+    "fold_id": "2021Q2",
+    "status": "evaluated",
+    "fold_start": "2021-04-01",
+    "fold_end_exclusive": "2021-07-01",
+    "prior": {
+      "n_rows": 525,
+      "n_events": 105,
+      "n_decision_dates": 100,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-02-25",
+      "latest_exit": "2021-03-04"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 5,
+      "decision_start": "2021-04-01",
+      "decision_end": "2021-05-27",
+      "latest_exit": "2021-06-04"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2020-04-30",
+    "fit": {
+      "n_rows": 410,
+      "n_events": 82,
+      "n_decision_dates": 78,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-04-22",
+      "latest_exit": "2020-04-29"
+    },
+    "calibration": {
+      "n_rows": 105,
+      "n_events": 21,
+      "n_decision_dates": 20,
+      "decision_start": "2020-04-30",
+      "decision_end": "2021-02-25",
+      "latest_exit": "2021-03-04"
+    },
+    "purged_fit_rows": 10,
+    "selection": {
+      "selected": "event_ridge_1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2019-08-01",
+      "inner_fit": {
+        "n_rows": 320,
+        "n_events": 64,
+        "n_decision_dates": 60,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-07-24",
+        "latest_exit": "2019-07-31"
+      },
+      "inner_validation": {
+        "n_rows": 80,
+        "n_events": 16,
+        "n_decision_dates": 16,
+        "decision_start": "2019-08-01",
+        "decision_end": "2020-04-22",
+        "latest_exit": "2020-04-29"
+      },
+      "purged_inner_fit_rows": 10,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.028657418778804056
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.028658997756641817
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03077021998921259
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.029118545395668837
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.028835208067557083
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.028871335373166142
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.027658244161011026
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.028424548474657384
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.02849719962494777
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 410,
+        "n_events": 82,
+        "n_decision_dates": 78,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-04-22",
+        "latest_exit": "2020-04-29"
+      }
+    }
+  },
+  {
+    "fold_id": "2021Q3",
+    "status": "evaluated",
+    "fold_start": "2021-07-01",
+    "fold_end_exclusive": "2021-10-01",
+    "prior": {
+      "n_rows": 555,
+      "n_events": 111,
+      "n_decision_dates": 105,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-05-27",
+      "latest_exit": "2021-06-04"
+    },
+    "test": {
+      "n_rows": 35,
+      "n_events": 7,
+      "n_decision_dates": 7,
+      "decision_start": "2021-07-01",
+      "decision_end": "2021-09-29",
+      "latest_exit": "2021-10-06"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2020-07-24",
+    "fit": {
+      "n_rows": 435,
+      "n_events": 87,
+      "n_decision_dates": 83,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-06-30",
+      "latest_exit": "2020-07-08"
+    },
+    "calibration": {
+      "n_rows": 115,
+      "n_events": 23,
+      "n_decision_dates": 21,
+      "decision_start": "2020-07-24",
+      "decision_end": "2021-05-27",
+      "latest_exit": "2021-06-04"
+    },
+    "purged_fit_rows": 5,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2019-10-25",
+      "inner_fit": {
+        "n_rows": 345,
+        "n_events": 69,
+        "n_decision_dates": 65,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-09-27",
+        "latest_exit": "2019-10-04"
+      },
+      "inner_validation": {
+        "n_rows": 85,
+        "n_events": 17,
+        "n_decision_dates": 17,
+        "decision_start": "2019-10-25",
+        "decision_end": "2020-06-30",
+        "latest_exit": "2020-07-08"
+      },
+      "purged_inner_fit_rows": 5,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.026612041012162718
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.0266592594290826
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.02910618232951616
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.027252182340025993
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.027208559135105198
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.029010692807656797
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.02708322675047977
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.026977233608255102
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.027279759098689394
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 435,
+        "n_events": 87,
+        "n_decision_dates": 83,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-06-30",
+        "latest_exit": "2020-07-08"
+      }
+    }
+  },
+  {
+    "fold_id": "2021Q4",
+    "status": "evaluated",
+    "fold_start": "2021-10-01",
+    "fold_end_exclusive": "2022-01-01",
+    "prior": {
+      "n_rows": 585,
+      "n_events": 117,
+      "n_decision_dates": 111,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-08-19",
+      "latest_exit": "2021-08-26"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 5,
+      "decision_start": "2021-10-22",
+      "decision_end": "2021-12-21",
+      "latest_exit": "2021-12-29"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2020-09-30",
+    "fit": {
+      "n_rows": 460,
+      "n_events": 92,
+      "n_decision_dates": 88,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-08-20",
+      "latest_exit": "2020-08-27"
+    },
+    "calibration": {
+      "n_rows": 125,
+      "n_events": 25,
+      "n_decision_dates": 23,
+      "decision_start": "2020-09-30",
+      "decision_end": "2021-08-19",
+      "latest_exit": "2021-08-26"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2019-12-19",
+      "inner_fit": {
+        "n_rows": 370,
+        "n_events": 74,
+        "n_decision_dates": 70,
+        "decision_start": "2017-01-25",
+        "decision_end": "2019-11-15",
+        "latest_exit": "2019-11-22"
+      },
+      "inner_validation": {
+        "n_rows": 90,
+        "n_events": 18,
+        "n_decision_dates": 18,
+        "decision_start": "2019-12-19",
+        "decision_end": "2020-08-20",
+        "latest_exit": "2020-08-27"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03392207558809278
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.0339678757042913
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.036302359836792496
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03440907003524607
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03439742179053405
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03728012466216873
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.034905525859773155
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03427152537498217
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.036045346990423846
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 460,
+        "n_events": 92,
+        "n_decision_dates": 88,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-08-20",
+        "latest_exit": "2020-08-27"
+      }
+    }
+  },
+  {
+    "fold_id": "2022Q1",
+    "status": "evaluated",
+    "fold_start": "2022-01-01",
+    "fold_end_exclusive": "2022-04-01",
+    "prior": {
+      "n_rows": 620,
+      "n_events": 124,
+      "n_decision_dates": 117,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-12-21",
+      "latest_exit": "2021-12-29"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2022-01-26",
+      "decision_end": "2022-03-30",
+      "latest_exit": "2022-04-06"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2020-11-19",
+    "fit": {
+      "n_rows": 485,
+      "n_events": 97,
+      "n_decision_dates": 93,
+      "decision_start": "2017-01-25",
+      "decision_end": "2020-11-05",
+      "latest_exit": "2020-11-12"
+    },
+    "calibration": {
+      "n_rows": 135,
+      "n_events": 27,
+      "n_decision_dates": 24,
+      "decision_start": "2020-11-19",
+      "decision_end": "2021-12-21",
+      "latest_exit": "2021-12-29"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2020-02-06",
+      "inner_fit": {
+        "n_rows": 390,
+        "n_events": 78,
+        "n_decision_dates": 74,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-01-29",
+        "latest_exit": "2020-02-05"
+      },
+      "inner_validation": {
+        "n_rows": 95,
+        "n_events": 19,
+        "n_decision_dates": 19,
+        "decision_start": "2020-02-06",
+        "decision_end": "2020-11-05",
+        "latest_exit": "2020-11-12"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03249948511393409
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03252233718656379
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.036071141108991255
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.033322351273726264
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.032823322013805896
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.036272948038084854
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03344290877613452
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03270509489499346
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03525464198678878
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 485,
+        "n_events": 97,
+        "n_decision_dates": 93,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-11-05",
+        "latest_exit": "2020-11-12"
+      }
+    }
+  },
+  {
+    "fold_id": "2022Q2",
+    "status": "evaluated",
+    "fold_start": "2022-04-01",
+    "fold_end_exclusive": "2022-07-01",
+    "prior": {
+      "n_rows": 645,
+      "n_events": 129,
+      "n_decision_dates": 122,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-02-17",
+      "latest_exit": "2022-02-25"
+    },
+    "test": {
+      "n_rows": 25,
+      "n_events": 5,
+      "n_decision_dates": 5,
+      "decision_start": "2022-04-27",
+      "decision_end": "2022-05-26",
+      "latest_exit": "2022-06-03"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2021-01-27",
+    "fit": {
+      "n_rows": 500,
+      "n_events": 100,
+      "n_decision_dates": 96,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-01-15",
+      "latest_exit": "2021-01-25"
+    },
+    "calibration": {
+      "n_rows": 140,
+      "n_events": 28,
+      "n_decision_dates": 25,
+      "decision_start": "2021-01-27",
+      "decision_end": "2022-02-17",
+      "latest_exit": "2022-02-25"
+    },
+    "purged_fit_rows": 5,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2020-03-26",
+      "inner_fit": {
+        "n_rows": 400,
+        "n_events": 80,
+        "n_decision_dates": 76,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-02-14",
+        "latest_exit": "2020-02-24"
+      },
+      "inner_validation": {
+        "n_rows": 100,
+        "n_events": 20,
+        "n_decision_dates": 20,
+        "decision_start": "2020-03-26",
+        "decision_end": "2021-01-15",
+        "latest_exit": "2021-01-25"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.032175336193429646
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.032184725268099734
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03534500702884963
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03274572323366388
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03235252498211158
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03634648353950531
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03327383468033447
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03229886687762406
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03522836454033382
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 500,
+        "n_events": 100,
+        "n_decision_dates": 96,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-01-15",
+        "latest_exit": "2021-01-25"
+      }
+    }
+  },
+  {
+    "fold_id": "2022Q3",
+    "status": "evaluated",
+    "fold_start": "2022-07-01",
+    "fold_end_exclusive": "2022-10-01",
+    "prior": {
+      "n_rows": 675,
+      "n_events": 135,
+      "n_decision_dates": 128,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-05-26",
+      "latest_exit": "2022-06-03"
+    },
+    "test": {
+      "n_rows": 40,
+      "n_events": 8,
+      "n_decision_dates": 8,
+      "decision_start": "2022-07-01",
+      "decision_end": "2022-09-30",
+      "latest_exit": "2022-10-07"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2021-04-28",
+    "fit": {
+      "n_rows": 530,
+      "n_events": 106,
+      "n_decision_dates": 101,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-04-01",
+      "latest_exit": "2021-04-09"
+    },
+    "calibration": {
+      "n_rows": 140,
+      "n_events": 28,
+      "n_decision_dates": 26,
+      "decision_start": "2021-04-28",
+      "decision_end": "2022-05-26",
+      "latest_exit": "2022-06-03"
+    },
+    "purged_fit_rows": 5,
+    "selection": {
+      "selected": "event_ridge_10n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2020-04-30",
+      "inner_fit": {
+        "n_rows": 410,
+        "n_events": 82,
+        "n_decision_dates": 78,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-04-22",
+        "latest_exit": "2020-04-29"
+      },
+      "inner_validation": {
+        "n_rows": 110,
+        "n_events": 22,
+        "n_decision_dates": 21,
+        "decision_start": "2020-04-30",
+        "decision_end": "2021-04-01",
+        "latest_exit": "2021-04-09"
+      },
+      "purged_inner_fit_rows": 10,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03149047432161207
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.031490474321612075
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.032243198739550796
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03164181532512251
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.031548375992694
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03167157651647154
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03141103352027538
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.031382315458181466
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03158249363229963
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 530,
+        "n_events": 106,
+        "n_decision_dates": 101,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-04-01",
+        "latest_exit": "2021-04-09"
+      }
+    }
+  },
+  {
+    "fold_id": "2022Q4",
+    "status": "evaluated",
+    "fold_start": "2022-10-01",
+    "fold_end_exclusive": "2023-01-01",
+    "prior": {
+      "n_rows": 710,
+      "n_events": 142,
+      "n_decision_dates": 135,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-08-25",
+      "latest_exit": "2022-09-01"
+    },
+    "test": {
+      "n_rows": 35,
+      "n_events": 7,
+      "n_decision_dates": 7,
+      "decision_start": "2022-10-07",
+      "decision_end": "2022-12-22",
+      "latest_exit": "2022-12-30"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2021-07-28",
+    "fit": {
+      "n_rows": 560,
+      "n_events": 112,
+      "n_decision_dates": 106,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-07-01",
+      "latest_exit": "2021-07-09"
+    },
+    "calibration": {
+      "n_rows": 140,
+      "n_events": 28,
+      "n_decision_dates": 27,
+      "decision_start": "2021-07-28",
+      "decision_end": "2022-08-25",
+      "latest_exit": "2022-09-01"
+    },
+    "purged_fit_rows": 10,
+    "selection": {
+      "selected": "historical_median",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2020-07-24",
+      "inner_fit": {
+        "n_rows": 435,
+        "n_events": 87,
+        "n_decision_dates": 83,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-06-30",
+        "latest_exit": "2020-07-08"
+      },
+      "inner_validation": {
+        "n_rows": 120,
+        "n_events": 24,
+        "n_decision_dates": 22,
+        "decision_start": "2020-07-24",
+        "decision_end": "2021-07-01",
+        "latest_exit": "2021-07-09"
+      },
+      "purged_inner_fit_rows": 5,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.028624259123255114
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.028613913510185923
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.02976464142285431
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.029119712556529762
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.029110131063334592
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.029350052907530715
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.02912323068042772
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.02911260889233576
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.02917497417872723
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 560,
+        "n_events": 112,
+        "n_decision_dates": 106,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-07-01",
+        "latest_exit": "2021-07-09"
+      }
+    }
+  },
+  {
+    "fold_id": "2023Q1",
+    "status": "evaluated",
+    "fold_start": "2023-01-01",
+    "fold_end_exclusive": "2023-04-01",
+    "prior": {
+      "n_rows": 750,
+      "n_events": 150,
+      "n_decision_dates": 143,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-12-22",
+      "latest_exit": "2022-12-30"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2023-01-25",
+      "decision_end": "2023-03-29",
+      "latest_exit": "2023-04-05"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2021-11-04",
+    "fit": {
+      "n_rows": 605,
+      "n_events": 121,
+      "n_decision_dates": 114,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-10-27",
+      "latest_exit": "2021-11-03"
+    },
+    "calibration": {
+      "n_rows": 145,
+      "n_events": 29,
+      "n_decision_dates": 29,
+      "decision_start": "2021-11-04",
+      "decision_end": "2022-12-22",
+      "latest_exit": "2022-12-30"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "event_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2020-10-28",
+      "inner_fit": {
+        "n_rows": 465,
+        "n_events": 93,
+        "n_decision_dates": 89,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-09-30",
+        "latest_exit": "2020-10-07"
+      },
+      "inner_validation": {
+        "n_rows": 130,
+        "n_events": 26,
+        "n_decision_dates": 23,
+        "decision_start": "2020-10-28",
+        "decision_end": "2021-10-27",
+        "latest_exit": "2021-11-03"
+      },
+      "purged_inner_fit_rows": 10,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.02889853706632594
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.02889239992912742
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.02909324059155783
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.0287693220613962
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.028860017820465034
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.02791524666365951
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.028294058759090926
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.028799599510071917
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.0279691935988301
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 605,
+        "n_events": 121,
+        "n_decision_dates": 114,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-10-27",
+        "latest_exit": "2021-11-03"
+      }
+    }
+  },
+  {
+    "fold_id": "2023Q2",
+    "status": "evaluated",
+    "fold_start": "2023-04-01",
+    "fold_end_exclusive": "2023-07-01",
+    "prior": {
+      "n_rows": 775,
+      "n_events": 155,
+      "n_decision_dates": 148,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-02-23",
+      "latest_exit": "2023-03-02"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2023-04-26",
+      "decision_end": "2023-06-29",
+      "latest_exit": "2023-07-07"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2022-01-27",
+    "fit": {
+      "n_rows": 620,
+      "n_events": 124,
+      "n_decision_dates": 117,
+      "decision_start": "2017-01-25",
+      "decision_end": "2021-12-21",
+      "latest_exit": "2021-12-29"
+    },
+    "calibration": {
+      "n_rows": 150,
+      "n_events": 30,
+      "n_decision_dates": 30,
+      "decision_start": "2022-01-27",
+      "decision_end": "2023-02-23",
+      "latest_exit": "2023-03-02"
+    },
+    "purged_fit_rows": 5,
+    "selection": {
+      "selected": "event_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2020-11-19",
+      "inner_fit": {
+        "n_rows": 485,
+        "n_events": 97,
+        "n_decision_dates": 93,
+        "decision_start": "2017-01-25",
+        "decision_end": "2020-11-05",
+        "latest_exit": "2020-11-12"
+      },
+      "inner_validation": {
+        "n_rows": 135,
+        "n_events": 27,
+        "n_decision_dates": 24,
+        "decision_start": "2020-11-19",
+        "decision_end": "2021-12-21",
+        "latest_exit": "2021-12-29"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.02844982768010368
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.02845488553538195
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.028591652595673676
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.028150206873486763
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.0282356334953581
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.0278130974138228
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.027985673757162134
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.028343303357684507
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.028039337688263565
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 620,
+        "n_events": 124,
+        "n_decision_dates": 117,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-12-21",
+        "latest_exit": "2021-12-29"
+      }
+    }
+  },
+  {
+    "fold_id": "2023Q3",
+    "status": "evaluated",
+    "fold_start": "2023-07-01",
+    "fold_end_exclusive": "2023-10-01",
+    "prior": {
+      "n_rows": 805,
+      "n_events": 161,
+      "n_decision_dates": 154,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-05-25",
+      "latest_exit": "2023-06-02"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2023-07-26",
+      "decision_end": "2023-09-28",
+      "latest_exit": "2023-10-05"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2022-04-27",
+    "fit": {
+      "n_rows": 650,
+      "n_events": 130,
+      "n_decision_dates": 123,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-03-30",
+      "latest_exit": "2022-04-06"
+    },
+    "calibration": {
+      "n_rows": 155,
+      "n_events": 31,
+      "n_decision_dates": 31,
+      "decision_start": "2022-04-27",
+      "decision_end": "2023-05-25",
+      "latest_exit": "2023-06-02"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "event_ridge_1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2021-02-04",
+      "inner_fit": {
+        "n_rows": 515,
+        "n_events": 103,
+        "n_decision_dates": 98,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-01-27",
+        "latest_exit": "2021-02-03"
+      },
+      "inner_validation": {
+        "n_rows": 135,
+        "n_events": 27,
+        "n_decision_dates": 25,
+        "decision_start": "2021-02-04",
+        "decision_end": "2022-03-30",
+        "latest_exit": "2022-04-06"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03384393891305087
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03382305745941907
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.033411565525207444
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.033166007457794126
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03344413219441378
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03328135160726872
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03314011401959969
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03353947425371426
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.033719442851690117
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 650,
+        "n_events": 130,
+        "n_decision_dates": 123,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-03-30",
+        "latest_exit": "2022-04-06"
+      }
+    }
+  },
+  {
+    "fold_id": "2023Q4",
+    "status": "evaluated",
+    "fold_start": "2023-10-01",
+    "fold_end_exclusive": "2024-01-01",
+    "prior": {
+      "n_rows": 835,
+      "n_events": 167,
+      "n_decision_dates": 160,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-08-24",
+      "latest_exit": "2023-08-31"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2023-10-25",
+      "decision_end": "2023-12-21",
+      "latest_exit": "2023-12-29"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2022-07-01",
+    "fit": {
+      "n_rows": 675,
+      "n_events": 135,
+      "n_decision_dates": 128,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-05-26",
+      "latest_exit": "2022-06-03"
+    },
+    "calibration": {
+      "n_rows": 160,
+      "n_events": 32,
+      "n_decision_dates": 32,
+      "decision_start": "2022-07-01",
+      "decision_end": "2023-08-24",
+      "latest_exit": "2023-08-31"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "price_ridge_1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2021-04-28",
+      "inner_fit": {
+        "n_rows": 530,
+        "n_events": 106,
+        "n_decision_dates": 101,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-04-01",
+        "latest_exit": "2021-04-09"
+      },
+      "inner_validation": {
+        "n_rows": 140,
+        "n_events": 28,
+        "n_decision_dates": 26,
+        "decision_start": "2021-04-28",
+        "decision_end": "2022-05-26",
+        "latest_exit": "2022-06-03"
+      },
+      "purged_inner_fit_rows": 5,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03491387351368365
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.034902016413130815
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03384209893448983
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.033802529457998935
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.034250242481291805
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.034313964849853225
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.033998260252944265
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03431622664960987
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03482670420309648
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 675,
+        "n_events": 135,
+        "n_decision_dates": 128,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-05-26",
+        "latest_exit": "2022-06-03"
+      }
+    }
+  },
+  {
+    "fold_id": "2024Q1",
+    "status": "evaluated",
+    "fold_start": "2024-01-01",
+    "fold_end_exclusive": "2024-04-01",
+    "prior": {
+      "n_rows": 870,
+      "n_events": 174,
+      "n_decision_dates": 167,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-12-21",
+      "latest_exit": "2023-12-29"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2024-01-24",
+      "decision_end": "2024-03-21",
+      "latest_exit": "2024-03-28"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2022-08-09",
+    "fit": {
+      "n_rows": 695,
+      "n_events": 139,
+      "n_decision_dates": 132,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-07-29",
+      "latest_exit": "2022-08-05"
+    },
+    "calibration": {
+      "n_rows": 170,
+      "n_events": 34,
+      "n_decision_dates": 34,
+      "decision_start": "2022-08-09",
+      "decision_end": "2023-12-21",
+      "latest_exit": "2023-12-29"
+    },
+    "purged_fit_rows": 5,
+    "selection": {
+      "selected": "price_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2021-07-01",
+      "inner_fit": {
+        "n_rows": 555,
+        "n_events": 111,
+        "n_decision_dates": 105,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-05-27",
+        "latest_exit": "2021-06-04"
+      },
+      "inner_validation": {
+        "n_rows": 140,
+        "n_events": 28,
+        "n_decision_dates": 27,
+        "decision_start": "2021-07-01",
+        "decision_end": "2022-07-29",
+        "latest_exit": "2022-08-05"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03722509037319562
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.0375687702589954
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03493495092253997
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03550528061499949
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.036266108695086
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03626356934729204
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03578922746148547
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03625206572076286
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03676932163160091
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 695,
+        "n_events": 139,
+        "n_decision_dates": 132,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-07-29",
+        "latest_exit": "2022-08-05"
+      }
+    }
+  },
+  {
+    "fold_id": "2024Q2",
+    "status": "evaluated",
+    "fold_start": "2024-04-01",
+    "fold_end_exclusive": "2024-07-01",
+    "prior": {
+      "n_rows": 900,
+      "n_events": 180,
+      "n_decision_dates": 173,
+      "decision_start": "2017-01-25",
+      "decision_end": "2024-03-21",
+      "latest_exit": "2024-03-28"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2024-04-24",
+      "decision_end": "2024-06-27",
+      "latest_exit": "2024-07-05"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2022-10-28",
+    "fit": {
+      "n_rows": 720,
+      "n_events": 144,
+      "n_decision_dates": 137,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-10-07",
+      "latest_exit": "2022-10-14"
+    },
+    "calibration": {
+      "n_rows": 175,
+      "n_events": 35,
+      "n_decision_dates": 35,
+      "decision_start": "2022-10-28",
+      "decision_end": "2024-03-21",
+      "latest_exit": "2024-03-28"
+    },
+    "purged_fit_rows": 5,
+    "selection": {
+      "selected": "price_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2021-07-29",
+      "inner_fit": {
+        "n_rows": 560,
+        "n_events": 112,
+        "n_decision_dates": 106,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-07-01",
+        "latest_exit": "2021-07-09"
+      },
+      "inner_validation": {
+        "n_rows": 145,
+        "n_events": 29,
+        "n_decision_dates": 28,
+        "decision_start": "2021-07-29",
+        "decision_end": "2022-10-07",
+        "latest_exit": "2022-10-14"
+      },
+      "purged_inner_fit_rows": 15,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03665487594940987
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03692192394737193
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03469268245845671
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.035285160040921935
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.036023101571900126
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.036176201357103
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03567107449153556
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03599765237702678
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.0363736744462002
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 720,
+        "n_events": 144,
+        "n_decision_dates": 137,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-10-07",
+        "latest_exit": "2022-10-14"
+      }
+    }
+  },
+  {
+    "fold_id": "2024Q3",
+    "status": "evaluated",
+    "fold_start": "2024-07-01",
+    "fold_end_exclusive": "2024-10-01",
+    "prior": {
+      "n_rows": 925,
+      "n_events": 185,
+      "n_decision_dates": 178,
+      "decision_start": "2017-01-25",
+      "decision_end": "2024-05-23",
+      "latest_exit": "2024-05-31"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2024-07-24",
+      "decision_end": "2024-09-26",
+      "latest_exit": "2024-10-03"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2022-12-22",
+    "fit": {
+      "n_rows": 745,
+      "n_events": 149,
+      "n_decision_dates": 142,
+      "decision_start": "2017-01-25",
+      "decision_end": "2022-11-17",
+      "latest_exit": "2022-11-25"
+    },
+    "calibration": {
+      "n_rows": 180,
+      "n_events": 36,
+      "n_decision_dates": 36,
+      "decision_start": "2022-12-22",
+      "decision_end": "2024-05-23",
+      "latest_exit": "2024-05-31"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "price_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2021-10-27",
+      "inner_fit": {
+        "n_rows": 590,
+        "n_events": 118,
+        "n_decision_dates": 112,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-09-29",
+        "latest_exit": "2021-10-06"
+      },
+      "inner_validation": {
+        "n_rows": 150,
+        "n_events": 30,
+        "n_decision_dates": 29,
+        "decision_start": "2021-10-27",
+        "decision_end": "2022-11-17",
+        "latest_exit": "2022-11-25"
+      },
+      "purged_inner_fit_rows": 5,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.0382483687676165
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03823522714783711
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03567444653411846
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.0366110658943666
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.037394612732401265
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.036794333568893785
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03661607999812255
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03721839741208508
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.037093853305248566
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 745,
+        "n_events": 149,
+        "n_decision_dates": 142,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-11-17",
+        "latest_exit": "2022-11-25"
+      }
+    }
+  },
+  {
+    "fold_id": "2024Q4",
+    "status": "evaluated",
+    "fold_start": "2024-10-01",
+    "fold_end_exclusive": "2025-01-01",
+    "prior": {
+      "n_rows": 955,
+      "n_events": 191,
+      "n_decision_dates": 184,
+      "decision_start": "2017-01-25",
+      "decision_end": "2024-08-29",
+      "latest_exit": "2024-09-06"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2024-10-23",
+      "decision_end": "2024-12-19",
+      "latest_exit": "2024-12-27"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2023-02-23",
+    "fit": {
+      "n_rows": 770,
+      "n_events": 154,
+      "n_decision_dates": 147,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-02-03",
+      "latest_exit": "2023-02-10"
+    },
+    "calibration": {
+      "n_rows": 185,
+      "n_events": 37,
+      "n_decision_dates": 37,
+      "decision_start": "2023-02-23",
+      "decision_end": "2024-08-29",
+      "latest_exit": "2024-09-06"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "price_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2022-01-26",
+      "inner_fit": {
+        "n_rows": 620,
+        "n_events": 124,
+        "n_decision_dates": 117,
+        "decision_start": "2017-01-25",
+        "decision_end": "2021-12-21",
+        "latest_exit": "2021-12-29"
+      },
+      "inner_validation": {
+        "n_rows": 150,
+        "n_events": 30,
+        "n_decision_dates": 30,
+        "decision_start": "2022-01-26",
+        "decision_end": "2023-02-03",
+        "latest_exit": "2023-02-10"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.04022844004097609
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.04014823607665746
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03779068979164523
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03884205448680198
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03966664220364629
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03854375686203748
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03866076739656232
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03941118616479713
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03853512253013702
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 770,
+        "n_events": 154,
+        "n_decision_dates": 147,
+        "decision_start": "2017-01-25",
+        "decision_end": "2023-02-03",
+        "latest_exit": "2023-02-10"
+      }
+    }
+  },
+  {
+    "fold_id": "2025Q1",
+    "status": "evaluated",
+    "fold_start": "2025-01-01",
+    "fold_end_exclusive": "2025-04-01",
+    "prior": {
+      "n_rows": 990,
+      "n_events": 198,
+      "n_decision_dates": 191,
+      "decision_start": "2017-01-25",
+      "decision_end": "2024-12-19",
+      "latest_exit": "2024-12-27"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2025-01-24",
+      "decision_end": "2025-03-21",
+      "latest_exit": "2025-03-28"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2023-05-04",
+    "fit": {
+      "n_rows": 785,
+      "n_events": 157,
+      "n_decision_dates": 150,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-04-26",
+      "latest_exit": "2023-05-03"
+    },
+    "calibration": {
+      "n_rows": 195,
+      "n_events": 39,
+      "n_decision_dates": 39,
+      "decision_start": "2023-05-04",
+      "decision_end": "2024-12-19",
+      "latest_exit": "2024-12-27"
+    },
+    "purged_fit_rows": 10,
+    "selection": {
+      "selected": "price_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2022-02-03",
+      "inner_fit": {
+        "n_rows": 625,
+        "n_events": 125,
+        "n_decision_dates": 118,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-01-26",
+        "latest_exit": "2022-02-02"
+      },
+      "inner_validation": {
+        "n_rows": 150,
+        "n_events": 30,
+        "n_decision_dates": 30,
+        "decision_start": "2022-02-03",
+        "decision_end": "2023-04-26",
+        "latest_exit": "2023-05-03"
+      },
+      "purged_inner_fit_rows": 10,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.038128935427655115
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03808137819812762
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.036168921986870946
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03713337240161394
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.037834134421225386
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03673227233446119
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03688829671556915
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03759506650101393
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03667836483590451
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 785,
+        "n_events": 157,
+        "n_decision_dates": 150,
+        "decision_start": "2017-01-25",
+        "decision_end": "2023-04-26",
+        "latest_exit": "2023-05-03"
+      }
+    }
+  },
+  {
+    "fold_id": "2025Q2",
+    "status": "evaluated",
+    "fold_start": "2025-04-01",
+    "fold_end_exclusive": "2025-07-01",
+    "prior": {
+      "n_rows": 1020,
+      "n_events": 204,
+      "n_decision_dates": 197,
+      "decision_start": "2017-01-25",
+      "decision_end": "2025-03-21",
+      "latest_exit": "2025-03-28"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2025-04-24",
+      "decision_end": "2025-06-26",
+      "latest_exit": "2025-07-03"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2023-08-02",
+    "fit": {
+      "n_rows": 810,
+      "n_events": 162,
+      "n_decision_dates": 155,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-06-29",
+      "latest_exit": "2023-07-07"
+    },
+    "calibration": {
+      "n_rows": 200,
+      "n_events": 40,
+      "n_decision_dates": 40,
+      "decision_start": "2023-08-02",
+      "decision_end": "2025-03-21",
+      "latest_exit": "2025-03-28"
+    },
+    "purged_fit_rows": 10,
+    "selection": {
+      "selected": "event_ridge_1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2022-04-28",
+      "inner_fit": {
+        "n_rows": 650,
+        "n_events": 130,
+        "n_decision_dates": 123,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-03-30",
+        "latest_exit": "2022-04-06"
+      },
+      "inner_validation": {
+        "n_rows": 155,
+        "n_events": 31,
+        "n_decision_dates": 31,
+        "decision_start": "2022-04-28",
+        "decision_end": "2023-06-29",
+        "latest_exit": "2023-07-07"
+      },
+      "purged_inner_fit_rows": 5,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03606190404367366
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03604314264469239
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03535545684642815
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03563621474007661
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03601583416294077
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.035636321085872565
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.035135227176484735
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.035735933965432856
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03522853659411697
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 810,
+        "n_events": 162,
+        "n_decision_dates": 155,
+        "decision_start": "2017-01-25",
+        "decision_end": "2023-06-29",
+        "latest_exit": "2023-07-07"
+      }
+    }
+  },
+  {
+    "fold_id": "2025Q3",
+    "status": "evaluated",
+    "fold_start": "2025-07-01",
+    "fold_end_exclusive": "2025-10-01",
+    "prior": {
+      "n_rows": 1045,
+      "n_events": 209,
+      "n_decision_dates": 202,
+      "decision_start": "2017-01-25",
+      "decision_end": "2025-05-29",
+      "latest_exit": "2025-06-05"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2025-07-23",
+      "decision_end": "2025-09-24",
+      "latest_exit": "2025-10-01"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2023-10-25",
+    "fit": {
+      "n_rows": 840,
+      "n_events": 168,
+      "n_decision_dates": 161,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-09-28",
+      "latest_exit": "2023-10-05"
+    },
+    "calibration": {
+      "n_rows": 205,
+      "n_events": 41,
+      "n_decision_dates": 41,
+      "decision_start": "2023-10-25",
+      "decision_end": "2025-05-29",
+      "latest_exit": "2025-06-05"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "event_huber_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2022-07-01",
+      "inner_fit": {
+        "n_rows": 675,
+        "n_events": 135,
+        "n_decision_dates": 128,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-05-26",
+        "latest_exit": "2022-06-03"
+      },
+      "inner_validation": {
+        "n_rows": 165,
+        "n_events": 33,
+        "n_decision_dates": 33,
+        "decision_start": "2022-07-01",
+        "decision_end": "2023-09-28",
+        "latest_exit": "2023-10-05"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03417902485759193
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03425311210396932
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03368351405453944
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.033841882910867496
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03432731235721873
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.034013572269580294
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03350603396182394
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.034100702209194304
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03342435624107747
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 840,
+        "n_events": 168,
+        "n_decision_dates": 161,
+        "decision_start": "2017-01-25",
+        "decision_end": "2023-09-28",
+        "latest_exit": "2023-10-05"
+      }
+    }
+  },
+  {
+    "fold_id": "2025Q4",
+    "status": "evaluated",
+    "fold_start": "2025-10-01",
+    "fold_end_exclusive": "2026-01-01",
+    "prior": {
+      "n_rows": 1075,
+      "n_events": 215,
+      "n_decision_dates": 208,
+      "decision_start": "2017-01-25",
+      "decision_end": "2025-08-28",
+      "latest_exit": "2025-09-05"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2025-10-22",
+      "decision_end": "2025-12-18",
+      "latest_exit": "2025-12-26"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2023-12-21",
+    "fit": {
+      "n_rows": 865,
+      "n_events": 173,
+      "n_decision_dates": 166,
+      "decision_start": "2017-01-25",
+      "decision_end": "2023-11-22",
+      "latest_exit": "2023-11-30"
+    },
+    "calibration": {
+      "n_rows": 210,
+      "n_events": 42,
+      "n_decision_dates": 42,
+      "decision_start": "2023-12-21",
+      "decision_end": "2025-08-28",
+      "latest_exit": "2025-09-05"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "event_huber_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2022-08-03",
+      "inner_fit": {
+        "n_rows": 680,
+        "n_events": 136,
+        "n_decision_dates": 129,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-07-01",
+        "latest_exit": "2022-07-11"
+      },
+      "inner_validation": {
+        "n_rows": 170,
+        "n_events": 34,
+        "n_decision_dates": 34,
+        "decision_start": "2022-08-03",
+        "decision_end": "2023-11-22",
+        "latest_exit": "2023-11-30"
+      },
+      "purged_inner_fit_rows": 15,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03349265258842704
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.033631578328418954
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03316830459455165
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.033277677846965004
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03376879829036418
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03317882409956655
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03302136973117817
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03360413851430593
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03279171057605332
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 865,
+        "n_events": 173,
+        "n_decision_dates": 166,
+        "decision_start": "2017-01-25",
+        "decision_end": "2023-11-22",
+        "latest_exit": "2023-11-30"
+      }
+    }
+  },
+  {
+    "fold_id": "2026Q1",
+    "status": "evaluated",
+    "fold_start": "2026-01-01",
+    "fold_end_exclusive": "2026-04-01",
+    "prior": {
+      "n_rows": 1110,
+      "n_events": 222,
+      "n_decision_dates": 215,
+      "decision_start": "2017-01-25",
+      "decision_end": "2025-12-18",
+      "latest_exit": "2025-12-26"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2026-01-23",
+      "decision_end": "2026-03-19",
+      "latest_exit": "2026-03-26"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2024-03-21",
+    "fit": {
+      "n_rows": 895,
+      "n_events": 179,
+      "n_decision_dates": 172,
+      "decision_start": "2017-01-25",
+      "decision_end": "2024-02-22",
+      "latest_exit": "2024-02-29"
+    },
+    "calibration": {
+      "n_rows": 215,
+      "n_events": 43,
+      "n_decision_dates": 43,
+      "decision_start": "2024-03-21",
+      "decision_end": "2025-12-18",
+      "latest_exit": "2025-12-26"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "price_ridge_0.1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2022-10-26",
+      "inner_fit": {
+        "n_rows": 720,
+        "n_events": 144,
+        "n_decision_dates": 137,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-10-07",
+        "latest_exit": "2022-10-14"
+      },
+      "inner_validation": {
+        "n_rows": 175,
+        "n_events": 35,
+        "n_decision_dates": 35,
+        "decision_start": "2022-10-26",
+        "decision_end": "2024-02-22",
+        "latest_exit": "2024-02-29"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03431870821775147
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03435374978763967
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.034021731282933274
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03406222525011016
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03439708466796964
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.034999881625887935
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03431346497563976
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.034394068703176094
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03454592289669654
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 895,
+        "n_events": 179,
+        "n_decision_dates": 172,
+        "decision_start": "2017-01-25",
+        "decision_end": "2024-02-22",
+        "latest_exit": "2024-02-29"
+      }
+    }
+  },
+  {
+    "fold_id": "2026Q2",
+    "status": "evaluated",
+    "fold_start": "2026-04-01",
+    "fold_end_exclusive": "2026-07-01",
+    "prior": {
+      "n_rows": 1140,
+      "n_events": 228,
+      "n_decision_dates": 221,
+      "decision_start": "2017-01-25",
+      "decision_end": "2026-03-19",
+      "latest_exit": "2026-03-26"
+    },
+    "test": {
+      "n_rows": 30,
+      "n_events": 6,
+      "n_decision_dates": 6,
+      "decision_start": "2026-04-23",
+      "decision_end": "2026-06-25",
+      "latest_exit": "2026-07-02"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2024-05-02",
+    "fit": {
+      "n_rows": 905,
+      "n_events": 181,
+      "n_decision_dates": 174,
+      "decision_start": "2017-01-25",
+      "decision_end": "2024-04-24",
+      "latest_exit": "2024-05-01"
+    },
+    "calibration": {
+      "n_rows": 225,
+      "n_events": 45,
+      "n_decision_dates": 45,
+      "decision_start": "2024-05-02",
+      "decision_end": "2026-03-19",
+      "latest_exit": "2026-03-26"
+    },
+    "purged_fit_rows": 10,
+    "selection": {
+      "selected": "price_ridge_1n",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2022-11-02",
+      "inner_fit": {
+        "n_rows": 720,
+        "n_events": 144,
+        "n_decision_dates": 137,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-10-07",
+        "latest_exit": "2022-10-14"
+      },
+      "inner_validation": {
+        "n_rows": 175,
+        "n_events": 35,
+        "n_decision_dates": 35,
+        "decision_start": "2022-11-02",
+        "decision_end": "2024-04-24",
+        "latest_exit": "2024-05-01"
+      },
+      "purged_inner_fit_rows": 10,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03381426952609832
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03385941140526649
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03364109351724418
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03361349303124572
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.033934416894340666
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03465591369568572
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03373982800695758
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03387580905592833
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03420976727243924
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 905,
+        "n_events": 181,
+        "n_decision_dates": 174,
+        "decision_start": "2017-01-25",
+        "decision_end": "2024-04-24",
+        "latest_exit": "2024-05-01"
+      }
+    }
+  },
+  {
+    "fold_id": "2026Q3",
+    "status": "evaluated",
+    "fold_start": "2026-07-01",
+    "fold_end_exclusive": "2026-10-01",
+    "prior": {
+      "n_rows": 1165,
+      "n_events": 233,
+      "n_decision_dates": 226,
+      "decision_start": "2017-01-25",
+      "decision_end": "2026-05-21",
+      "latest_exit": "2026-05-29"
+    },
+    "test": {
+      "n_rows": 25,
+      "n_events": 5,
+      "n_decision_dates": 5,
+      "decision_start": "2026-07-23",
+      "decision_end": "2026-08-27",
+      "latest_exit": "2026-09-03"
+    },
+    "excluded_unmatured_prior_rows": 5,
+    "calibration_start": "2024-07-31",
+    "fit": {
+      "n_rows": 930,
+      "n_events": 186,
+      "n_decision_dates": 179,
+      "decision_start": "2017-01-25",
+      "decision_end": "2024-06-27",
+      "latest_exit": "2024-07-05"
+    },
+    "calibration": {
+      "n_rows": 230,
+      "n_events": 46,
+      "n_decision_dates": 46,
+      "decision_start": "2024-07-31",
+      "decision_end": "2026-05-21",
+      "latest_exit": "2026-05-29"
+    },
+    "purged_fit_rows": 5,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2023-01-25",
+      "inner_fit": {
+        "n_rows": 750,
+        "n_events": 150,
+        "n_decision_dates": 143,
+        "decision_start": "2017-01-25",
+        "decision_end": "2022-12-22",
+        "latest_exit": "2022-12-30"
+      },
+      "inner_validation": {
+        "n_rows": 180,
+        "n_events": 36,
+        "n_decision_dates": 36,
+        "decision_start": "2023-01-25",
+        "decision_end": "2024-06-27",
+        "latest_exit": "2024-07-05"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03279933254035645
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.03280783127830172
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03333229295945798
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03285122272199367
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03288627133791969
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.0344333285770642
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03315132526758927
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.03289013943443533
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03400194146874498
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 930,
+        "n_events": 186,
+        "n_decision_dates": 179,
+        "decision_start": "2017-01-25",
+        "decision_end": "2024-06-27",
+        "latest_exit": "2024-07-05"
+      }
+    }
+  },
+  {
+    "fold_id": "2026Q4",
+    "status": "evaluated",
+    "fold_start": "2026-10-01",
+    "fold_end_exclusive": "2027-01-01",
+    "prior": {
+      "n_rows": 1195,
+      "n_events": 239,
+      "n_decision_dates": 232,
+      "decision_start": "2017-01-25",
+      "decision_end": "2026-08-27",
+      "latest_exit": "2026-09-03"
+    },
+    "test": {
+      "n_rows": 10,
+      "n_events": 2,
+      "n_decision_dates": 2,
+      "decision_start": "2026-10-01",
+      "decision_end": "2026-10-22",
+      "latest_exit": "2026-10-29"
+    },
+    "excluded_unmatured_prior_rows": 0,
+    "calibration_start": "2024-10-23",
+    "fit": {
+      "n_rows": 960,
+      "n_events": 192,
+      "n_decision_dates": 185,
+      "decision_start": "2017-01-25",
+      "decision_end": "2024-09-26",
+      "latest_exit": "2024-10-03"
+    },
+    "calibration": {
+      "n_rows": 235,
+      "n_events": 47,
+      "n_decision_dates": 47,
+      "decision_start": "2024-10-23",
+      "decision_end": "2026-08-27",
+      "latest_exit": "2026-09-03"
+    },
+    "purged_fit_rows": 0,
+    "selection": {
+      "selected": "zero",
+      "metric": "mean_absolute_error",
+      "validation_fraction": 0.2,
+      "validation_start": "2023-03-29",
+      "inner_fit": {
+        "n_rows": 775,
+        "n_events": 155,
+        "n_decision_dates": 148,
+        "decision_start": "2017-01-25",
+        "decision_end": "2023-02-23",
+        "latest_exit": "2023-03-02"
+      },
+      "inner_validation": {
+        "n_rows": 185,
+        "n_events": 37,
+        "n_decision_dates": 37,
+        "decision_start": "2023-03-29",
+        "decision_end": "2024-09-26",
+        "latest_exit": "2024-10-03"
+      },
+      "purged_inner_fit_rows": 0,
+      "candidate_scores": [
+        {
+          "candidate": "zero",
+          "mae": 0.03504729168962742
+        },
+        {
+          "candidate": "historical_median",
+          "mae": 0.035155417596366846
+        },
+        {
+          "candidate": "price_ridge_0.1n",
+          "mae": 0.03583239343705541
+        },
+        {
+          "candidate": "price_ridge_1n",
+          "mae": 0.03540600306250476
+        },
+        {
+          "candidate": "price_ridge_10n",
+          "mae": 0.03542204291070399
+        },
+        {
+          "candidate": "event_ridge_0.1n",
+          "mae": 0.03686210625573858
+        },
+        {
+          "candidate": "event_ridge_1n",
+          "mae": 0.03563522231702716
+        },
+        {
+          "candidate": "event_ridge_10n",
+          "mae": 0.035395576574416034
+        },
+        {
+          "candidate": "event_huber_0.1n",
+          "mae": 0.03634688199781041
+        }
+      ],
+      "fallback_reason": null,
+      "refit": {
+        "n_rows": 960,
+        "n_events": 192,
+        "n_decision_dates": 185,
+        "decision_start": "2017-01-25",
+        "decision_end": "2024-09-26",
+        "latest_exit": "2024-10-03"
+      }
+    }
+  }
+]

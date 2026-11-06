@@ -4,6 +4,7 @@ import hashlib
 import json
 from collections import Counter
 from datetime import date, datetime, timezone
+from io import BytesIO
 from pathlib import Path
 from importlib.metadata import version
 
@@ -262,6 +263,9 @@ def prepare_events(ledger: DiffusionLedger, prices: pd.DataFrame, entry_delay_se
                 "relationship_published_date": edge.published_date.isoformat(),
                 "source_url": event.source_url, "relationship_url": edge.evidence_url,
                 "reference_date": reference_date.isoformat(), "feature_date": feature_date.isoformat(),
+                "price_window_timing": ("session_after_available_date" if feature_date > event.available_date
+                                        else "same_date_time_unverified" if feature_date == event.available_date
+                                        else "before_available_date"),
                 "entry_date": entry_date.isoformat(), "exit_date": exit_date.isoformat(),
                 "entry_delay_sessions": entry_delay_sessions, "guidance_sign": signal["sign"],
                 "guidance_status": signal["status"], "source_window_return": source_return,
@@ -283,7 +287,8 @@ def collect_diffusion_prices(ledger_path: Path, output: Path, refresh: bool = Fa
     from relay.config import StudyConfig
     from relay.ingest import PublicData, fetch_prices
 
-    source = json.loads(ledger_path.read_text())
+    ledger_bytes = ledger_path.read_bytes()
+    source = json.loads(ledger_bytes)
     ledger = DiffusionLedger.model_validate(source)
     audit_ledger(ledger)
     start, end = source["metadata"]["study_period"]
@@ -308,7 +313,7 @@ def collect_diffusion_prices(ledger_path: Path, output: Path, refresh: bool = Fa
     manifest = {
         "created_at": datetime.now(timezone.utc).isoformat(), "tickers": tickers,
         "study_period": [start, end], "study_sessions": len(expected), "rows": len(prices),
-        "ledger_sha256": hashlib.sha256(ledger_path.read_bytes()).hexdigest(),
+        "ledger_sha256": hashlib.sha256(ledger_bytes).hexdigest(),
         "prices_sha256": hashlib.sha256(path.read_bytes()).hexdigest(), "raw_responses": raw,
         "calendar": "XNYS", "calendar_version": version("exchange-calendars"),
         "pricing": "Current Yahoo adjusted daily snapshot; adj_open=open*adj_close/close. No executable-fill or historical-vintage claim.",
@@ -320,19 +325,22 @@ def collect_diffusion_prices(ledger_path: Path, output: Path, refresh: bool = Fa
 def run_diffusion_study(ledger_path: Path, prices_path: Path, protocol_path: Path, output: Path) -> dict:
     from relay.diffusion_portfolio import MAX_POSITION_FRACTION, MAX_POSITIONS, replay_portfolio
 
-    raw_ledger = json.loads(ledger_path.read_text())
+    paths = {"ledger": ledger_path, "prices": prices_path, "protocol": protocol_path,
+             "price_manifest": prices_path.with_name("price-manifest.json")}
+    if not paths["price_manifest"].is_file():
+        raise ValueError("A price-manifest.json beside the prices file is required")
+    snapshots = {name: path.read_bytes() for name, path in paths.items()}
+    hashes = {name: hashlib.sha256(content).hexdigest() for name, content in snapshots.items()}
+    raw_ledger = json.loads(snapshots["ledger"])
     ledger = DiffusionLedger.model_validate(raw_ledger)
-    protocol = json.loads(protocol_path.read_text())
+    protocol = json.loads(snapshots["protocol"])
     if not protocol.get("complete_protocol_frozen_before_price_access"):
         raise ValueError("A complete frozen protocol is required")
-    ledger_sha256 = hashlib.sha256(ledger_path.read_bytes()).hexdigest()
+    ledger_sha256 = hashes["ledger"]
     if ledger_sha256 != protocol.get("source_ledger_frozen_sha256"):
         raise ValueError("Source ledger differs from the frozen protocol")
-    manifest_path = prices_path.with_name("price-manifest.json")
-    if not manifest_path.is_file():
-        raise ValueError("A price-manifest.json beside the prices file is required")
-    manifest = json.loads(manifest_path.read_text())
-    if manifest.get("prices_sha256") != hashlib.sha256(prices_path.read_bytes()).hexdigest():
+    manifest = json.loads(snapshots["price_manifest"])
+    if manifest.get("prices_sha256") != hashes["prices"]:
         raise ValueError("Prices differ from the price manifest")
     ledger_hashes = [manifest[key] for key in ("ledger_sha256", "frozen_ledger_sha256") if key in manifest]
     if not ledger_hashes or any(value != ledger_sha256 for value in ledger_hashes):
@@ -345,7 +353,7 @@ def run_diffusion_study(ledger_path: Path, prices_path: Path, protocol_path: Pat
     }
     if protocol.get("execution_settings") != settings:
         raise ValueError("Frozen execution settings differ from this implementation")
-    prices = validated_prices(pd.read_parquet(prices_path))
+    prices = validated_prices(pd.read_parquet(BytesIO(snapshots["prices"])))
     audit = audit_ledger(ledger)
     study_start, study_end = map(date.fromisoformat, raw_ledger["metadata"]["study_period"])
     account_prices = prices[prices["date"].between(study_start, study_end)]
@@ -370,15 +378,19 @@ def run_diffusion_study(ledger_path: Path, prices_path: Path, protocol_path: Pat
     report = {
         "status": "exploratory_feasibility_only", "created_at": datetime.now(timezone.utc).isoformat(),
         "study_period": [study_start.isoformat(), study_end.isoformat()], "audit": audit,
-        "inputs": {label: {"path": str(path.resolve()), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
-                   for label, path in (("ledger", ledger_path), ("prices", prices_path),
-                                       ("price_manifest", manifest_path), ("protocol", protocol_path))},
+        "timing_audit": [{"entry_delay_sessions": delay,
+                          "source_events": dict(Counter(row["price_window_timing"] for row in {
+                              row["event_id"]: row for row in prepared if row["entry_delay_sessions"] == delay
+                          }.values()))}
+                         for delay in ENTRY_DELAYS],
+        "inputs": {label: {"path": str(path.resolve()), "sha256": hashes[label]} for label, path in paths.items()},
         "protocol": protocol, "runs": runs,
         "implementation": {
             "files": {name: hashlib.sha256((Path(__file__).parent / name).read_bytes()).hexdigest()
                       for name in ("diffusion.py", "diffusion_portfolio.py", "ingest.py")},
             "packages": {name: version(name) for name in ("pandas", "numpy", "pydantic", "exchange-calendars")},
             "calendar": "XNYS", "study_session_count": len(account_sessions),
+            "fingerprint_scope": "Input hashes identify the exact bytes parsed. Implementation hashes describe source files on disk, not already-imported Python code.",
         },
         "limitations": [
             "Purposively chosen small cohort; no alpha certification, statistical significance or future-profit probability.",

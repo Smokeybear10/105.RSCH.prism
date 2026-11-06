@@ -21,12 +21,8 @@ numpy>=1.24
 
 # Model (anthropic for attribution)
 anthropic>=0.30
-python-dotenv>=1.0     # load ANTHROPIC_API_KEY from .env for streamlit + CLI
+python-dotenv>=1.0     # load ANTHROPIC_API_KEY for the legacy research CLI
 
-# Backtest & demo
+# Backtest & notebooks
 matplotlib>=3.7
 jupyter>=1.0
-streamlit>=1.30
-plotly>=5.18                # price chart in demo/app.py
-fastapi>=0.110              # static HTML demo backend
-uvicorn[standard]>=0.27     # ASGI server for the demo

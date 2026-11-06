@@ -1,35 +1,10 @@
-# Demo
+# Historical Research Helpers
 
-This is where the interpretability layer lives. Per mentor feedback, the demo
-is the deliverable — NOT a trading strategy.
+Python utilities and frozen fixtures from the original attribution study. The web interface and server have been removed; the `demo` module name remains so existing research imports and tests keep working.
 
-## Target artifact
+- `analyze_ticker.py`, `prep_ticker.py`, and `real_chunks.py` assemble attribution inputs.
+- `ablation_chart.py`, `pnl_summary.py`, and `strategy_report.py` produce research summaries.
+- `build_static.py` exports the historical per-ticker JSON format used by the legacy evaluation code.
+- `mock_data.py` and `static/data/` include synthetic demonstration fixtures. They are separate from the current semiconductor study and do not establish forecasting performance.
 
-A clickable chart: pick a ticker, see flagged moves, click a move to see the
-attribution with cited evidence chunks. Mentor's exact ask:
-
-> Let someone click on a date in your chart and see the news article, the
-> attribution, and your model's decision, with the evidence spelled out.
-
-## Planned notebooks / scripts
-
-- `run_mvp.py` — end-to-end on one ticker, single ablation. Target for the next mentor check-in.
-- `ablation_chart.ipynb` — side-by-side bars for each AblationConfig:
-  base_news, +sec, +earnings, +peer_news, +sector, +macro.
-  Y-axis: hit rate / plausibility / Sharpe. This is the demo goldmine.
-- `case_study.ipynb` — deep dive on the frozen test case
-  (whichever ticker/event the team picks). Show how attribution changes as
-  ablations add sources.
-
-## What good looks like (demo narrative)
-
-For one flagged move, walk through each ablation:
-
-1. **base_news** — attribution + confidence. Often wrong on macro-driven moves.
-2. **+sec** — does the dominant dimension shift? Does confidence change?
-3. **+peer_news** — can the model now see sector-wide weakness?
-4. **+macro** — does `predicted_return_pct` align with realized?
-
-Each bar is a defensible claim. "10-K language flips the dominant dimension in
-N% of cases; peer news adds X% to hit rate; macro aligns predicted with
-realized on Y% of moves." Whatever the numbers show, that's the story.
+The current reproducible research package is [`relay/`](../relay/). See the [project README](../README.md) for setup and evaluation commands.

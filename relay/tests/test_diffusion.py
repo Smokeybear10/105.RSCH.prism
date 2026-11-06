@@ -115,9 +115,11 @@ def test_dates_and_price_features_use_only_pre_entry_information(source_ledger: 
     assert rows[0]["feature_date"] == "2025-02-10"
     assert rows[0]["entry_date"] == "2025-02-11"
     assert rows[0]["exit_date"] == "2025-02-18"
+    assert rows[0]["price_window_timing"] == "same_date_time_unverified"
     delayed = prepare_events(ledger, daily_prices, entry_delay_sessions=1)
     assert delayed[0]["feature_date"] == "2025-02-11"
     assert delayed[0]["entry_date"] == "2025-02-12"
+    assert delayed[0]["price_window_timing"] == "session_after_available_date"
     changed = daily_prices.copy()
     future = changed["date"] >= pd.Timestamp("2025-02-11").date()
     changed.loc[future, ["adj_open", "adj_close"]] *= 100
@@ -132,6 +134,10 @@ def test_weekend_and_holiday_use_observed_market_sessions(source_ledger: dict, d
     row = prepare_events(DiffusionLedger.model_validate(source_ledger), daily_prices)[0]
     assert row["entry_date"] == "2025-02-18"
     assert row["exit_date"] == "2025-02-24"
+    source_ledger["events"][0]["available_date"] = "2025-02-15"
+    weekend = prepare_events(DiffusionLedger.model_validate(source_ledger), daily_prices)[0]
+    assert weekend["feature_date"] == "2025-02-14"
+    assert weekend["price_window_timing"] == "before_available_date"
 
 
 def test_missing_price_is_not_silently_dropped_or_filled(source_ledger: dict, daily_prices: pd.DataFrame) -> None:
@@ -157,7 +163,7 @@ def test_duplicate_events_and_prices_fail(source_ledger: dict, daily_prices: pd.
 
 @pytest.mark.parametrize("ledger_hash_key", ["ledger_sha256", "frozen_ledger_sha256"])
 def test_offline_replay_is_complete_reproducible_and_rejects_changed_inputs(
-    source_ledger: dict, daily_prices: pd.DataFrame, tmp_path: Path, ledger_hash_key: str,
+    source_ledger: dict, daily_prices: pd.DataFrame, tmp_path: Path, ledger_hash_key: str, monkeypatch,
 ) -> None:
     ledger_path = tmp_path / "ledger.json"
     ledger_path.write_text(json.dumps(source_ledger))
@@ -183,8 +189,22 @@ def test_offline_replay_is_complete_reproducible_and_rejects_changed_inputs(
     manifest_path.write_text(json.dumps(manifest))
     output = tmp_path / "results"
     first = run_diffusion_study(ledger_path, prices_path, protocol_path, output)
-    second = run_diffusion_study(ledger_path, prices_path, protocol_path, output)
+    original_prices = prices_path.read_bytes()
+    read_parquet = pd.read_parquet
+
+    def replace_prices_after_verification(source, *args, **kwargs):
+        changed = daily_prices.copy()
+        changed.loc[(changed["ticker"] == "PG") & (changed["date"] >= pd.Timestamp("2025-02-12").date()),
+                    ["adj_open", "adj_close"]] *= 2
+        changed.to_parquet(prices_path, index=False)
+        return read_parquet(source, *args, **kwargs)
+
+    with monkeypatch.context() as patch:
+        patch.setattr(pd, "read_parquet", replace_prices_after_verification)
+        second = run_diffusion_study(ledger_path, prices_path, protocol_path, output)
+    prices_path.write_bytes(original_prices)
     assert first["runs"] == second["runs"]
+    assert first["inputs"] == second["inputs"]
     assert len(first["runs"]) == 24
     assert len(pd.read_csv(output / "summary.csv")) == 24
     assert len(pd.read_csv(output / "event_windows.csv")) == 2
@@ -198,6 +218,10 @@ def test_offline_replay_is_complete_reproducible_and_rejects_changed_inputs(
         "path": str(manifest_path.resolve()), "sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
     }
     assert first["implementation"]["study_session_count"] == 19
+    assert first["timing_audit"] == [
+        {"entry_delay_sessions": 0, "source_events": {"same_date_time_unverified": 1}},
+        {"entry_delay_sessions": 1, "source_events": {"session_after_available_date": 1}},
+    ]
 
     ledger_path.write_text(json.dumps({**source_ledger, "changed_after_freeze": True}))
     with pytest.raises(ValueError, match="differs from the frozen protocol"):

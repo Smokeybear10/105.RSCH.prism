@@ -5,19 +5,25 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "relay-equity-research"
 version = "0.1.0"
-description = "Reproducible forecasts of peer-stock responses to corporate announcements"
-requires-python = ">=3.11"
+description = "Reproducible research on corporate disclosures and peer-stock returns"
+requires-python = ">=3.12,<3.13"
 dependencies = [
-  "fastapi>=0.110", "uvicorn>=0.27", "pydantic>=2",
-  "numpy>=1.24", "pandas>=2", "pyarrow>=12", "requests>=2.31",
-  "beautifulsoup4>=4.12",
-  "exchange-calendars>=4.13,<5",
+  "pydantic==2.14.2",
+  "numpy==2.5.4", "pandas==3.1.0", "pyarrow==26.0.0", "requests==2.34.2",
+  "beautifulsoup4==4.15.0",
+  "exchange-calendars==4.13.2",
 ]
 
 [project.optional-dependencies]
-test = ["pytest>=7", "httpx>=0.27"]
+test = ["pytest==9.2.0"]
+research = [
+    "ipykernel>=6.29,<8",
+    "matplotlib>=3.9,<4",
+    "nbclient>=0.10,<0.11",
+]
 
 [project.scripts]
+prism = "relay.cli:main"
 relay = "relay.cli:main"
 
 [tool.setuptools.packages.find]
@@ -25,4 +31,4 @@ include = ["relay*"]
 exclude = ["relay.tests*"]
 
 [tool.setuptools.package-data]
-relay = ["static/*", "data/*.json"]
+relay = ["data/*.json", "data/*observations.csv.gz", "notebooks/*.ipynb"]

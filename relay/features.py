@@ -35,15 +35,31 @@ def build_panel(prices: pd.DataFrame, events: list[dict], config: StudyConfig) -
     }
     rows = []
     skipped = {"outside_price_history": 0, "missing_features_or_prices": 0}
+    source_timing = {"acceptance_timestamp_available": 0, "filing_date_only": 0,
+                     "acceptance_date_after_filing_date": 0}
     for event in sorted(events, key=lambda e: (e["filing_date"], e["event_id"])):
         source = event["source_ticker"]
         filed = pd.Timestamp(event["filing_date"])
         if source not in COMPANIES or not pd.Timestamp(config.start) <= filed <= pd.Timestamp(config.end):
             continue
-        decision_idx = int(calendar.searchsorted(filed, side="right"))
+        available = filed
+        if event.get("event_at"):
+            try:
+                accepted = pd.Timestamp(event["event_at"])
+            except (ValueError, TypeError) as exc:
+                raise ValueError(f"Invalid acceptance timestamp for {event['event_id']}") from exc
+            if pd.isna(accepted) or accepted.tzinfo is None:
+                raise ValueError(f"A timezone-aware acceptance timestamp is required for {event['event_id']}")
+            acceptance_date = accepted.tz_convert("America/New_York").normalize().tz_localize(None)
+            available = max(filed, acceptance_date)
+            source_timing["acceptance_timestamp_available"] += 1
+            source_timing["acceptance_date_after_filing_date"] += int(acceptance_date > filed)
+        else:
+            source_timing["filing_date_only"] += 1
+        decision_idx = int(calendar.searchsorted(available, side="right"))
         entry_idx = decision_idx + 1
         exit_idx = entry_idx + config.horizon_days - 1
-        prior_idx = int(calendar.searchsorted(filed, side="left")) - 1
+        prior_idx = int(calendar.searchsorted(available, side="left")) - 1
         if decision_idx < 60 or prior_idx < 0 or exit_idx >= len(calendar):
             skipped["outside_price_history"] += 1
             continue
@@ -57,6 +73,7 @@ def build_panel(prices: pd.DataFrame, events: list[dict], config: StudyConfig) -
             row = {
                 "event_id": event["event_id"], "source_ticker": source, "target_ticker": target,
                 "event_type": event["event_type"], "filing_date": event["filing_date"],
+                "information_date": available.date().isoformat(),
                 "decision_date": decision.date().isoformat(), "entry_date": entry.date().isoformat(),
                 "exit_date": exit_date.date().isoformat(),
                 "realized_return": realized, "benchmark_return": benchmark_return,
@@ -85,5 +102,6 @@ def build_panel(prices: pd.DataFrame, events: list[dict], config: StudyConfig) -
     return frame, {
         "source_events": len(events), "usable_events": int(frame["event_id"].nunique()) if len(frame) else 0,
         "peer_observations": len(frame), "skipped": skipped,
+        "source_timing": source_timing,
         "overlapping_peer_disclosures": int(frame["overlapping_peer_disclosure"].sum()) if len(frame) else 0,
     }

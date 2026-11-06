@@ -1,0 +1,122 @@
+{
+  "scope": "Exploratory analysis of the same historical development sample, not a new holdout.",
+  "model_config": {
+    "fold_frequency": "quarterly",
+    "min_train_rows": 100,
+    "min_train_events": 20,
+    "calibration_fraction_of_prior_dates": 0.2,
+    "min_calibration_rows": 20,
+    "ridge_penalty": 10.0,
+    "nominal_interval_coverage": 0.8,
+    "cost_bps": 20.0,
+    "horizon_days": 5,
+    "return_unit": "decimal",
+    "trade_return_basis": "signed realized excess return; roundtrip cost charged to each active event trade",
+    "interval_method": "Empirical calibration residual quantiles; coverage is not guaranteed.",
+    "probability_method": "Smoothed empirical fraction of calibration residuals producing a positive excess return.",
+    "portfolio_note": "Event trade averages are not a capital-constrained portfolio backtest; no annualized Sharpe is estimated.",
+    "selection": {
+      "status": "Exploratory historical comparison; the existing sample has already been inspected.",
+      "candidate_order": [
+        "zero",
+        "historical_median",
+        "price_ridge_0.1n",
+        "price_ridge_1n",
+        "price_ridge_10n",
+        "event_ridge_0.1n",
+        "event_ridge_1n",
+        "event_ridge_10n",
+        "event_huber_0.1n"
+      ],
+      "selection_metric": "mean_absolute_error",
+      "inner_validation_fraction_of_fit_dates": 0.2,
+      "inner_min_fit_rows": 100,
+      "inner_min_fit_events": 20,
+      "inner_min_validation_events": 5,
+      "penalty_basis": "Ridge/Huber coefficient penalty equals the candidate multiplier times fitting row count.",
+      "ridge_penalty_multipliers": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "huber_penalty_multiplier": 0.1,
+      "huber_delta": 1.345,
+      "huber_max_iterations": 30,
+      "huber_target_scale": "1.4826 times fitting-target median absolute deviation, floored at 1e-6.",
+      "purging": "Inner fitting labels must exit strictly before the first inner-validation decision date.",
+      "scaling": "Each candidate learns feature normalization on its inner fitting rows only.",
+      "selection": "Minimum inner-validation MAE; exact ties favor the earlier, simpler candidate.",
+      "fallback": "Zero excess return when inner sample minimums are not met.",
+      "refit": "The selected candidate is refit on the whole purged outer fit. Outer calibration and test rows are never selection inputs."
+    },
+    "evaluation_scope": "Exploratory historical development; these outcomes have already been inspected."
+  },
+  "diagnostics": {
+    "return_unit": "decimal",
+    "nominal_interval_coverage": 0.8,
+    "interval_score_alpha": 0.2,
+    "bootstrap_draws": 2000,
+    "bootstrap_seed": 42,
+    "comparison_sign": "baseline MAE minus model MAE; positive favors the model",
+    "bootstrap_note": "Paired forecast errors share the same resampled holding-window blocks. Dependence between blocks and model development on this inspected sample are not accounted for.",
+    "slice_note": "Every observed year, source and target is shown. Slices describe the same predictions without refitting; they are not independent tests or evidence of subgroup significance."
+  },
+  "fixture": {
+    "manifest": "relay/data/research_manifest.json",
+    "manifest_sha256": "e5d672790b35dc8167ff90888aa441059f7ec4c709957f9702f4cae9e2562928",
+    "manifest_hash_encoding": "UTF-8 json.dumps with sort_keys=True; semantic JSON identity",
+    "observations": {
+      "file": "research_observations.csv.gz",
+      "sha256": "cedfec1d2cbe3dbb72a105ea5a22ddf8c987e3a5da2ed3afc57a5c3410dc57cc",
+      "rows": 1205,
+      "events": 241,
+      "columns": [
+        "event_id",
+        "source_ticker",
+        "target_ticker",
+        "event_type",
+        "filing_date",
+        "information_date",
+        "decision_date",
+        "entry_date",
+        "exit_date",
+        "realized_return",
+        "benchmark_return",
+        "realized_excess_return",
+        "target_return_1d",
+        "target_momentum_20d",
+        "target_vol_20d",
+        "market_return_1d",
+        "market_momentum_20d",
+        "industry_return_1d",
+        "source_return_1d",
+        "source_event_return",
+        "source_momentum_20d",
+        "correlation_60d",
+        "demand_signal",
+        "pricing_signal",
+        "competitive_signal",
+        "guidance_signal",
+        "text_available",
+        "overlapping_peer_disclosure"
+      ]
+    },
+    "source_built_at": "2026-11-06T07:24:38.715318+00:00",
+    "data_as_of": "2026-10-30"
+  },
+  "implementation_sha256": {
+    "model.py": "918deb4be9b02adcbe1c9dbabc57ed6ce69980d125c74d4dfd4444985154b4e5",
+    "selection.py": "a77321130e039601d3b9a86194f9e535d51f97837f41674359f9950d8653253d",
+    "diagnostics.py": "6ba83a1ec9b1778148095de94771865fd9951ad46f7838af2ff17bb12b097905",
+    "research.py": "80755bdcbc185e8b08adb24b08ee803a1ca67e3da5035c3fcbfcaec6be2d8208"
+  },
+  "implementation_scope": "Source files on disk before and after the run; not an attestation of previously imported code.",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0"
+  },
+  "confound_sensitivity": "Same fitted forecasts, split by observed peer-disclosure overlap; no retraining. Missing events outside the six-company cache are not ruled out.",
+  "command": "uv run --locked --offline prism analyze --output out/prism-analysis",
+  "return_unit": "decimal; multiply by 100 for percentage points"
+}
