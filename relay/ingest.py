@@ -24,7 +24,7 @@ class PublicData:
         self.directory = directory
         self.refresh = refresh
         self.session = requests.Session()
-        self.session.headers["User-Agent"] = "Relay academic equity research; https://thomasou.com"
+        self.session.headers["User-Agent"] = "PRISM academic equity research; https://thomasou.com"
         self.last_sec_request = 0.0
 
     def get(self, url: str) -> str:
