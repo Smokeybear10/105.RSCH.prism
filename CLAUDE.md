@@ -1,4 +1,19 @@
-# BW Hackathon: Equity Price Action Tagger — Lean or Fade?
+# PRISM research
+
+The current project is research-only. Use `README.md` and the Python package in
+`relay/`; the frontend, web servers and deployment configuration have been removed.
+Run `uv run --locked --offline prism reproduce` for the included reference and
+`uv run --locked --extra test pytest relay/tests -q` for the current research suite.
+Run `uv run --locked --offline prism analyze` for the corrected numerical study,
+paired comparisons and calibration diagnostics. Add `--figure` with the `research`
+extra installed. Fresh analyses go to `out/`; `results/` contains saved evidence.
+Use `prism study --output PATH` for separate experiments. Preserve the original
+reference inputs and distinguish inspected historical results from future evaluation.
+
+The remaining sections record the earlier hackathon's ownership and architecture.
+Its demo plans and status claims are historical, not current implementation tasks.
+
+## Archived hackathon context: Equity Price Action Tagger — Lean or Fade?
 
 ## Project goal (read this first)
 We're building a **financial historian**: given a significant stock price move, the system

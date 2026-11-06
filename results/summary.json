@@ -1,0 +1,1851 @@
+{
+  "schema_version": 1,
+  "scope": "corrected_model_stage_replay",
+  "sample": {
+    "n_predictions": 1050,
+    "n_events": 210,
+    "n_holding_window_clusters": 115,
+    "decision_start": "2018-04-25",
+    "decision_end": "2026-10-22"
+  },
+  "protocol": {
+    "scope": "Exploratory analysis of the same historical development sample, not a new holdout.",
+    "model_config": {
+      "fold_frequency": "quarterly",
+      "min_train_rows": 100,
+      "min_train_events": 20,
+      "calibration_fraction_of_prior_dates": 0.2,
+      "min_calibration_rows": 20,
+      "ridge_penalty": 10.0,
+      "nominal_interval_coverage": 0.8,
+      "cost_bps": 20.0,
+      "horizon_days": 5,
+      "return_unit": "decimal",
+      "trade_return_basis": "signed realized excess return; roundtrip cost charged to each active event trade",
+      "interval_method": "Empirical calibration residual quantiles; coverage is not guaranteed.",
+      "probability_method": "Smoothed empirical fraction of calibration residuals producing a positive excess return.",
+      "portfolio_note": "Event trade averages are not a capital-constrained portfolio backtest; no annualized Sharpe is estimated.",
+      "selection": {
+        "status": "Exploratory historical comparison; the existing sample has already been inspected.",
+        "candidate_order": [
+          "zero",
+          "historical_median",
+          "price_ridge_0.1n",
+          "price_ridge_1n",
+          "price_ridge_10n",
+          "event_ridge_0.1n",
+          "event_ridge_1n",
+          "event_ridge_10n",
+          "event_huber_0.1n"
+        ],
+        "selection_metric": "mean_absolute_error",
+        "inner_validation_fraction_of_fit_dates": 0.2,
+        "inner_min_fit_rows": 100,
+        "inner_min_fit_events": 20,
+        "inner_min_validation_events": 5,
+        "penalty_basis": "Ridge/Huber coefficient penalty equals the candidate multiplier times fitting row count.",
+        "ridge_penalty_multipliers": [
+          0.1,
+          1.0,
+          10.0
+        ],
+        "huber_penalty_multiplier": 0.1,
+        "huber_delta": 1.345,
+        "huber_max_iterations": 30,
+        "huber_target_scale": "1.4826 times fitting-target median absolute deviation, floored at 1e-6.",
+        "purging": "Inner fitting labels must exit strictly before the first inner-validation decision date.",
+        "scaling": "Each candidate learns feature normalization on its inner fitting rows only.",
+        "selection": "Minimum inner-validation MAE; exact ties favor the earlier, simpler candidate.",
+        "fallback": "Zero excess return when inner sample minimums are not met.",
+        "refit": "The selected candidate is refit on the whole purged outer fit. Outer calibration and test rows are never selection inputs."
+      },
+      "evaluation_scope": "Exploratory historical development; these outcomes have already been inspected."
+    },
+    "diagnostics": {
+      "return_unit": "decimal",
+      "nominal_interval_coverage": 0.8,
+      "interval_score_alpha": 0.2,
+      "bootstrap_draws": 2000,
+      "bootstrap_seed": 42,
+      "comparison_sign": "baseline MAE minus model MAE; positive favors the model",
+      "bootstrap_note": "Paired forecast errors share the same resampled holding-window blocks. Dependence between blocks and model development on this inspected sample are not accounted for.",
+      "slice_note": "Every observed year, source and target is shown. Slices describe the same predictions without refitting; they are not independent tests or evidence of subgroup significance."
+    },
+    "fixture": {
+      "manifest": "relay/data/research_manifest.json",
+      "manifest_sha256": "e5d672790b35dc8167ff90888aa441059f7ec4c709957f9702f4cae9e2562928",
+      "manifest_hash_encoding": "UTF-8 json.dumps with sort_keys=True; semantic JSON identity",
+      "observations": {
+        "file": "research_observations.csv.gz",
+        "sha256": "cedfec1d2cbe3dbb72a105ea5a22ddf8c987e3a5da2ed3afc57a5c3410dc57cc",
+        "rows": 1205,
+        "events": 241,
+        "columns": [
+          "event_id",
+          "source_ticker",
+          "target_ticker",
+          "event_type",
+          "filing_date",
+          "information_date",
+          "decision_date",
+          "entry_date",
+          "exit_date",
+          "realized_return",
+          "benchmark_return",
+          "realized_excess_return",
+          "target_return_1d",
+          "target_momentum_20d",
+          "target_vol_20d",
+          "market_return_1d",
+          "market_momentum_20d",
+          "industry_return_1d",
+          "source_return_1d",
+          "source_event_return",
+          "source_momentum_20d",
+          "correlation_60d",
+          "demand_signal",
+          "pricing_signal",
+          "competitive_signal",
+          "guidance_signal",
+          "text_available",
+          "overlapping_peer_disclosure"
+        ]
+      },
+      "source_built_at": "2026-11-06T07:24:38.715318+00:00",
+      "data_as_of": "2026-10-30"
+    },
+    "implementation_sha256": {
+      "model.py": "918deb4be9b02adcbe1c9dbabc57ed6ce69980d125c74d4dfd4444985154b4e5",
+      "selection.py": "a77321130e039601d3b9a86194f9e535d51f97837f41674359f9950d8653253d",
+      "diagnostics.py": "6ba83a1ec9b1778148095de94771865fd9951ad46f7838af2ff17bb12b097905",
+      "research.py": "80755bdcbc185e8b08adb24b08ee803a1ca67e3da5035c3fcbfcaec6be2d8208"
+    },
+    "implementation_scope": "Source files on disk before and after the run; not an attestation of previously imported code.",
+    "environment": {
+      "python": "3.12.14",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0"
+    },
+    "confound_sensitivity": "Same fitted forecasts, split by observed peer-disclosure overlap; no retraining. Missing events outside the six-company cache are not ruled out.",
+    "command": "uv run --locked --offline prism analyze --output out/prism-analysis",
+    "return_unit": "decimal; multiply by 100 for percentage points"
+  },
+  "metrics": [
+    {
+      "model_id": "zero_excess",
+      "name": "Zero excess return",
+      "n_predictions": 1050,
+      "n_events": 210,
+      "mae": 0.03810087012476515,
+      "rmse": 0.05373718027921048,
+      "brier": 0.25666795128189873,
+      "interval_coverage": 0.7485714285714286,
+      "mean_interval_width": 0.10367986868903031,
+      "interval_score": 0.198098673581051
+    },
+    {
+      "model_id": "price_only",
+      "name": "Price controls",
+      "n_predictions": 1050,
+      "n_events": 210,
+      "mae": 0.039031084507462066,
+      "rmse": 0.05492396312453208,
+      "brier": 0.2649600714246225,
+      "interval_coverage": 0.741904761904762,
+      "mean_interval_width": 0.10542908555251511,
+      "interval_score": 0.20666792410913792
+    },
+    {
+      "model_id": "network",
+      "name": "Network spillover",
+      "n_predictions": 1050,
+      "n_events": 210,
+      "mae": 0.03951224610761173,
+      "rmse": 0.055607614932057174,
+      "brier": 0.2694823533075379,
+      "interval_coverage": 0.7390476190476191,
+      "mean_interval_width": 0.10775331045707401,
+      "interval_score": 0.21033961335549267
+    },
+    {
+      "model_id": "event_conditioned",
+      "name": "Event-conditioned spillover",
+      "n_predictions": 1050,
+      "n_events": 210,
+      "mae": 0.039634628261044,
+      "rmse": 0.05569399982310334,
+      "brier": 0.27036019565507424,
+      "interval_coverage": 0.7352380952380952,
+      "mean_interval_width": 0.1091391260769086,
+      "interval_score": 0.21231255818932054
+    },
+    {
+      "model_id": "adaptive",
+      "name": "Training-selected model",
+      "n_predictions": 1050,
+      "n_events": 210,
+      "mae": 0.03844023503463965,
+      "rmse": 0.054073717133359206,
+      "brier": 0.25952659273978984,
+      "interval_coverage": 0.7438095238095238,
+      "mean_interval_width": 0.10419729122762407,
+      "interval_score": 0.20127665460930028
+    }
+  ],
+  "ablations": [
+    {
+      "model_id": "price_only",
+      "baseline_model_id": "zero_excess",
+      "mae_improvement": -0.0009302143826969265,
+      "ci_lower": -0.0020187780084044735,
+      "ci_upper": 6.0440186218583235e-05,
+      "confidence_level": 0.95,
+      "n_clusters": 115,
+      "bootstrap_draws": 2000,
+      "bootstrap_unit": "connected_holding_windows",
+      "status": "estimated"
+    },
+    {
+      "model_id": "network",
+      "baseline_model_id": "price_only",
+      "mae_improvement": -0.0004811616001496608,
+      "ci_lower": -0.000926655332844378,
+      "ci_upper": -4.467523218335877e-05,
+      "confidence_level": 0.95,
+      "n_clusters": 115,
+      "bootstrap_draws": 2000,
+      "bootstrap_unit": "connected_holding_windows",
+      "status": "estimated"
+    },
+    {
+      "model_id": "event_conditioned",
+      "baseline_model_id": "network",
+      "mae_improvement": -0.00012238215343226316,
+      "ci_lower": -0.0008028275339032523,
+      "ci_upper": 0.0005650097470573306,
+      "confidence_level": 0.95,
+      "n_clusters": 115,
+      "bootstrap_draws": 2000,
+      "bootstrap_unit": "connected_holding_windows",
+      "status": "estimated"
+    },
+    {
+      "model_id": "event_conditioned",
+      "baseline_model_id": "zero_excess",
+      "mae_improvement": -0.00153375813627885,
+      "ci_lower": -0.002745722402333037,
+      "ci_upper": -0.000309482413655461,
+      "confidence_level": 0.95,
+      "n_clusters": 115,
+      "bootstrap_draws": 2000,
+      "bootstrap_unit": "connected_holding_windows",
+      "status": "estimated"
+    },
+    {
+      "model_id": "adaptive",
+      "baseline_model_id": "zero_excess",
+      "mae_improvement": -0.00033936490987449946,
+      "ci_lower": -0.0009420247994540295,
+      "ci_upper": 0.00023341041123293348,
+      "confidence_level": 0.95,
+      "n_clusters": 115,
+      "bootstrap_draws": 2000,
+      "bootstrap_unit": "connected_holding_windows",
+      "status": "estimated"
+    }
+  ],
+  "slices": [
+    {
+      "dimension": "year",
+      "value": 2018,
+      "n_predictions": 95,
+      "n_events": 19,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.033523134292982315,
+          "rmse": 0.04575114984037982,
+          "brier": 0.2572195248872184,
+          "interval_coverage": 0.7473684210526316,
+          "mean_interval_width": 0.08888776233235421,
+          "interval_score": 0.170783731934206
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.03768164540478143,
+          "rmse": 0.051304221635860514,
+          "brier": 0.30975149843512945,
+          "interval_coverage": 0.6947368421052632,
+          "mean_interval_width": 0.10347425756412411,
+          "interval_score": 0.19817274263709453
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.038801997224482056,
+          "rmse": 0.05287033705530785,
+          "brier": 0.3116083844015099,
+          "interval_coverage": 0.7157894736842105,
+          "mean_interval_width": 0.1008829868090061,
+          "interval_score": 0.20224032660608005
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.03950004616239068,
+          "rmse": 0.05200457417801541,
+          "brier": 0.3110675887178249,
+          "interval_coverage": 0.6947368421052632,
+          "mean_interval_width": 0.1094792932217819,
+          "interval_score": 0.2075096710890609
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.033523134292982315,
+          "rmse": 0.04575114984037982,
+          "brier": 0.2572195248872184,
+          "interval_coverage": 0.7473684210526316,
+          "mean_interval_width": 0.08888776233235421,
+          "interval_score": 0.170783731934206
+        }
+      ]
+    },
+    {
+      "dimension": "year",
+      "value": 2019,
+      "n_predictions": 125,
+      "n_events": 25,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 125,
+          "n_events": 25,
+          "mae": 0.0347617650230345,
+          "rmse": 0.0476749388209007,
+          "brier": 0.28754635863939876,
+          "interval_coverage": 0.744,
+          "mean_interval_width": 0.10220681481013989,
+          "interval_score": 0.18788477164114614
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 125,
+          "n_events": 25,
+          "mae": 0.03465875689217334,
+          "rmse": 0.04773169533831579,
+          "brier": 0.2808581431026664,
+          "interval_coverage": 0.688,
+          "mean_interval_width": 0.10093467019707551,
+          "interval_score": 0.19412743594624665
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 125,
+          "n_events": 25,
+          "mae": 0.036619028337272444,
+          "rmse": 0.049832985870024084,
+          "brier": 0.30124367377746786,
+          "interval_coverage": 0.688,
+          "mean_interval_width": 0.11639160529174933,
+          "interval_score": 0.20668615857343492
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 125,
+          "n_events": 25,
+          "mae": 0.03532450533706491,
+          "rmse": 0.05113845474890786,
+          "brier": 0.2820697442443598,
+          "interval_coverage": 0.728,
+          "mean_interval_width": 0.11506938402558356,
+          "interval_score": 0.21603413514896916
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 125,
+          "n_events": 25,
+          "mae": 0.03534524604682417,
+          "rmse": 0.04776806222322915,
+          "brier": 0.2868177213582141,
+          "interval_coverage": 0.712,
+          "mean_interval_width": 0.10113325567812857,
+          "interval_score": 0.18879097784413348
+        }
+      ]
+    },
+    {
+      "dimension": "year",
+      "value": 2020,
+      "n_predictions": 115,
+      "n_events": 23,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 115,
+          "n_events": 23,
+          "mae": 0.031562489506422514,
+          "rmse": 0.04972117748198594,
+          "brier": 0.2463221548216531,
+          "interval_coverage": 0.8,
+          "mean_interval_width": 0.09011158191996589,
+          "interval_score": 0.18352361416164015
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 115,
+          "n_events": 23,
+          "mae": 0.03584347719050243,
+          "rmse": 0.05261702518634275,
+          "brier": 0.26836805657011387,
+          "interval_coverage": 0.782608695652174,
+          "mean_interval_width": 0.09326145794662853,
+          "interval_score": 0.19163188973482556
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 115,
+          "n_events": 23,
+          "mae": 0.035482363772310906,
+          "rmse": 0.052603976548225045,
+          "brier": 0.2654031132746544,
+          "interval_coverage": 0.7739130434782608,
+          "mean_interval_width": 0.09507283658549263,
+          "interval_score": 0.19314986390718009
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 115,
+          "n_events": 23,
+          "mae": 0.03561783907118249,
+          "rmse": 0.05266024240953471,
+          "brier": 0.28236173873439635,
+          "interval_coverage": 0.7652173913043478,
+          "mean_interval_width": 0.0944642410068668,
+          "interval_score": 0.19982054222565887
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 115,
+          "n_events": 23,
+          "mae": 0.0319403891014283,
+          "rmse": 0.050268609898237886,
+          "brier": 0.24271190082956967,
+          "interval_coverage": 0.8,
+          "mean_interval_width": 0.09455103933133893,
+          "interval_score": 0.18693868891644577
+        }
+      ]
+    },
+    {
+      "dimension": "year",
+      "value": 2021,
+      "n_predictions": 130,
+      "n_events": 26,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.02870969620300996,
+          "rmse": 0.039588822029718806,
+          "brier": 0.2607581306410531,
+          "interval_coverage": 0.7692307692307693,
+          "mean_interval_width": 0.08661113269479968,
+          "interval_score": 0.1506609423887902
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.02935098687499868,
+          "rmse": 0.040005584928531394,
+          "brier": 0.267584813676414,
+          "interval_coverage": 0.7923076923076923,
+          "mean_interval_width": 0.0925204032865684,
+          "interval_score": 0.1551498337588447
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.029104995458595132,
+          "rmse": 0.039828864640922536,
+          "brier": 0.2716998361432896,
+          "interval_coverage": 0.7769230769230769,
+          "mean_interval_width": 0.08961703177176357,
+          "interval_score": 0.15494016306136973
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.02905815975465409,
+          "rmse": 0.039401720906807644,
+          "brier": 0.2696465181101097,
+          "interval_coverage": 0.7846153846153846,
+          "mean_interval_width": 0.09290531950763617,
+          "interval_score": 0.15637254358428937
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.029021826375140638,
+          "rmse": 0.03969199301222875,
+          "brier": 0.27081684116742893,
+          "interval_coverage": 0.7923076923076923,
+          "mean_interval_width": 0.09260510211611579,
+          "interval_score": 0.15166199715548487
+        }
+      ]
+    },
+    {
+      "dimension": "year",
+      "value": 2022,
+      "n_predictions": 130,
+      "n_events": 26,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.04033611331719002,
+          "rmse": 0.0504433296586545,
+          "brier": 0.24448927515735863,
+          "interval_coverage": 0.7230769230769231,
+          "mean_interval_width": 0.10448940176034177,
+          "interval_score": 0.18522973624404232
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.037476039903338296,
+          "rmse": 0.04784321547333154,
+          "brier": 0.22428533454308325,
+          "interval_coverage": 0.7384615384615385,
+          "mean_interval_width": 0.10312157625134641,
+          "interval_score": 0.17775601786586295
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.03751123783909507,
+          "rmse": 0.048321879070895295,
+          "brier": 0.21740201972355355,
+          "interval_coverage": 0.7538461538461538,
+          "mean_interval_width": 0.10418226278203602,
+          "interval_score": 0.18208089573410347
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.03799022955873979,
+          "rmse": 0.04886203475552093,
+          "brier": 0.2235335690259459,
+          "interval_coverage": 0.7384615384615385,
+          "mean_interval_width": 0.10276126020738036,
+          "interval_score": 0.1824174831063855
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 130,
+          "n_events": 26,
+          "mae": 0.04011688882168084,
+          "rmse": 0.05028932376496037,
+          "brier": 0.24190698746868794,
+          "interval_coverage": 0.7230769230769231,
+          "mean_interval_width": 0.10447157283952735,
+          "interval_score": 0.18444632456976726
+        }
+      ]
+    },
+    {
+      "dimension": "year",
+      "value": 2023,
+      "n_predictions": 120,
+      "n_events": 24,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.032813842399955724,
+          "rmse": 0.0435792986423798,
+          "brier": 0.261713592669006,
+          "interval_coverage": 0.8333333333333334,
+          "mean_interval_width": 0.11305808199719318,
+          "interval_score": 0.1581153850070395
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.032929780640828306,
+          "rmse": 0.04323670040377947,
+          "brier": 0.2545671980645807,
+          "interval_coverage": 0.8333333333333334,
+          "mean_interval_width": 0.10792997028224395,
+          "interval_score": 0.15811052045041857
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.03305667214477885,
+          "rmse": 0.044021340119499576,
+          "brier": 0.25805829472503006,
+          "interval_coverage": 0.8,
+          "mean_interval_width": 0.10985078358000422,
+          "interval_score": 0.16126732569470145
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.03405594790222122,
+          "rmse": 0.045552918226699206,
+          "brier": 0.26721394664017856,
+          "interval_coverage": 0.8,
+          "mean_interval_width": 0.10989498775417458,
+          "interval_score": 0.16496965499058558
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.03319720730967287,
+          "rmse": 0.044114200397581294,
+          "brier": 0.2597081791527364,
+          "interval_coverage": 0.8083333333333333,
+          "mean_interval_width": 0.10813441642677549,
+          "interval_score": 0.1618132190886822
+        }
+      ]
+    },
+    {
+      "dimension": "year",
+      "value": 2024,
+      "n_predictions": 120,
+      "n_events": 24,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.03690262645856349,
+          "rmse": 0.05323122270875946,
+          "brier": 0.2500312127010221,
+          "interval_coverage": 0.7666666666666667,
+          "mean_interval_width": 0.10169418664031775,
+          "interval_score": 0.1904546691271861
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.03765623993145407,
+          "rmse": 0.055035060347749236,
+          "brier": 0.2550100527412161,
+          "interval_coverage": 0.7666666666666667,
+          "mean_interval_width": 0.0999710273744689,
+          "interval_score": 0.19945951326426858
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.03812354443666444,
+          "rmse": 0.056165069760342745,
+          "brier": 0.25884548261289825,
+          "interval_coverage": 0.775,
+          "mean_interval_width": 0.10169572874449591,
+          "interval_score": 0.2026342183599742
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.03884699943982518,
+          "rmse": 0.05635044154445843,
+          "brier": 0.2651765194846391,
+          "interval_coverage": 0.725,
+          "mean_interval_width": 0.10498037864251634,
+          "interval_score": 0.20286246221849388
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.03760718173155174,
+          "rmse": 0.05504187811879578,
+          "brier": 0.25298197649023296,
+          "interval_coverage": 0.7583333333333333,
+          "mean_interval_width": 0.09786514991523312,
+          "interval_score": 0.1988874649992218
+        }
+      ]
+    },
+    {
+      "dimension": "year",
+      "value": 2025,
+      "n_predictions": 120,
+      "n_events": 24,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.04327300230724332,
+          "rmse": 0.060268551945007895,
+          "brier": 0.24753156637582055,
+          "interval_coverage": 0.7083333333333334,
+          "mean_interval_width": 0.11087552732551573,
+          "interval_score": 0.2326753433151371
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.043291716545246724,
+          "rmse": 0.05940084015041482,
+          "brier": 0.2516554851673572,
+          "interval_coverage": 0.7166666666666667,
+          "mean_interval_width": 0.11202435536641407,
+          "interval_score": 0.24165780464041633
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.044091125870362714,
+          "rmse": 0.059666007494535434,
+          "brier": 0.26081673398807415,
+          "interval_coverage": 0.7166666666666667,
+          "mean_interval_width": 0.11297255738404889,
+          "interval_score": 0.240522365233562
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.04426965202788904,
+          "rmse": 0.059843725970957926,
+          "brier": 0.2603683819633715,
+          "interval_coverage": 0.7166666666666667,
+          "mean_interval_width": 0.11608100648822331,
+          "interval_score": 0.23806760925198356
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 120,
+          "n_events": 24,
+          "mae": 0.043504061079655695,
+          "rmse": 0.059707090409437974,
+          "brier": 0.25491652050091856,
+          "interval_coverage": 0.7,
+          "mean_interval_width": 0.11292236159346654,
+          "interval_score": 0.23899288849512132
+        }
+      ]
+    },
+    {
+      "dimension": "year",
+      "value": 2026,
+      "n_predictions": 95,
+      "n_events": 19,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.06643807552141769,
+          "rmse": 0.08744720611795424,
+          "brier": 0.25262972614734297,
+          "interval_coverage": 0.6210526315789474,
+          "mean_interval_width": 0.14065722036961079,
+          "interval_score": 0.35550636554137155
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.06942837890172834,
+          "rmse": 0.09161803777170707,
+          "brier": 0.2896951649032292,
+          "interval_coverage": 0.631578947368421,
+          "mean_interval_width": 0.14425351810892853,
+          "interval_score": 0.38617064881537483
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.07001207239763439,
+          "rmse": 0.09202741822103128,
+          "brier": 0.29754899562308057,
+          "interval_coverage": 0.6210526315789474,
+          "mean_interval_width": 0.14672177586581037,
+          "interval_score": 0.39212791649141715
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.0692130325601739,
+          "rmse": 0.09073869320475965,
+          "brier": 0.28791572027751694,
+          "interval_coverage": 0.631578947368421,
+          "mean_interval_width": 0.1452323020690026,
+          "interval_score": 0.38400492053303714
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 95,
+          "n_events": 19,
+          "mae": 0.06717054248345898,
+          "rmse": 0.08808126884155208,
+          "brier": 0.26880089355110104,
+          "interval_coverage": 0.631578947368421,
+          "mean_interval_width": 0.1427072925060101,
+          "interval_score": 0.36170421911433626
+        }
+      ]
+    },
+    {
+      "dimension": "source_ticker",
+      "value": "AMD",
+      "n_predictions": 175,
+      "n_events": 35,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.036870271607970406,
+          "rmse": 0.05358083015358967,
+          "brier": 0.2613429662474188,
+          "interval_coverage": 0.76,
+          "mean_interval_width": 0.10356725461405542,
+          "interval_score": 0.18664433217900286
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.036848906900853996,
+          "rmse": 0.05419538952561129,
+          "brier": 0.2696525008706243,
+          "interval_coverage": 0.7371428571428571,
+          "mean_interval_width": 0.10507491969073754,
+          "interval_score": 0.20178253291514328
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.03752879562507904,
+          "rmse": 0.05572538160620167,
+          "brier": 0.28417471671250716,
+          "interval_coverage": 0.7371428571428571,
+          "mean_interval_width": 0.1073526088345188,
+          "interval_score": 0.21027443435794982
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.03881389364552328,
+          "rmse": 0.05694272284765405,
+          "brier": 0.27704877091894237,
+          "interval_coverage": 0.7314285714285714,
+          "mean_interval_width": 0.1088634194342358,
+          "interval_score": 0.2114456946256621
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.03748334989980783,
+          "rmse": 0.05413510654784613,
+          "brier": 0.27225659908166094,
+          "interval_coverage": 0.7314285714285714,
+          "mean_interval_width": 0.10409400904718846,
+          "interval_score": 0.19395026022616557
+        }
+      ]
+    },
+    {
+      "dimension": "source_ticker",
+      "value": "INTC",
+      "n_predictions": 175,
+      "n_events": 35,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.04057423327762528,
+          "rmse": 0.05417177407969839,
+          "brier": 0.24212215980650162,
+          "interval_coverage": 0.7542857142857143,
+          "mean_interval_width": 0.10293632503314541,
+          "interval_score": 0.1997008318973253
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.04154606353096436,
+          "rmse": 0.05490790597112675,
+          "brier": 0.2509229430398153,
+          "interval_coverage": 0.7428571428571429,
+          "mean_interval_width": 0.10510745722182695,
+          "interval_score": 0.2054073676152231
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.042324022147549836,
+          "rmse": 0.05568880215556346,
+          "brier": 0.2575220366863232,
+          "interval_coverage": 0.7314285714285714,
+          "mean_interval_width": 0.10723419762446014,
+          "interval_score": 0.20848010662356956
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.04428906605914873,
+          "rmse": 0.057334813371583485,
+          "brier": 0.27701421995035214,
+          "interval_coverage": 0.7142857142857143,
+          "mean_interval_width": 0.10888554766255566,
+          "interval_score": 0.21284008339129334
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 175,
+          "n_events": 35,
+          "mae": 0.04130482929579269,
+          "rmse": 0.05432151445473806,
+          "brier": 0.24815821531336082,
+          "interval_coverage": 0.7428571428571429,
+          "mean_interval_width": 0.10403364068062816,
+          "interval_score": 0.20330639088740218
+        }
+      ]
+    },
+    {
+      "dimension": "source_ticker",
+      "value": "MU",
+      "n_predictions": 170,
+      "n_events": 34,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.029558012046976962,
+          "rmse": 0.03968338808913902,
+          "brier": 0.26647706741687643,
+          "interval_coverage": 0.8352941176470589,
+          "mean_interval_width": 0.10374560943395299,
+          "interval_score": 0.15414220034948117
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.031144000429797102,
+          "rmse": 0.04218808937857775,
+          "brier": 0.26591204065817325,
+          "interval_coverage": 0.8058823529411765,
+          "mean_interval_width": 0.10486014211200925,
+          "interval_score": 0.16042640280324966
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.030991200049395887,
+          "rmse": 0.042183266206352224,
+          "brier": 0.2625684474163838,
+          "interval_coverage": 0.8058823529411765,
+          "mean_interval_width": 0.10707801403169383,
+          "interval_score": 0.16059734625430777
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.030798975571582014,
+          "rmse": 0.04165010697118897,
+          "brier": 0.2635293688408601,
+          "interval_coverage": 0.7941176470588235,
+          "mean_interval_width": 0.10822988217040293,
+          "interval_score": 0.16389558143068028
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.029694654806976733,
+          "rmse": 0.040455746136316216,
+          "brier": 0.266794877695267,
+          "interval_coverage": 0.8,
+          "mean_interval_width": 0.10368221702913685,
+          "interval_score": 0.15536018339825844
+        }
+      ]
+    },
+    {
+      "dimension": "source_ticker",
+      "value": "NVDA",
+      "n_predictions": 180,
+      "n_events": 36,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.03291235451117007,
+          "rmse": 0.049103220168960744,
+          "brier": 0.2571327890092115,
+          "interval_coverage": 0.7888888888888889,
+          "mean_interval_width": 0.10357493030309818,
+          "interval_score": 0.17459215332339312
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.03454664206760573,
+          "rmse": 0.05068264620803966,
+          "brier": 0.26186736900981133,
+          "interval_coverage": 0.8055555555555556,
+          "mean_interval_width": 0.1052229388058789,
+          "interval_score": 0.18146274656999897
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.03454227648819276,
+          "rmse": 0.050835734218309045,
+          "brier": 0.2530502055998592,
+          "interval_coverage": 0.8166666666666667,
+          "mean_interval_width": 0.1079533508046168,
+          "interval_score": 0.18291002461333628
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.03486207719674263,
+          "rmse": 0.0510382278233789,
+          "brier": 0.25672394686776406,
+          "interval_coverage": 0.8111111111111111,
+          "mean_interval_width": 0.10904252802505444,
+          "interval_score": 0.18098823725785537
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.03423904813969491,
+          "rmse": 0.05038467911831539,
+          "brier": 0.2607864198314343,
+          "interval_coverage": 0.8055555555555556,
+          "mean_interval_width": 0.10404989729553075,
+          "interval_score": 0.1795143119780537
+        }
+      ]
+    },
+    {
+      "dimension": "source_ticker",
+      "value": "QCOM",
+      "n_predictions": 170,
+      "n_events": 34,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.03991634446553087,
+          "rmse": 0.0556528404428533,
+          "brier": 0.2494423967027785,
+          "interval_coverage": 0.711764705882353,
+          "mean_interval_width": 0.10345521554592406,
+          "interval_score": 0.2038267766374721
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.04089213639975409,
+          "rmse": 0.05749057934432355,
+          "brier": 0.2749232611947322,
+          "interval_coverage": 0.7176470588235294,
+          "mean_interval_width": 0.10515664831415705,
+          "interval_score": 0.22074188855859142
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.041204194645788,
+          "rmse": 0.05816313206376514,
+          "brier": 0.2786261026303491,
+          "interval_coverage": 0.7058823529411765,
+          "mean_interval_width": 0.1074475223878845,
+          "interval_score": 0.22545556088830088
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.04089322216031864,
+          "rmse": 0.05807002643497309,
+          "brier": 0.28631206605480597,
+          "interval_coverage": 0.6941176470588235,
+          "mean_interval_width": 0.10893856777262947,
+          "interval_score": 0.23393462132795834
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 170,
+          "n_events": 34,
+          "mae": 0.03848770565353263,
+          "rmse": 0.05477671805083159,
+          "brier": 0.24057953870347074,
+          "interval_coverage": 0.7294117647058823,
+          "mean_interval_width": 0.10399746275650222,
+          "interval_score": 0.20529496694462085
+        }
+      ]
+    },
+    {
+      "dimension": "source_ticker",
+      "value": "TXN",
+      "n_predictions": 180,
+      "n_events": 36,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.048434782538262305,
+          "rmse": 0.06615907717049091,
+          "brier": 0.2633596714697675,
+          "interval_coverage": 0.6444444444444445,
+          "mean_interval_width": 0.1047672665782496,
+          "interval_score": 0.2672882770041848
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.04888322263374572,
+          "rmse": 0.0666270219534668,
+          "brier": 0.2668291365264816,
+          "interval_coverage": 0.6444444444444445,
+          "mean_interval_width": 0.10708689173853117,
+          "interval_score": 0.26822879893148815
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.05012660242625727,
+          "rmse": 0.06740820328090313,
+          "brier": 0.28115238117888997,
+          "interval_coverage": 0.6388888888888888,
+          "mean_interval_width": 0.10937411396359474,
+          "interval_score": 0.2723430594825412
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.04783607897745449,
+          "rmse": 0.06570800041298867,
+          "brier": 0.2624101537068927,
+          "interval_coverage": 0.6666666666666666,
+          "mean_interval_width": 0.1107984533555011,
+          "interval_score": 0.2692730987246493
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 180,
+          "n_events": 36,
+          "mae": 0.04900158602061034,
+          "rmse": 0.06648501866325733,
+          "brier": 0.2679729083344832,
+          "interval_coverage": 0.6555555555555556,
+          "mean_interval_width": 0.10527938894379561,
+          "interval_score": 0.26775900933639885
+        }
+      ]
+    },
+    {
+      "dimension": "target_ticker",
+      "value": "AMD",
+      "n_predictions": 175,
+      "n_events": 175,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.05380387032919866,
+          "rmse": 0.0698950880771745,
+          "brier": 0.25798526884684186,
+          "interval_coverage": 0.5828571428571429,
+          "mean_interval_width": 0.10370239150402531,
+          "interval_score": 0.290519030080224
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.05560493673377052,
+          "rmse": 0.070923671766068,
+          "brier": 0.28115258417304373,
+          "interval_coverage": 0.5828571428571429,
+          "mean_interval_width": 0.10549991872487063,
+          "interval_score": 0.30333623490845696
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.05644592192913189,
+          "rmse": 0.0717188893611455,
+          "brier": 0.28525936309402644,
+          "interval_coverage": 0.5714285714285714,
+          "mean_interval_width": 0.10783345078158504,
+          "interval_score": 0.3039712307555396
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.056354811345559315,
+          "rmse": 0.07188317954200596,
+          "brier": 0.2848073630208933,
+          "interval_coverage": 0.5657142857142857,
+          "mean_interval_width": 0.10919426740544314,
+          "interval_score": 0.3019995770973486
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.05351862732326632,
+          "rmse": 0.06947836982345232,
+          "brier": 0.25986794056180096,
+          "interval_coverage": 0.5942857142857143,
+          "mean_interval_width": 0.10421794766371123,
+          "interval_score": 0.28826698054442723
+        }
+      ]
+    },
+    {
+      "dimension": "target_ticker",
+      "value": "INTC",
+      "n_predictions": 175,
+      "n_events": 175,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.04160176748201817,
+          "rmse": 0.06253721292209022,
+          "brier": 0.25379842322767543,
+          "interval_coverage": 0.7428571428571429,
+          "mean_interval_width": 0.1038285774202073,
+          "interval_score": 0.236668414528567
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.04396096058381277,
+          "rmse": 0.0645613165501329,
+          "brier": 0.27373530273611996,
+          "interval_coverage": 0.7028571428571428,
+          "mean_interval_width": 0.10549341121865272,
+          "interval_score": 0.2485401239725233
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.04467153429603591,
+          "rmse": 0.06533149458430973,
+          "brier": 0.2850374327204594,
+          "interval_coverage": 0.7085714285714285,
+          "mean_interval_width": 0.10785713302359677,
+          "interval_score": 0.2521959056407207
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.0443972213438123,
+          "rmse": 0.0651524058866699,
+          "brier": 0.27976587252445995,
+          "interval_coverage": 0.6971428571428572,
+          "mean_interval_width": 0.10918984175977918,
+          "interval_score": 0.25373234496672
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 175,
+          "n_events": 175,
+          "mae": 0.042974678243639854,
+          "rmse": 0.06371525971864522,
+          "brier": 0.2651473636167228,
+          "interval_coverage": 0.7257142857142858,
+          "mean_interval_width": 0.10423002133702328,
+          "interval_score": 0.2453343125789725
+        }
+      ]
+    },
+    {
+      "dimension": "target_ticker",
+      "value": "MU",
+      "n_predictions": 176,
+      "n_events": 176,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.04115378300693265,
+          "rmse": 0.057857558434238926,
+          "brier": 0.25093013598921277,
+          "interval_coverage": 0.7386363636363636,
+          "mean_interval_width": 0.10366716877239752,
+          "interval_score": 0.20474608362292013
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.042267214357518464,
+          "rmse": 0.05956324543691585,
+          "brier": 0.261227526060817,
+          "interval_coverage": 0.7386363636363636,
+          "mean_interval_width": 0.10553899508079465,
+          "interval_score": 0.21577730435517253
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.0426965681578294,
+          "rmse": 0.06038093262931098,
+          "brier": 0.26796588021055556,
+          "interval_coverage": 0.7215909090909091,
+          "mean_interval_width": 0.10788376544834062,
+          "interval_score": 0.22154815696915983
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.04213646738259946,
+          "rmse": 0.0598303277863687,
+          "brier": 0.2612599801622396,
+          "interval_coverage": 0.7159090909090909,
+          "mean_interval_width": 0.1093147754679381,
+          "interval_score": 0.22191943117228233
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.0415730826298703,
+          "rmse": 0.058111139432861954,
+          "brier": 0.2514091299759423,
+          "interval_coverage": 0.7272727272727273,
+          "mean_interval_width": 0.10429679419778638,
+          "interval_score": 0.20771101795940944
+        }
+      ]
+    },
+    {
+      "dimension": "target_ticker",
+      "value": "NVDA",
+      "n_predictions": 174,
+      "n_events": 174,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.0379842944046602,
+          "rmse": 0.046316945411068955,
+          "brier": 0.2534903050034626,
+          "interval_coverage": 0.7068965517241379,
+          "mean_interval_width": 0.10370158007922319,
+          "interval_score": 0.1656006805835844
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.03662324212882346,
+          "rmse": 0.04573098086647054,
+          "brier": 0.25040688543402256,
+          "interval_coverage": 0.7241379310344828,
+          "mean_interval_width": 0.10547173660354328,
+          "interval_score": 0.16966173378705196
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.03697028425533838,
+          "rmse": 0.04660892215554599,
+          "brier": 0.2541642696973336,
+          "interval_coverage": 0.7298850574712644,
+          "mean_interval_width": 0.1077119227989617,
+          "interval_score": 0.1741668972737286
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.03733001676504697,
+          "rmse": 0.047062047265965856,
+          "brier": 0.25455710890088246,
+          "interval_coverage": 0.735632183908046,
+          "mean_interval_width": 0.10915911188074044,
+          "interval_score": 0.18050815749177584
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.0369148617432509,
+          "rmse": 0.04580179010885195,
+          "brier": 0.25102537286149706,
+          "interval_coverage": 0.7011494252873564,
+          "mean_interval_width": 0.10422778652391927,
+          "interval_score": 0.16842078922527126
+        }
+      ]
+    },
+    {
+      "dimension": "target_ticker",
+      "value": "QCOM",
+      "n_predictions": 176,
+      "n_events": 176,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.03256676116006549,
+          "rmse": 0.04717003023311593,
+          "brier": 0.26517136692241716,
+          "interval_coverage": 0.7784090909090909,
+          "mean_interval_width": 0.10372326759167586,
+          "interval_score": 0.17517734816208008
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.032425444798159016,
+          "rmse": 0.04834788939235081,
+          "brier": 0.25950388621472603,
+          "interval_coverage": 0.7840909090909091,
+          "mean_interval_width": 0.10548171547356157,
+          "interval_score": 0.18224864347128883
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.03215179700068526,
+          "rmse": 0.048133934069568514,
+          "brier": 0.25307058051639014,
+          "interval_coverage": 0.7897727272727273,
+          "mean_interval_width": 0.10781238315225834,
+          "interval_score": 0.1846619525540274
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.032708969595586834,
+          "rmse": 0.04843737291999047,
+          "brier": 0.25886807692962344,
+          "interval_coverage": 0.7954545454545454,
+          "mean_interval_width": 0.10917787029478068,
+          "interval_score": 0.18776197205173492
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 176,
+          "n_events": 176,
+          "mae": 0.03313913191672772,
+          "rmse": 0.048131782601297725,
+          "brier": 0.2699059386606248,
+          "interval_coverage": 0.7784090909090909,
+          "mean_interval_width": 0.10423589445499988,
+          "interval_score": 0.18079535445437556
+        }
+      ]
+    },
+    {
+      "dimension": "target_ticker",
+      "value": "TXN",
+      "n_predictions": 174,
+      "n_events": 174,
+      "metrics": [
+        {
+          "model_id": "zero_excess",
+          "name": "Zero excess return",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.021412896633551202,
+          "rmse": 0.02823266114053491,
+          "brier": 0.2586093399419756,
+          "interval_coverage": 0.9425287356321839,
+          "mean_interval_width": 0.10345488981539874,
+          "interval_score": 0.11531472435552512
+        },
+        {
+          "model_id": "price_only",
+          "name": "Price controls",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.02321985379565276,
+          "rmse": 0.030139830149364635,
+          "brier": 0.26369636873985314,
+          "interval_coverage": 0.9195402298850575,
+          "mean_interval_width": 0.10508609116920145,
+          "interval_score": 0.11982327019551144
+        },
+        {
+          "model_id": "network",
+          "name": "Network spillover",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.024058401409543073,
+          "rmse": 0.03146924431807665,
+          "brier": 0.2714225959201219,
+          "interval_coverage": 0.9137931034482759,
+          "mean_interval_width": 0.10741797180055249,
+          "interval_score": 0.12488118248397721
+        },
+        {
+          "model_id": "event_conditioned",
+          "name": "Event-conditioned spillover",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.024807667403317267,
+          "rmse": 0.03229508879432875,
+          "brier": 0.28300238057741206,
+          "interval_coverage": 0.9022988505747126,
+          "mean_interval_width": 0.10879581698478598,
+          "interval_score": 0.12737214578493408
+        },
+        {
+          "model_id": "adaptive",
+          "name": "Training-selected model",
+          "n_predictions": 174,
+          "n_events": 174,
+          "mae": 0.022433233382966312,
+          "rmse": 0.02915227567864314,
+          "brier": 0.25974354705518043,
+          "interval_coverage": 0.9367816091954023,
+          "mean_interval_width": 0.10397340894151964,
+          "interval_score": 0.11653978260429301
+        }
+      ]
+    }
+  ],
+  "format": "prism-research-analysis-v1",
+  "fixture": {
+    "rows": 1205,
+    "events": 241,
+    "sha256": "cedfec1d2cbe3dbb72a105ea5a22ddf8c987e3a5da2ed3afc57a5c3410dc57cc",
+    "predictions": 1050,
+    "data_as_of": "2026-10-30",
+    "source_built_at": "2026-11-06T07:24:38.715318+00:00"
+  },
+  "verification": {
+    "status": "verified",
+    "max_metric_error": 0.0,
+    "tolerance": 1e-10,
+    "timing_boundaries_checked": 35
+  },
+  "confounds": [
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "no_overlap",
+      "model_id": "zero_excess",
+      "name": "Zero excess return",
+      "n_predictions": 858,
+      "n_events": 210,
+      "mae": 0.03413248086087066,
+      "rmse": 0.04729242242410405,
+      "brier": 0.2551930108811202,
+      "interval_coverage": 0.7937062937062938,
+      "mean_interval_width": 0.10416059378040572,
+      "interval_score": 0.16898673336519007
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "no_overlap",
+      "model_id": "price_only",
+      "name": "Price controls",
+      "n_predictions": 858,
+      "n_events": 210,
+      "mae": 0.034962082266582414,
+      "rmse": 0.048697896740855756,
+      "brier": 0.261885631547888,
+      "interval_coverage": 0.7878787878787878,
+      "mean_interval_width": 0.10572932667287119,
+      "interval_score": 0.17848412899861063
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "no_overlap",
+      "model_id": "network",
+      "name": "Network spillover",
+      "n_predictions": 858,
+      "n_events": 210,
+      "mae": 0.035317204791549955,
+      "rmse": 0.049244522104007024,
+      "brier": 0.26465192892911077,
+      "interval_coverage": 0.7878787878787878,
+      "mean_interval_width": 0.10799081106866067,
+      "interval_score": 0.18151929240746137
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "no_overlap",
+      "model_id": "event_conditioned",
+      "name": "Event-conditioned spillover",
+      "n_predictions": 858,
+      "n_events": 210,
+      "mae": 0.03553716780078985,
+      "rmse": 0.04940392371438039,
+      "brier": 0.2667478525851846,
+      "interval_coverage": 0.782051282051282,
+      "mean_interval_width": 0.10938401061011056,
+      "interval_score": 0.1837814192175462
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "no_overlap",
+      "model_id": "adaptive",
+      "name": "Training-selected model",
+      "n_predictions": 858,
+      "n_events": 210,
+      "mae": 0.03436023909552642,
+      "rmse": 0.04760903614075747,
+      "brier": 0.2563640716610112,
+      "interval_coverage": 0.789044289044289,
+      "mean_interval_width": 0.10470980978535997,
+      "interval_score": 0.17203853770027547
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "overlap",
+      "model_id": "zero_excess",
+      "name": "Zero excess return",
+      "n_predictions": 192,
+      "n_events": 109,
+      "mae": 0.05583460964779363,
+      "rmse": 0.07614025401012814,
+      "brier": 0.2632590911978779,
+      "interval_coverage": 0.546875,
+      "mean_interval_width": 0.1015316284369465,
+      "interval_score": 0.32819265642067946
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "overlap",
+      "model_id": "price_only",
+      "name": "Price controls",
+      "n_predictions": 192,
+      "n_events": 109,
+      "mae": 0.05721443827139302,
+      "rmse": 0.07680940817817175,
+      "brier": 0.2786989746237796,
+      "interval_coverage": 0.5364583333333334,
+      "mean_interval_width": 0.10408738304592391,
+      "interval_score": 0.3326142585093066
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "overlap",
+      "model_id": "network",
+      "name": "Network spillover",
+      "n_predictions": 192,
+      "n_events": 109,
+      "mae": 0.05825883698876281,
+      "rmse": 0.077933848919803,
+      "brier": 0.29106831224863366,
+      "interval_coverage": 0.5208333333333334,
+      "mean_interval_width": 0.10669197959904612,
+      "interval_score": 0.3391304225920076
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "overlap",
+      "model_id": "event_conditioned",
+      "name": "Event-conditioned spillover",
+      "n_predictions": 192,
+      "n_events": 109,
+      "mae": 0.05794515469280472,
+      "rmse": 0.07782027869632493,
+      "brier": 0.2865028537486438,
+      "interval_coverage": 0.5260416666666666,
+      "mean_interval_width": 0.10804479831916221,
+      "interval_score": 0.3398110854694372
+    },
+    {
+      "group": "peer_disclosure_overlap",
+      "value": "overlap",
+      "model_id": "adaptive",
+      "name": "Training-selected model",
+      "n_predictions": 192,
+      "n_events": 109,
+      "mae": 0.056672716887551856,
+      "rmse": 0.07656033134198326,
+      "brier": 0.27365910881058214,
+      "interval_coverage": 0.5416666666666666,
+      "mean_interval_width": 0.1019069739227418,
+      "interval_score": 0.3319344895465049
+    }
+  ],
+  "limits": [
+    "Historical sample used during development, not an untouched holdout or a pre-registered study.",
+    "This numerical replay does not reconstruct raw source collection, text extraction, original release timestamps, or a point-in-time company universe.",
+    "Correction and selection comparisons use the same observations as the original reference, not independent replication.",
+    "All-company peer relationships are assumptions. Observed concurrent disclosure flags only cover filings present in the six-company source cache.",
+    "Empirical residual intervals have no distribution-free coverage guarantee; bootstrap intervals do not correct for study selection or remaining between-block dependence."
+  ]
+}

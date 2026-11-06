@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 import argparse
-import json
 from pathlib import Path
 
 from relay.config import DATA_DIR, StudyConfig
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog="relay", description="Collect disclosures, build forecasts, and inspect honest out-of-sample results.")
+    parser = argparse.ArgumentParser(prog="prism", description="PRISM: collect disclosures, compare forecasts, and review research results.")
     sub = parser.add_subparsers(dest="command", required=True)
     collect = sub.add_parser("collect", help="Download public SEC disclosures and adjusted daily prices")
     collect.add_argument("--start", default="2017-01-01")
@@ -16,7 +15,12 @@ def main() -> None:
     collect.add_argument("--refresh", action="store_true", help="Refresh cached responses")
     study = sub.add_parser("study", help="Fit chronological models using the local data cache")
     study.add_argument("--cost-bps", type=float, default=None, help="Assumed total roundtrip cost")
-    study.add_argument("--publish-pilot", action="store_true", help="Include the derived study in the app package")
+    study.add_argument("--output", type=Path, help="Run directory (default: data/relay/runs/latest); use a new path to retain each experiment")
+    reproduce = sub.add_parser("reproduce", help="Verify and replay the bundled numerical reference without downloads")
+    reproduce.add_argument("--output", type=Path, default=Path("out/relay-reference"), help="Separate output directory (default: out/relay-reference)")
+    analyze = sub.add_parser("analyze", help="Replay the corrected study and export research diagnostics without downloads")
+    analyze.add_argument("--output", type=Path, default=Path("out/prism-analysis"))
+    analyze.add_argument("--figure", action="store_true", help="Save scientific figures (requires the research extra)")
     diffusion = sub.add_parser("diffusion", help="Replay a source-audited customer-supplier event study")
     diffusion.add_argument("--ledger", type=Path, required=True)
     diffusion.add_argument("--prices", type=Path, required=True, help="Cached adjusted daily bars in Parquet format")
@@ -26,8 +30,6 @@ def main() -> None:
     diffusion_prices.add_argument("--ledger", type=Path, required=True)
     diffusion_prices.add_argument("--output", type=Path, required=True)
     diffusion_prices.add_argument("--refresh", action="store_true")
-    serve = sub.add_parser("serve", help="Open the local research interface")
-    serve.add_argument("--port", type=int, default=2004)
     args = parser.parse_args()
     if args.command == "collect":
         from relay.ingest import collect_data
@@ -38,19 +40,48 @@ def main() -> None:
         prices, events, warnings = collect_data(config, refresh=args.refresh)
         print(f"Saved {len(prices):,} daily prices and {len(events):,} disclosures. {len(warnings)} text-fetch warnings.")
     elif args.command == "study":
-        from relay.study import run_cached_study
+        from relay.study import load_study_config, run_cached_study
         config = None
-        if args.cost_bps is not None:
-            config_path = DATA_DIR / "study_config.json"
-            if not config_path.exists():
-                config_path = DATA_DIR / "config.json"
-            options = json.loads(config_path.read_text())
-            options["cost_bps"] = args.cost_bps
-            config = StudyConfig.model_validate(options)
-        report = run_cached_study(config=config, publish_pilot=args.publish_pilot)
+        output = args.output if args.output is not None else DATA_DIR / "runs" / "latest"
+        try:
+            if args.cost_bps is not None:
+                options = load_study_config(DATA_DIR, output).model_dump()
+                options["cost_bps"] = args.cost_bps
+                config = StudyConfig.model_validate(options)
+            report = run_cached_study(directory=DATA_DIR, config=config, output_directory=output)
+        except (FileNotFoundError, ValueError) as exc:
+            parser.exit(1, f"Study failed: {exc}\nCollect the source inputs with `prism collect` or replay the included reference with `prism reproduce`.\n")
         print(f"{report['study']['status']}: {report['summary']['events']} events, {report['summary']['predictions']} held-out peer forecasts")
         for metric in report["benchmarks"]:
             print(f"  {metric['name']}: MAE {metric['mae']:.4%} | RMSE {metric['rmse']:.4%}")
+        print(f"Saved research outputs to {output.resolve()}")
+    elif args.command == "reproduce":
+        from relay.reproduce import reproduce
+        try:
+            report = reproduce(output=args.output)
+        except (ValueError, FileNotFoundError) as exc:
+            parser.exit(1, f"Reference replay failed: {exc}\n")
+        print(f"Verified model-stage replay: {report['reference']['predictions']:,} forecasts; no downloads.")
+        for metric in report["metrics"]:
+            print(f"  {metric['name']}: MAE {metric['mae']:.4%} | RMSE {metric['rmse']:.4%}")
+        print(f"Saved separate results to {args.output.resolve()}")
+    elif args.command == "analyze":
+        from relay.research import analyze
+        if args.figure:
+            from importlib.util import find_spec
+            if find_spec("matplotlib") is None:
+                parser.exit(1, "Figures require the research extra: uv sync --locked --extra research\n")
+        try:
+            report = analyze(output=args.output)
+        except (ValueError, FileNotFoundError) as exc:
+            parser.exit(1, f"Research analysis failed: {exc}\n")
+        if args.figure:
+            from relay.figures import plot_diagnostics
+            plot_diagnostics(report, args.output)
+        print(f"Verified corrected model-stage replay: {report['fixture']['predictions']:,} forecasts; no downloads.")
+        for metric in report["metrics"]:
+            print(f"  {metric['name']}: MAE {100 * metric['mae']:.4f} pp | 80% coverage {metric['interval_coverage']:.1%}")
+        print(f"Saved diagnostics and protocol to {args.output.resolve()}")
     elif args.command == "diffusion-prices":
         from relay.diffusion import collect_diffusion_prices
         manifest = collect_diffusion_prices(args.ledger, args.output, refresh=args.refresh)
@@ -62,9 +93,6 @@ def main() -> None:
         print(f"{report['status']}: {report['audit']['scheduled_events']} source events, "
               f"{report['audit']['linked_event_rows']} linked rows, {len(report['runs'])} fixed configurations")
         print(f"Saved report and event windows to {args.output.resolve()}")
-    elif args.command == "serve":
-        import uvicorn
-        uvicorn.run("relay.server:app", host="127.0.0.1", port=args.port)
 
 
 if __name__ == "__main__":

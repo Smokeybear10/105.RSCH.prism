@@ -12,7 +12,7 @@ from urllib.parse import urljoin
 
 import pandas as pd
 import requests
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 from relay.config import COMPANIES, DATA_DIR, StudyConfig
 
@@ -164,7 +164,10 @@ def extract_release(client: PublicData, record: dict) -> tuple[str, str]:
     soup = BeautifulSoup(client.get(url), "html.parser")
     for node in soup(["script", "style", "ix:header", "head"]):
         node.decompose()
-    text = re.sub(r"\s+", " ", soup.get_text(" ", strip=True))
+    for node in list(soup.find_all(["p", "div", "h1", "h2", "h3", "h4", "h5", "h6", "li", "tr"])):
+        node.insert_before(NavigableString("\n"))
+        node.insert_after(NavigableString("\n"))
+    text = "\n".join(re.sub(r"\s+", " ", line).strip() for line in soup.get_text(" ", strip=False).splitlines() if line.strip())
     return text[:120000], url
 
 
@@ -180,23 +183,125 @@ PATTERNS = {
 }
 
 
+DISCLAIMER_HEADING = re.compile(
+    r"(?:forward[-\s]looking statements?|safe[-\s]harbor(?: statements?)?|"
+    r"cautionary statements?(?: (?:regarding|concerning|about) forward[-\s]looking statements?)?|"
+    r"cautionary note (?:regarding|concerning|about) forward[-\s]looking statements?|risk factors)\s*[:.]?", re.I,
+)
+DISCLAIMER_PARAGRAPH = re.compile(
+    r"^(?:this|the) (?:(?:press|news|earnings) )?(?:release|document|report|communication) "
+    r"(?:contains|includes)\b.{0,100}\bforward[-\s]looking", re.I,
+)
+RESEARCH_HEADING = re.compile(
+    r"(?:(?:business|financial|company) )?(?:outlook|guidance|results|highlights)"
+    r"(?: for [\w ,'-]{1,60})?|(?:condensed )?(?:consolidated )?financial statements|"
+    r"(?:condensed )?consolidated statements of .{1,60}|about .{1,60}", re.I,
+)
+NEGATED_PREFIX = re.compile(
+    r"\b(?:no|not|never|without|lose|lost|losing|lack(?:s|ed|ing)?|fail(?:s|ed|ing)? to)"
+    r"\s+(?:[\w’'-]+\s+){0,3}$", re.I,
+)
+
+
+def research_text(text: str) -> tuple[str, dict]:
+    kept = []
+    excluding = False
+    removed = sections = 0
+    for line in text.splitlines():
+        line = re.sub(r"\s+", " ", line).strip()
+        if not line:
+            continue
+        if DISCLAIMER_HEADING.fullmatch(line):
+            sections += int(not excluding)
+            excluding = True
+        elif excluding and RESEARCH_HEADING.fullmatch(line.rstrip(":")):
+            excluding = False
+        if excluding:
+            removed += len(line)
+        elif DISCLAIMER_PARAGRAPH.match(line):
+            sections += 1
+            removed += len(line)
+        else:
+            kept.append(line)
+    return " ".join(kept), {"boilerplate_sections": sections, "boilerplate_characters_removed": removed}
+
+
 def text_features(text: str) -> dict:
     # Explicit lexical features, not causal labels or an LLM return forecast.
-    normalized = text.lower()
+    scoring_text, audit = research_text(text)
+    normalized = scoring_text.lower()
     scores = {}
     counts = {}
     matches = []
     for name, (positive, negative) in PATTERNS.items():
-        pos = list(re.finditer(positive, normalized))
-        neg = list(re.finditer(negative, normalized))
+        pos = [match for match in re.finditer(positive, normalized)
+               if not NEGATED_PREFIX.search(normalized[max(0, match.start() - 80):match.start()])]
+        neg = [match for match in re.finditer(negative, normalized)
+               if not NEGATED_PREFIX.search(normalized[max(0, match.start() - 80):match.start()])]
         counts[name] = len(pos) + len(neg)
         scores[f"{name}_signal"] = (len(pos) - len(neg)) / (len(pos) + len(neg) + 1)
         matches.extend(pos + neg)
     dominant = max(counts, key=counts.get)
     scores["event_type"] = dominant if counts[dominant] else "earnings"
-    scores["text_available"] = float(bool(text))
-    scores["excerpt"] = text[max(0, matches[0].start() - 100):matches[0].end() + 230] if matches else text[:330]
+    scores["text_available"] = float(bool(scoring_text))
+    scores["excerpt"] = scoring_text[max(0, matches[0].start() - 100):matches[0].end() + 230] if matches else scoring_text[:330]
+    scores["text_audit"] = audit
     return scores
+
+
+class CachedPublicData:
+    def __init__(self, directory: Path):
+        self.directory = directory
+        self.responses: dict[str, str] = {}
+
+    def get(self, url: str) -> str:
+        path = self.directory / f"{hashlib.sha256(url.encode()).hexdigest()}.json"
+        content = path.read_bytes()
+        payload = json.loads(content)
+        if not isinstance(payload, dict) or payload.get("url") != url or not isinstance(payload.get("body"), str):
+            raise ValueError("Cached source does not match the requested document")
+        self.responses[url] = hashlib.sha256(content).hexdigest()
+        return payload["body"]
+
+
+def prepare_cached_events(events: list[dict], directory: Path) -> tuple[list[dict], dict, list[str]]:
+    client = CachedPublicData(directory / "raw")
+    prepared = []
+    unavailable_cache = unresolved = changed = 0
+    feature_keys = [f"{name}_signal" for name in PATTERNS] + ["text_available", "document_kind"]
+    for event in events:
+        source_url = event.get("source_url", "")
+        try:
+            if not isinstance(source_url, str) or not source_url:
+                raise ValueError("Original filing URL is missing")
+            body, url = extract_release(client, event)
+            status = "reprocessed" if body else "release_unresolved"
+            unresolved += int(not body)
+        except (OSError, ValueError):
+            body, url, status = "", source_url, "cached_source_unavailable"
+            unavailable_cache += 1
+        row = {**event, **text_features(body), "evidence_url": url,
+               "document_kind": "earnings_exhibit" if body else "release_unavailable", "text_source_status": status}
+        changed += int(any(row[key] != event.get(key) for key in feature_keys))
+        prepared.append(row)
+    responses = [{"url": url, "sha256": digest} for url, digest in sorted(client.responses.items())]
+    audit = {
+        "mode": "cached_source_reprocessing", "network_requests": 0,
+        "extractor_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "raw_responses": responses,
+        "raw_responses_sha256": hashlib.sha256(json.dumps(responses, sort_keys=True).encode()).hexdigest(),
+        "prepared_events_sha256": hashlib.sha256(json.dumps(prepared, sort_keys=True, allow_nan=False).encode()).hexdigest(),
+        "events": len(prepared), "reprocessed_exhibits": sum(row["document_kind"] == "earnings_exhibit" for row in prepared),
+        "changed_events": changed, "unresolved_releases": unresolved, "unavailable_cached_sources": unavailable_cache,
+        "events_with_boilerplate_removed": sum(row["text_audit"]["boilerplate_sections"] > 0 for row in prepared),
+        "boilerplate_characters_removed": sum(row["text_audit"]["boilerplate_characters_removed"] for row in prepared),
+    }
+    warnings = []
+    if unavailable_cache:
+        warnings.append(f"{unavailable_cache} events lack readable cached source documents; text features are unavailable, not reused from older extraction.")
+    if unresolved:
+        warnings.append(f"{unresolved} original releases remain unresolved; cover filings are excluded from text features.")
+    return prepared, audit, warnings
 
 
 def collect_data(config: StudyConfig, directory: Path = DATA_DIR, refresh: bool = False,

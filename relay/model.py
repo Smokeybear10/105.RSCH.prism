@@ -89,6 +89,10 @@ def _prepare_frame(frame: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
     data = data.loc[valid].copy()
     for name in IDENTIFIER_COLUMNS:
         data[name] = data[name].astype(str)
+    if data.duplicated(["event_id", "target_ticker"]).any():
+        raise ValueError("Duplicate event/peer observations")
+    if data.groupby("event_id")[list(DATE_COLUMNS)].nunique().gt(1).any().any():
+        raise ValueError("Conflicting decision, entry or exit dates within an event")
     data["correlation_x_source_return"] = data["correlation_60d"] * data["source_return_1d"]
     data["correlation_x_event_return"] = data["correlation_60d"] * data["source_event_return"]
     for name in TEXT_FEATURES:
@@ -122,10 +126,10 @@ def _calibrate(predictions: np.ndarray, residuals: np.ndarray) -> tuple[np.ndarr
     return predictions + lower, predictions + upper, probabilities
 
 
-def _metrics(predictions: list[dict]) -> list[dict]:
+def _metrics(predictions: list[dict], model_specs: tuple = MODEL_SPECS) -> list[dict]:
     actual = np.array([row["realized_excess_return"] for row in predictions])
     metrics = []
-    for model_id, name, _ in MODEL_SPECS:
+    for model_id, name, _ in model_specs:
         model_rows = [row["models"][model_id] for row in predictions]
         forecast = np.array([row["prediction"] for row in model_rows])
         lower = np.array([row["lower_80"] for row in model_rows])
@@ -143,6 +147,7 @@ def _metrics(predictions: list[dict]) -> list[dict]:
             "mae": float(np.abs(forecast - actual).mean()),
             "rmse": float(np.sqrt(np.square(forecast - actual).mean())),
             "directional_accuracy": float((np.sign(forecast[directional]) == np.sign(actual[directional])).mean()) if directional.any() else None,
+            "n_directional": int(directional.sum()),
             "interval_coverage": float(((actual >= lower) & (actual <= upper)).mean()),
             "brier": float(np.square(probabilities - (actual > 0)).mean()),
             "mean_gross_trade_return": float(gross[active].mean()) if active.any() else None,
@@ -153,16 +158,38 @@ def _metrics(predictions: list[dict]) -> list[dict]:
     return metrics
 
 
-def _comparisons(predictions: list[dict], draws: int = 1000) -> list[dict]:
+def _holding_window_clusters(predictions: list[dict]) -> np.ndarray:
+    clusters = np.empty(len(predictions), dtype=int)
+    block = -1
+    block_end = None
+    for index in sorted(range(len(predictions)), key=lambda i: (predictions[i]["entry_date"], predictions[i]["exit_date"])):
+        row = predictions[index]
+        if block_end is None or row["entry_date"] > block_end:
+            block += 1
+            block_end = row["exit_date"]
+        else:
+            block_end = max(block_end, row["exit_date"])
+        clusters[index] = block
+    return clusters
+
+
+def _comparisons(predictions: list[dict], draws: int = 1000, overlap_blocks: bool = False,
+                 model_specs: tuple = MODEL_SPECS) -> list[dict]:
     actual = np.array([row["realized_excess_return"] for row in predictions])
-    baseline = np.array([row["models"]["price_only"]["prediction"] for row in predictions])
     dates = np.array([row["decision_date"] for row in predictions])
-    unique_dates, cluster_ids = np.unique(dates, return_inverse=True)
+    _, cluster_ids = np.unique(dates, return_inverse=True)
+    if overlap_blocks:
+        cluster_ids = _holding_window_clusters(predictions)
+    n_clusters = len(np.unique(cluster_ids))
     counts = np.bincount(cluster_ids)
     rng = np.random.default_rng(42)
-    samples = rng.integers(0, len(unique_dates), size=(draws, len(unique_dates)))
+    samples = rng.integers(0, n_clusters, size=(draws, n_clusters))
     results = []
-    for model_id in ("network", "event_conditioned"):
+    pairs = (("network", "price_only"), ("event_conditioned", "price_only"), ("event_conditioned", "zero_excess"))
+    if any(model_id == "adaptive" for model_id, _, _ in model_specs):
+        pairs += tuple(("adaptive", baseline) for baseline in ("price_only", "event_conditioned", "zero_excess"))
+    for model_id, baseline_id in pairs:
+        baseline = np.array([row["models"][baseline_id]["prediction"] for row in predictions])
         forecast = np.array([row["models"][model_id]["prediction"] for row in predictions])
         improvement = np.abs(baseline - actual) - np.abs(forecast - actual)
         sums = np.bincount(cluster_ids, weights=improvement)
@@ -170,17 +197,53 @@ def _comparisons(predictions: list[dict], draws: int = 1000) -> list[dict]:
         lower, upper = np.quantile(bootstrap, [0.025, 0.975])
         results.append({
             "model_id": model_id,
-            "baseline_model_id": "price_only",
+            "baseline_model_id": baseline_id,
             "mae_improvement": float(improvement.mean()),
             "ci_lower": float(lower),
             "ci_upper": float(upper),
             "confidence_level": 0.95,
-            "bootstrap_unit": "decision_date",
-            "n_clusters": len(unique_dates),
+            "bootstrap_unit": "connected_holding_windows" if overlap_blocks else "decision_date",
+            "n_clusters": n_clusters,
             "bootstrap_draws": draws,
             "note": "Exploratory date-cluster bootstrap; overlapping horizons across dates and model selection are not fully accounted for.",
         })
+        if overlap_blocks:
+            results[-1].update(
+                status="estimated" if n_clusters > 1 else "insufficient_clusters",
+                ci_lower=float(lower) if n_clusters > 1 else None,
+                ci_upper=float(upper) if n_clusters > 1 else None,
+                note="Exploratory bootstrap of connected, overlapping holding windows. All peer forecasts in a block stay together. Dependence between blocks and model selection are not accounted for.",
+            )
     return results
+
+
+def _period_diagnostics(predictions: list[dict], model_specs: tuple = MODEL_SPECS) -> list[dict]:
+    periods = []
+    for year in sorted({row["decision_date"][:4] for row in predictions}):
+        rows = [row for row in predictions if row["decision_date"].startswith(year)]
+        metrics = _metrics(rows, model_specs)
+        by_model = {metric["model_id"]: metric for metric in metrics}
+        pairs = [("event_conditioned", baseline) for baseline in ("price_only", "zero_excess")]
+        if "adaptive" in by_model:
+            pairs.extend(("adaptive", baseline) for baseline in ("price_only", "event_conditioned", "zero_excess"))
+        sources = []
+        for ticker in sorted({row["source_ticker"] for row in rows}):
+            source_rows = [row for row in rows if row["source_ticker"] == ticker]
+            sources.append({"source_ticker": ticker, "n_events": len({row["event_id"] for row in source_rows}),
+                            "n_predictions": len(source_rows)})
+        periods.append({
+            "year": int(year), "n_predictions": len(rows), "n_events": len({row["event_id"] for row in rows}),
+            "n_decision_dates": len({row["decision_date"] for row in rows}),
+            "period_start": min(row["decision_date"] for row in rows),
+            "period_end": max(row["decision_date"] for row in rows),
+            "models": [{key: metric[key] for key in ("model_id", "mae", "interval_coverage")} for metric in metrics],
+            "comparisons": [{"model_id": model_id, "baseline_model_id": baseline,
+                             "mae_improvement": by_model[baseline]["mae"] - by_model[model_id]["mae"]}
+                            for model_id, baseline in pairs],
+            "sources": sources,
+            "note": "Descriptive breakdown of the same exploratory test rows, not a separate untouched evaluation. Rows and years are dependent.",
+        })
+    return periods
 
 
 def run_study(
@@ -188,6 +251,7 @@ def run_study(
     min_train_rows: int = 100,
     cost_bps: float = 20,
     horizon_days: int = 5,
+    include_adaptive: bool = False,
 ) -> dict:
     if not np.isfinite(cost_bps) or cost_bps < 0:
         raise ValueError("cost_bps must be finite and nonnegative")
@@ -198,14 +262,17 @@ def run_study(
 
     minimum = max(100, min_train_rows)
     cost = float(cost_bps / 10_000)
+    model_specs = MODEL_SPECS + (("adaptive", "Training-selected model", ()),) if include_adaptive else MODEL_SPECS
     result = {
         "status": "insufficient_data",
         "warnings": [],
-        "model_definitions": [{"model_id": model_id, "name": name, "features": list(features)} for model_id, name, features in MODEL_SPECS],
+        "model_definitions": [{"model_id": model_id, "name": name, "features": list(features)} for model_id, name, features in model_specs],
         "predictions": [],
         "metrics": [],
         "folds": [],
         "comparisons": [],
+        "overlap_comparisons": [],
+        "period_diagnostics": [],
         "config": {
             "fold_frequency": "quarterly",
             "min_train_rows": minimum,
@@ -224,6 +291,11 @@ def run_study(
         },
         "sample": {"input_rows": len(frame), "valid_rows": 0, "predicted_rows": 0},
     }
+    if include_adaptive:
+        from relay.selection import selection_protocol
+
+        result["config"]["selection"] = selection_protocol()
+        result["config"]["evaluation_scope"] = "Exploratory historical development; these outcomes have already been inspected."
     if frame.empty:
         result["warnings"].append("No completed event outcomes are available for walk-forward evaluation.")
         return result
@@ -283,6 +355,12 @@ def run_study(
             continue
 
         audit["status"] = "evaluated"
+        selected_model = None
+        if include_adaptive:
+            from relay.selection import select_model
+
+            selected_model = select_model(fit, PRICE_FEATURES, EVENT_FEATURES)
+            audit["selection"] = selected_model.audit
         fit_y = fit["realized_excess_return"].to_numpy(dtype=float)
         calibration_y = calibration["realized_excess_return"].to_numpy(dtype=float)
         actual = test["realized_excess_return"].to_numpy(dtype=float)
@@ -297,8 +375,11 @@ def run_study(
                 "models": {},
             })
 
-        for model_id, _, features in MODEL_SPECS:
-            if features:
+        for model_id, _, features in model_specs:
+            if model_id == "adaptive":
+                forecast = selected_model.predict(test)
+                residuals = calibration_y - selected_model.predict(calibration)
+            elif features:
                 model = _fit_ridge(fit[list(features)].to_numpy(dtype=float), fit_y)
                 forecast = model.predict(test[list(features)].to_numpy(dtype=float))
                 residuals = calibration_y - model.predict(calibration[list(features)].to_numpy(dtype=float))
@@ -326,6 +407,8 @@ def run_study(
         return result
     result["status"] = "ok"
     result["sample"]["predicted_rows"] = len(result["predictions"])
-    result["metrics"] = _metrics(result["predictions"])
-    result["comparisons"] = _comparisons(result["predictions"])
+    result["metrics"] = _metrics(result["predictions"], model_specs=model_specs)
+    result["comparisons"] = _comparisons(result["predictions"], model_specs=model_specs)
+    result["overlap_comparisons"] = _comparisons(result["predictions"], overlap_blocks=True, model_specs=model_specs)
+    result["period_diagnostics"] = _period_diagnostics(result["predictions"], model_specs=model_specs)
     return result

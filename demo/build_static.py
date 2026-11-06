@@ -1,9 +1,8 @@
 """
-One-shot build: dump per-ticker JSON bundles for the static HTML demo.
+Export per-ticker JSON fixtures for the historical attribution evaluation.
 
 Run from the project root:
     python demo/build_static.py
-    python -m http.server 2004 --directory demo/static
 
 Output:
     demo/static/data/{TICKER}.json    # prices + flagged moves + attributions + chunks
