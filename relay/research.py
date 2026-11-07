@@ -49,9 +49,9 @@ def _check_output(output: Path) -> None:
     try:
         previous = json.loads((output / "summary.json").read_text())
     except (FileNotFoundError, ValueError) as exc:
-        raise ValueError("Output is not a prior PRISM research analysis") from exc
+        raise ValueError("Output is not a prior earnings research analysis") from exc
     if previous.get("format") != FORMAT:
-        raise ValueError("Output is not a prior PRISM research analysis")
+        raise ValueError("Output is not a prior earnings research analysis")
 
 
 def _source_hashes() -> dict[str, str]:
@@ -59,7 +59,7 @@ def _source_hashes() -> dict[str, str]:
             for name in ("model.py", "selection.py", "diagnostics.py", "research.py")}
 
 
-def analyze(output: Path = Path("out/prism-analysis"), reference_dir: Path = REFERENCE_DIR) -> dict:
+def analyze(output: Path = Path("out/earnings-analysis"), reference_dir: Path = REFERENCE_DIR) -> dict:
     _check_output(output)
     manifest, frame = _inputs(reference_dir)
     code = _source_hashes()
@@ -101,7 +101,7 @@ def analyze(output: Path = Path("out/prism-analysis"), reference_dir: Path = REF
         "implementation_scope": "Source files on disk before and after the run; not an attestation of previously imported code.",
         "environment": {"python": platform.python_version(), **{name: version(name) for name in ("numpy", "pandas")}},
         "confound_sensitivity": "Same fitted forecasts, split by observed peer-disclosure overlap; no retraining. Missing events outside the six-company cache are not ruled out.",
-        "command": "uv run --locked --offline prism analyze --output out/prism-analysis",
+        "command": "uv run --locked --offline earnings-study analyze --output out/earnings-analysis",
         "return_unit": "decimal; multiply by 100 for percentage points",
     }
     report = {

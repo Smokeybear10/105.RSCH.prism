@@ -95,7 +95,7 @@ def test_status_rejects_source_changed_since_import(monkeypatch):
     changed = replay.reference_status()
     assert initial["status"] == "available"
     assert changed["status"] == "mismatch"
-    assert "restart PRISM" in changed["message"]
+    assert "restart the process" in changed["message"]
 
 
 def test_manifest_change_invalidates_previous_reference_id(reference_copy):

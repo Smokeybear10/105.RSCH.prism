@@ -7,7 +7,7 @@ from relay.config import DATA_DIR, StudyConfig
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(prog="prism", description="PRISM: collect disclosures, compare forecasts, and review research results.")
+    parser = argparse.ArgumentParser(description="Earnings Disclosure Spillovers and Peer-Return Prediction: collect disclosures, compare forecasts, and review research results.")
     sub = parser.add_subparsers(dest="command", required=True)
     collect = sub.add_parser("collect", help="Download public SEC disclosures and adjusted daily prices")
     collect.add_argument("--start", default="2017-01-01")
@@ -19,7 +19,7 @@ def main() -> None:
     reproduce = sub.add_parser("reproduce", help="Verify and replay the bundled numerical reference without downloads")
     reproduce.add_argument("--output", type=Path, default=Path("out/relay-reference"), help="Separate output directory (default: out/relay-reference)")
     analyze = sub.add_parser("analyze", help="Replay the corrected study and export research diagnostics without downloads")
-    analyze.add_argument("--output", type=Path, default=Path("out/prism-analysis"))
+    analyze.add_argument("--output", type=Path, default=Path("out/earnings-analysis"))
     analyze.add_argument("--figure", action="store_true", help="Save scientific figures (requires the research extra)")
     diffusion = sub.add_parser("diffusion", help="Replay a source-audited customer-supplier event study")
     diffusion.add_argument("--ledger", type=Path, required=True)
@@ -50,7 +50,7 @@ def main() -> None:
                 config = StudyConfig.model_validate(options)
             report = run_cached_study(directory=DATA_DIR, config=config, output_directory=output)
         except (FileNotFoundError, ValueError) as exc:
-            parser.exit(1, f"Study failed: {exc}\nCollect the source inputs with `prism collect` or replay the included reference with `prism reproduce`.\n")
+            parser.exit(1, f"Study failed: {exc}\nCollect the source inputs with `earnings-study collect` or replay the included reference with `earnings-study reproduce`.\n")
         print(f"{report['study']['status']}: {report['summary']['events']} events, {report['summary']['predictions']} held-out peer forecasts")
         for metric in report["benchmarks"]:
             print(f"  {metric['name']}: MAE {metric['mae']:.4%} | RMSE {metric['rmse']:.4%}")

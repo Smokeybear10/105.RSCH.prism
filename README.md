@@ -1,4 +1,4 @@
-# PRISM | Earnings and Peer Returns
+# Earnings Disclosure Spillovers and Peer-Return Prediction
 
 Tests whether earnings disclosures and the reporting company's price reaction help predict returns of other semiconductor stocks.
 
@@ -7,10 +7,10 @@ Tests whether earnings disclosures and the reporting company's price reaction he
 Use Python 3.12 and [uv](https://docs.astral.sh/uv/). The [notebook](relay/notebooks/reference_replay.ipynb) has saved outputs you can read without installing anything.
 
 ```bash
-git clone https://github.com/Smokeybear10/105.RSCH.prism.git
-cd 105.RSCH.prism
+git clone https://github.com/Smokeybear10/earnings-disclosure-spillovers-and-peer-return-prediction.git
+cd earnings-disclosure-spillovers-and-peer-return-prediction
 uv sync --locked --extra research --extra test
-uv run --locked --offline prism analyze --output out/prism-analysis --figure
+uv run --locked --offline earnings-study analyze --output out/earnings-analysis --figure
 ```
 
 This reruns the corrected analysis from included numerical inputs, without downloads. Use the installed environment as the notebook's Python kernel.
@@ -45,19 +45,19 @@ Both columns use the same historical sample, which was also used during developm
 
 ## Reproduce the Results
 
-The quick-start command writes new outputs to `out/prism-analysis/`, preserving the saved `results/`. Tables and diagnostics run with core dependencies alone; omit `--figure` to skip plotting. Input hashes are recorded in the [corrected manifest](relay/data/research_manifest.json).
+The quick-start command writes new outputs to `out/earnings-analysis/`, preserving the saved `results/`. Tables and diagnostics run with core dependencies alone; omit `--figure` to skip plotting. Input hashes are recorded in the [corrected manifest](relay/data/research_manifest.json).
 
 Replay the original four-model reference separately:
 
 ```bash
-uv run --locked --offline prism reproduce --output out/prism-reference
+uv run --locked --offline earnings-study reproduce --output out/earnings-reference
 ```
 
 Both offline commands cover the model stage. To download source data and rebuild disclosure features:
 
 ```bash
-uv run --locked prism collect --start 2017-01-01 --end 2026-10-30
-uv run --locked prism study --output data/relay/runs/new-study
+uv run --locked earnings-study collect --start 2017-01-01 --end 2026-10-30
+uv run --locked earnings-study study --output data/relay/runs/new-study
 ```
 
 Collection caches SEC disclosures and Yahoo adjusted prices locally. Fresh vendor downloads can differ from the included inputs. Each study records input hashes, extracted features, configuration and environment; use a new output path to preserve previous runs.

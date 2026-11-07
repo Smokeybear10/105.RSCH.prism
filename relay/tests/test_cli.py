@@ -60,7 +60,7 @@ def test_missing_inputs_fail_without_creating_outputs(monkeypatch, tmp_path, cap
     with pytest.raises(SystemExit) as error:
         invoke(monkeypatch, "study")
     assert error.value.code == 1
-    assert "prism reproduce" in capsys.readouterr().err
+    assert "earnings-study reproduce" in capsys.readouterr().err
     assert list(tmp_path.iterdir()) == []
 
 

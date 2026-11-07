@@ -14,7 +14,7 @@ from relay.model import INPUT_FEATURES, RETURN_COLUMNS, run_study
 
 REFERENCE_DIR = Path(__file__).resolve().parent / "data"
 DEFAULT_OUTPUT = Path("out/relay-reference")
-COMMAND = "uv run --locked prism reproduce"
+COMMAND = "uv run --locked earnings-study reproduce"
 FORMAT = "relay-reference-v1"
 
 
@@ -46,7 +46,7 @@ def _reference(reference_dir: Path) -> tuple[dict, dict, bytes]:
 def _identity(manifest: dict) -> dict:
     code = {name: _hash(Path(__file__).with_name(name)) for name in ("model.py", "reproduce.py")}
     if code != _IMPORTED_CODE:
-        raise ValueError("Reference source changed after import; restart PRISM before replaying")
+        raise ValueError("Reference source changed after import; restart the process before replaying")
     signature = json.dumps({"manifest": manifest, "code": code}, sort_keys=True).encode()
     return {"reference_id": hashlib.sha256(signature).hexdigest(), "code_sha256": code}
 
@@ -58,7 +58,7 @@ def reference_status(reference_dir: Path = REFERENCE_DIR) -> dict:
     except FileNotFoundError:
         return {"status": "missing", "message": "Reference files are missing. Restore the checked-in fixture to replay it.", "command": COMMAND}
     except (ValueError, KeyError, TypeError):
-        return {"status": "mismatch", "message": "Reference files or loaded source do not match. Restore altered inputs, or restart PRISM after a code change. A replay has not been verified.", "command": COMMAND}
+        return {"status": "mismatch", "message": "Reference files or loaded source do not match. Restore altered inputs, or restart the process after a code change. A replay has not been verified.", "command": COMMAND}
     return {
         "status": "available", "message": "Reference file hashes match. Run the replay to verify the model results.",
         "command": COMMAND, "scope": manifest["scope"],
